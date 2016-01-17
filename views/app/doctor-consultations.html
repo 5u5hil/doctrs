@@ -1,0 +1,126 @@
+<ion-view class="records-view">
+    <ion-nav-title>
+        <span>Doctor Consultations</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-person"></button>
+    </ion-nav-buttons>
+
+
+    <ion-content>
+        <div class="ctab">
+            <ion-tabs class="tabs-positive tabs-icon-top">                
+                <!-- =========== Upcoming ===========-->
+                <ion-tab title="Current" >
+                    <div class="tabcon2"> 
+                        <div class="searchbox">
+                            <div class="item item-input-inset" style="border-bottom:0;">
+                                <label class="item-input-wrapper">
+                                    <input type="text" placeholder="Search...">
+                                </label>
+                                <button class="button button-small">
+                                    <i class="ion-android-search"></i>
+                                </button>
+                            </div>	
+                        </div>
+                        <div class="ctab commontab">
+                            <ion-tabs class="tabs-positive tabs-icon-top">
+
+                                <ion-tab title="Today(2)" >
+                                    <div class="tabcontainer p0">
+                                        <div class="posts-list" ng-repeat="app in appointments track by $index" >
+                                            <div  class="list card post-item">
+                                                <div class="post-content item item-text-wrap p0">
+                                                    <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content paraspacing">
+                                                        <p ng-repeat="user in usersData[$index]"><strong>{{user.gender==1? 'Mr.': 'Mrs./Ms.'}} {{user.fname}} {{user.lname}}</strong></p>
+                                                        <div class="row">
+                                                            <div class="col"><p><strong>Time</strong> <br/> 
+                                                                    {{app.appointments.scheduled_start_time|time}} to {{app.appointments.scheduled_end_time|time}} </p></div>
+                                                            <div class="col"><p><strong>Mode</strong> <br/> 
+                                                                    Video</p></div>
+                                                        </div>
+                                                        <p>2 Records Created by you <br/>3 Records Shared by Patient</p>
+                                                        <div class="clr"></div>
+                                                    </a>
+                                                    <div class="post-actions  post-footer p0">
+                                                        <div class="row cardbtn-small p0">
+                                                            <div class="col"><a ui-sref="#" class="cbtn">Cancel</a></div>
+                                                            <div class="col"><a ui-sref="#"  class="cbtn">Reschedule</a></div>
+                                                            <div class="col"><a ui-sref="#" class="cbtn">Join</a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ion-tab>
+
+                                <ion-tab title="This Week(10)" >
+                                    <div class="tabcontainer">
+                                        Under Construction
+                                    </div>
+                                </ion-tab>
+
+                                <ion-tab title="All(25)" >
+                                    <div class="tabcontainer">
+                                        Under Construction
+                                    </div>
+                                </ion-tab>
+                            </ion-tabs>
+                        </div>
+                    </div>
+                </ion-tab>
+
+                <ion-tab title="Past" >
+                    <div class="tabcontainer">
+                        Under Construction	
+                    </div>
+                </ion-tab>
+                <ion-tab title="Book" >
+                    <!-- Tab 1 content -->
+                    <div class="tabcon2">
+
+                        <div class="searchbox">
+                            <div class="item item-input-inset" style="border-bottom:0;">
+                                <label class="item-input-wrapper">
+                                    <input type="text" placeholder="Search...">
+                                </label>
+                                <button class="button button-small">
+                                    <i class="ion-android-search"></i>
+                                </button>
+                            </div>	
+                        </div>
+
+                        <div class="list miscellaneous-functionalities">
+
+                            <a class="item  item-icon-right" ui-sref="app.consultation-cards">
+                                <div>
+                                    <span class="stitle">Dermatology</span>
+                                    <p class="">Skin, Hair, Acne, Skin, Hair, Acne, Skin, Hair, Acne, Skin, Hair, Acne,  </p>
+                                </div>
+                                <i class="icon ion-arrow-right-c"></i>
+                            </a>
+
+                            <a class="item item-icon-right" ui-sref="app.consultation-cards">
+                                <div>
+                                    <span class="stitle">Diet & Nutrition</span>
+                                    <p class="">Weight loss, Weight gain, Muscle gain, Fitness, Immunity..</p>
+                                </div>
+                                <i class="icon ion-arrow-right-c"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </ion-tab>
+            </ion-tabs>
+        </div>
+    </ion-content>
+
+    <div class="footerbar">
+
+        <a class="button" ui-sref="#" style="width:50%"><i class="icon ion-funnel"></i> Filter</a>
+        <a class="button" ui-sref="#" style="width:50%" ><i class="ion"></i> </a>
+    </div>
+
+</ion-view>
+
