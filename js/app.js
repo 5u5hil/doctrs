@@ -117,36 +117,6 @@ angular.module('your_app_name', [
                         controller: 'AppCtrl'
                     })
 
-                    //MISCELLANEOUS
-                    .state('app.miscellaneous', {
-                        url: "/miscellaneous",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/miscellaneous/miscellaneous.html"
-                            }
-                        }
-                    })
-
-                    .state('app.home', {
-                        url: "/home",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/home.html"
-                            }
-                        }
-                    })
-
-
-                    .state('app.maps', {
-                        url: "/miscellaneous/maps",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/miscellaneous/maps.html",
-                                controller: 'MapsCtrl'
-                            }
-                        }
-                    })
-
                     .state('app.image-picker', {
                         url: "/miscellaneous/image-picker",
                         views: {
@@ -155,27 +125,7 @@ angular.module('your_app_name', [
                                 controller: 'ImagePickerCtrl'
                             }
                         }
-                    })
-
-                    //LAYOUTS
-                    .state('app.layouts', {
-                        url: "/layouts",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/layouts/layouts.html"
-                            }
-                        }
-                    })
-
-                    .state('app.tinder-cards', {
-                        url: "/layouts/tinder-cards",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/layouts/tinder-cards.html",
-                                controller: 'TinderCardsCtrl'
-                            }
-                        }
-                    })
+                    })                    
 
                     .state('app.slider', {
                         url: "/layouts/slider",
@@ -193,108 +143,6 @@ angular.module('your_app_name', [
                             'menuContent': {
                                 templateUrl: "views/app/feeds/feeds-categories.html",
                                 controller: 'FeedsCategoriesCtrl'
-                            }
-                        }
-                    })
-
-                    .state('app.category-feeds', {
-                        url: "/category-feeds/:categoryId",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/feeds/category-feeds.html",
-                                controller: 'CategoryFeedsCtrl'
-                            }
-                        }
-                    })
-
-
-                    .state('app.category-list', {
-                        url: "/category-listing",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/category-list.html",
-                                controller: 'CategoryListCtrl'
-                            }
-                        }
-                    })
-
-
-                    .state('app.category-detail', {
-                        url: "/category-detail",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/category-detail.html",
-                                controller: 'CategoryDetailCtrl'
-                            }
-                        }
-                    })
-                    .state('app.add-category', {
-                        url: "/add-category/{id:int}",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/add-record.html",
-                                controller: 'AddRecordCtrl'
-                            }
-                        }
-                    })
-
-                    .state('app.edit-record', {
-                        url: "/edit-record/{id:int}/{cat:int}",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/edit-record.html",
-                                controller: 'EditRecordCtrl'
-                            }
-                        }
-                    })
-
-                    .state('app.records-view', {
-                        url: "/records-view/{id:int}",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/records/records-view.html",
-                                controller: 'RecordsViewCtrl'
-                            }
-                        }
-                    })
-                    .state('app.record-details', {
-                        url: "/record-details/{id:int}",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/records/record-details.html",
-                                controller: 'RecordDetailsCtrl'
-                            }
-                        }
-                    })
-
-
-                    //Consultations
-
-                    .state('app.consultations-list', {
-                        url: "/consultations-list",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/consultations/consultations-list.html",
-                                controller: 'ConsultationsListCtrl'
-                            }
-                        }
-                    })
-
-                    .state('app.consultation-cards', {
-                        url: "/consultation-cards/{id:int}",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/consultations/consultation-cards.html",
-                                controller: 'ConsultationCardsCtrl'
-                            }
-                        }
-                    })
-                    .state('app.consultation-profile', {
-                        url: "/consultation-profile/{id:int}",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/consultations/consultation-profile.html",
-                                controller: 'ConsultationProfileCtrl'
                             }
                         }
                     })
@@ -328,27 +176,7 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-                    //Payment
-                    .state('app.payment', {
-                        url: "/payment",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/payment.html",
-                                controller: 'PaymentCtrl'
-                            }
-                        }
-                    })
-
-
-                    .state('app.success', {
-                        url: "/success/{id:int}/{serviceId:int}",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/success.html",
-                                controller: 'SuccessCtrl'
-                            }
-                        }
-                    })
+                    
 
                     .state('app.feed-entries', {
                         url: "/feed-entries/:categoryId/:sourceId",
@@ -360,75 +188,6 @@ angular.module('your_app_name', [
                         }
                     })
 
-                    //WORDPRESS
-                    .state('app.wordpress', {
-                        url: "/wordpress",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/wordpress/wordpress.html",
-                                controller: 'WordpressCtrl'
-                            }
-                        }
-                    })
-
-                    .state('app.post', {
-                        url: "/wordpress/:postId",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/wordpress/wordpress_post.html",
-                                controller: 'WordpressPostCtrl'
-                            }
-                        },
-                        resolve: {
-                            post_data: function (PostService, $ionicLoading, $stateParams) {
-                                $ionicLoading.show({
-                                    template: 'Loading post ...'
-                                });
-
-                                var postId = $stateParams.postId;
-                                return PostService.getPost(postId);
-                            }
-                        }
-                    })
-
-                    //OTHERS
-                    .state('app.settings', {
-                        url: "/settings",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/settings.html",
-                                controller: 'SettingsCtrl'
-                            }
-                        }
-                    })
-
-                    .state('app.forms', {
-                        url: "/forms",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/forms.html"
-                            }
-                        }
-                    })
-
-                    .state('app.profile', {
-                        url: "/profile",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/profile.html"
-                            }
-                        }
-                    })
-
-                    .state('app.bookmarks', {
-                        url: "/bookmarks",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/bookmarks.html",
-                                controller: 'BookMarksCtrl'
-                            }
-                        }
-                    })
                     .state('app.logout', {
                         url: "/logout",
                         views: {
