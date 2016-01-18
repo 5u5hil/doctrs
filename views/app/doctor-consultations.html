@@ -28,6 +28,7 @@
 
                                 <ion-tab title="Today({{appointments.length}})" >
                                     <div class="tabcontainer p0">
+                                        <h4> {{appointments.length==0? 'No appointments': ''}}</h4>
                                         <div class="posts-list" ng-repeat="app in appointments track by $index" >
                                             <div  class="list card post-item">
                                                 <div class="post-content item item-text-wrap p0">
