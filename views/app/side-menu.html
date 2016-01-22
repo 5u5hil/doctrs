@@ -28,6 +28,12 @@
                     <i class="icon ion-gear-a"></i>
                     <h2 class="menu-text">Home</h2>
                 </ion-item>
+				
+				 <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.consultations-note">
+					<i class="icon ion-gear-a"></i>
+                    <h2 class="menu-text">Consultaion Note</h2>
+                </ion-item>
+				
                 <ion-item class="item-icon-left" nav-clear menu-close ui-sref="{{ userLogged == 1 ? 'app.logout' : 'auth.login'}}">
                     <i class="icon ion-gear-a"></i>
                     <h2 class="menu-text">{{ userLogged == 1 ? 'Logout' : 'Login / Register'}}</h2>

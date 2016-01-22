@@ -12,6 +12,14 @@ angular.module('your_app_name.controllers', [])
                 $state.go('auth.login');
         })
 
+		
+	.controller('ConsultationsNoteCtrl', function($scope, $http, $stateParams) {
+	$scope.category_sources = [];
+	$scope.categoryId = $stateParams.categoryId;
+
+})	
+		
+
 //LOGIN
         .controller('LoginCtrl', function ($scope, $state, $templateCache, $q, $rootScope) {
             $scope.doLogIn = function () {

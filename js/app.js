@@ -157,6 +157,16 @@ angular.module('your_app_name', [
                         }
                     })
 
+					  .state('app.consultations-note', {
+						  url: "/consultations-note",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultations-note.html",
+                                controller: 'ConsultationsNoteCtrl'
+                            }
+                        }
+                    })
+					
                     .state('app.doctor-current-tab', {
                         url: "/doctor-current-tab/{id:int}",
                         views: {

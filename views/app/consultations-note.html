@@ -1,0 +1,111 @@
+<ion-view class="records-view">
+    <ion-nav-title>
+        <span>Basic Information</span>
+    </ion-nav-title>
+    <ion-nav-buttons side="right">
+        <button class="button button-icon button-clear ion-person"></button>
+    </ion-nav-buttons>
+
+
+    <ion-content>
+        <div class="ctab">
+            <ion-tabs class="tabs-positive tabs-icon-top">                
+                <!-- =========== Upcoming ===========-->
+                <ion-tab title="About" >
+                    <div class="tabcon2"> 
+                       
+					   <div class="item item-divider">Case Type</div>
+						<ion-list>
+							<div class="row">
+							<div class="col cradio"><ion-radio ng-model="choice" ng-value="'A'" checked>New</ion-radio></div>
+							<div class="col cradio"> <ion-radio ng-model="choice" ng-value="'B'">Ongoing</ion-radio></div>
+							</div>
+						</ion-list>
+					   <label class="item item-input">
+						<span class="input-label">Select from existing </span>
+						<input type="text">
+					  </label>
+					   
+					    <label class="item item-input">
+						<span class="input-label">Case Name*</span>
+						<input type="text">
+						</label>
+					   
+					   <label class="item item-input item-select">
+						<div class="input-label">
+						Consultation Type
+						</div>
+						<select>
+						  <option selected>Outpatient</option>
+						  <option >Inpatient</option>
+						  <option>Emergency</option>
+						  <option>Investigations</option>
+						</select>
+					  </label> 
+					   
+					   <label class="item item-input">
+						<span class="input-label">Consultation Number</span>
+						<input type="text" value="012" readonly>
+						</label>
+					    <div class="item item-divider">Consultation Date & Time</div>
+					   
+					     <label class="item item-input ">
+							<span class="input-label">Date</span>
+							<input type="date">
+						 </label>
+							
+						 <label class="item item-input">
+							<span class="input-label">Time</span>
+							<input type="time">
+						 </label>	
+							
+						<label class="item item-input item-select">
+						<div class="input-label">
+						Consultation Mode
+						</div>
+						<select>
+						  <option selected>Video</option>
+						  <option >Clinic</option>
+						  <option>Home</option>
+						  <option>Phone</option>
+						  <option>Chat</option>
+						</select>
+					  </label>	
+						
+						<div class="item item-divider">Other</div>
+						
+						<label class="item item-input item-stacked-label">
+						
+							<textarea rows="4" cols="50"> </textarea>
+						  </label>	
+							
+							
+							
+							
+					   
+                       
+                    </div>
+                </ion-tab>
+
+                <ion-tab title="Patient History" >
+                    <div class="tabcontainer">
+                        Under Construction	
+                    </div>
+                </ion-tab>
+                <ion-tab title="Family History" >
+                    <!-- Tab 1 content -->
+                    <div class="tabcon2">
+
+                    </div>
+                </ion-tab>
+            </ion-tabs>
+        </div>
+    </ion-content>
+
+    <div class="footerbar">
+
+        <a class="button" ui-sref="#" style="width:100%">Next <i class="icon ion-arrow-right-c"></i></a>
+    </div>
+
+</ion-view>
+
