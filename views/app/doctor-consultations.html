@@ -5,8 +5,6 @@
     <ion-nav-buttons side="right">
         <button class="button button-icon button-clear ion-person"></button>
     </ion-nav-buttons>
-
-
     <ion-content>
         <div class="ctab">
             <ion-tabs class="tabs-positive tabs-icon-top">                
@@ -33,12 +31,12 @@
                                             <div  class="list card post-item">
                                                 <div class="post-content item item-text-wrap p0">
                                                     <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content paraspacing">
-                                                        <p ng-repeat="user in usersData[$index]"><strong>{{user.gender==1? 'Mr.': 'Mrs./Ms.'}} {{user.fname}} {{user.lname}}</strong></p>
+                                                        <p ng-repeat="user in usersData[$index]"><strong>{{user.fname}} {{user.lname}}</strong></p>
                                                         <div class="row">
-                                                            <div class="col"><p><strong>Time</strong> <br/> 
+                                                            <div class="col"><p><strong>Appointment </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
                                                                     {{app.appointments.scheduled_start_time|time}} to {{app.appointments.scheduled_end_time|time}} </p></div>
                                                             <div class="col"><p><strong>Mode</strong> <br/> 
-                                                                    Video</p></div>
+                                                                    {{app.appointments.mode==1 ? 'Video': app.appointments.mode==3? 'Clinic': app.appointments.mode==4? 'Home': ''}}</p></div>
                                                         </div>
                                                         <p>2 Records Created by you <br/>3 Records Shared by Patient</p>
                                                         <div class="clr"></div>
