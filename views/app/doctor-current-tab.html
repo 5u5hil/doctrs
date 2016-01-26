@@ -1,6 +1,6 @@
 <ion-view class="records-view">
     <ion-nav-title>
-        <span>{{user[0].gender==1? 'Mr.': 'Mrs./Ms.'}} {{user[0].fname}} {{user[0].lname}}</span>
+        <span> {{user[0].fname}} {{user[0].lname}}</span>
     </ion-nav-title>
 
 
@@ -12,13 +12,12 @@
                     <div class="post-content item item-text-wrap p0">
                         <div  class="card-content paraspacing">
 
-                            <p><strong >{{user[0].gender==1? 'Mr.': 'Mrs./Ms.'}} {{user[0].fname}} {{user[0].lname}}</strong></p>
+                            <p><strong > {{user[0].fname}} {{user[0].lname}}</strong></p>
                             <p><strong>Appointment Time: </strong> {{app[0].appointments.scheduled_start_time|time}} to {{app[0].appointments.scheduled_end_time|time}} </p>
-                            <p><strong>Mode: </strong> Video</p>
+                            <p><strong>Mode: </strong> {{app[0].appointments.mode==1 ? 'Video': app[0].appointments.mode==3? 'Clinic': app[0].appointments.mode==4? 'Home': app[0].appointments.mode==2? 'Chat':''}}</p>
                             <p><strong>Languages: </strong>
-                                {{}}
                                 <span ng-repeat="lang in user[0].languages">
-                                    {{lang.language}} , 
+                                    {{lang.language}}{{$last==true? '': ',&nbsp;'}}
                                 </span></p>
                             <div class="clr"></div>
                         </div>
@@ -58,8 +57,8 @@
     </ion-content>
 
     <div class="footerbar">
-        <a class="button" ui-sref="#" ><i class="ion-close"></i> Cancel</a>
-        <a class="button" ui-sref="#" ><i class="ion-calendar"></i> Reschedule</a>
+        <a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="cbtn">Cancel</a>
+        <a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a>
         <a class="button" ui-sref="app.doctor-join({'id': app[0].appointments.id, 'res': 'json'})"><i class="ion"></i> Join</a>
     </div>
 

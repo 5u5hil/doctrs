@@ -14,7 +14,7 @@
                         <div class="searchbox">
                             <div class="item item-input-inset" style="border-bottom:0;">
                                 <label class="item-input-wrapper">
-                                    <input type="text" placeholder="Search...">
+                                    <input type="text" placeholder="Search..." ng-model="searchKeyword">
                                 </label>
                                 <button class="button button-small">
                                     <i class="ion-android-search"></i>
@@ -24,28 +24,29 @@
                         <div class="ctab commontab">
                             <ion-tabs class="tabs-positive tabs-icon-top">
 
-                                <ion-tab title="Today({{appointments.length}})" >
+                                <ion-tab title="Today({{todays_app.length}})" >
                                     <div class="tabcontainer p0">
-                                        <h4> {{appointments.length==0? 'No appointments': ''}}</h4>
-                                        <div class="posts-list" ng-repeat="app in appointments track by $index" >
-                                            <div  class="list card post-item">
+                                        <h4> {{todays_app.length==0? 'No appointments': ''}}</h4>
+                                        <div class="posts-list" ng-repeat="app in todays_app track by $index | filter: searchKeyword" >
+                                            <div  class="list card post-item" ng-repeat="prod in todays_products[$index]">
                                                 <div class="post-content item item-text-wrap p0">
                                                     <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content paraspacing">
-                                                        <p ng-repeat="user in usersData[$index]"><strong>{{user.fname}} {{user.lname}}</strong></p>
+                                                        <p ng-repeat="user in todays_usersData[$index]"><strong>{{user.fname}} {{user.lname}}</strong></p>
                                                         <div class="row">
-                                                            <div class="col"><p><strong>Appointment </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
+                                                            <div class="col"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
                                                                     {{app.appointments.scheduled_start_time|time}} to {{app.appointments.scheduled_end_time|time}} </p></div>
                                                             <div class="col"><p><strong>Mode</strong> <br/> 
-                                                                    {{app.appointments.mode==1 ? 'Video': app.appointments.mode==3? 'Clinic': app.appointments.mode==4? 'Home': ''}}</p></div>
+                                                                    {{app.appointments.mode==1 ? 'Video': app.appointments.mode==3? 'Clinic': app.appointments.mode==4? 'Home': app.appointments.mode==2? 'Chat':''}}</p></div>
                                                         </div>
                                                         <p>2 Records Created by you <br/>3 Records Shared by Patient</p>
                                                         <div class="clr"></div>
                                                     </a>
                                                     <div class="post-actions  post-footer p0">
                                                         <div class="row cardbtn-small p0">
-                                                            <div class="col"><a ui-sref="#" class="cbtn">Cancel</a></div>
-                                                            <div class="col"><a ui-sref="#"  class="cbtn">Reschedule</a></div>
-                                                            <div class="col"><a ui-sref="#" class="cbtn">Join</a></div>
+                                                            <div class="col"><a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="cbtn">Cancel</a></div>
+                                                            <div class="col"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode==1"><a ui-sref="#" class="cbtn">Join</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode==3 || app.appointments.mode==4"><a ui-sref="#" class="cbtn">Conduct</a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -54,15 +55,65 @@
                                     </div>
                                 </ion-tab>
 
-                                <ion-tab title="This Week(10)" >
-                                    <div class="tabcontainer">
-                                        Under Construction
+                                <ion-tab title="This Week({{week_app.length}})" >
+                                    <div class="tabcontainer p0">
+                                        <h4> {{week_app.length==0? 'No appointments': ''}}</h4>
+                                        <div class="posts-list" ng-repeat="app in week_app track by $index | filter : searchKeyword" >
+                                            <div  class="list card post-item" ng-repeat="prod in week_products[$index]">
+                                                <div class="post-content item item-text-wrap p0">
+                                                    <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content paraspacing">
+                                                        <p ng-repeat="user in week_usersData[$index]"><strong>{{user.fname}} {{user.lname}}</strong></p>
+                                                        <div class="row">
+                                                            <div class="col"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
+                                                                    {{app.appointments.scheduled_start_time|time}} to {{app.appointments.scheduled_end_time|time}} </p></div>
+                                                            <div class="col"><p><strong>Mode</strong> <br/> 
+                                                                    {{app.appointments.mode==1 ? 'Video': app.appointments.mode==3? 'Clinic': app.appointments.mode==4? 'Home': app.appointments.mode==2? 'Chat':''}}</p></div>
+                                                        </div>
+                                                        <p>2 Records Created by you <br/>3 Records Shared by Patient</p>
+                                                        <div class="clr"></div>
+                                                    </a>
+                                                    <div class="post-actions  post-footer p0">
+                                                        <div class="row cardbtn-small p0">
+                                                            <div class="col"><a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="cbtn">Cancel</a></div>
+                                                            <div class="col"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode==1"><a ui-sref="#" class="cbtn">Join</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode==3 || app.appointments.mode==4"><a ui-sref="#" class="cbtn">Conduct</a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </ion-tab>
 
-                                <ion-tab title="All(25)" >
-                                    <div class="tabcontainer">
-                                        Under Construction
+                                <ion-tab title="All({{all_app.length}})" >
+                                    <div class="tabcontainer p0">
+                                        <h4> {{all_app.length==0? 'No appointments': ''}}</h4>
+                                        <div class="posts-list" ng-repeat="app in all_app track by $index | filter : searchKeyword" >
+                                            <div  class="list card post-item" ng-repeat="prod in all_products[$index]">
+                                                <div class="post-content item item-text-wrap p0">
+                                                    <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content paraspacing">
+                                                        <p ng-repeat="user in all_usersData[$index]"><strong>{{user.fname}} {{user.lname}}</strong></p>
+                                                        <div class="row">
+                                                            <div class="col"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
+                                                                    {{app.appointments.scheduled_start_time|time}} to {{app.appointments.scheduled_end_time|time}} </p></div>
+                                                            <div class="col"><p><strong>Mode</strong> <br/> 
+                                                                    {{app.appointments.mode==1? 'Video': app.appointments.mode==3? 'Clinic': app.appointments.mode==4? 'Home': app.appointments.mode==2? 'Chat':''}}</p></div>
+                                                        </div>
+                                                        <p>2 Records Created by you <br/>3 Records Shared by Patient</p>
+                                                        <div class="clr"></div>
+                                                    </a>
+                                                    <div class="post-actions  post-footer p0">
+                                                        <div class="row cardbtn-small p0">
+                                                            <div class="col"><<a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="cbtn">Cancel</a></div>
+                                                            <div class="col"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode==1"><a ui-sref="#" class="cbtn">Join</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode==3 || app.appointments.mode==4"><a ui-sref="#" class="cbtn">Conduct</a></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </ion-tab>
                             </ion-tabs>
