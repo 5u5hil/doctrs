@@ -34,6 +34,13 @@
                     <h2 class="menu-text">Consultaion Note</h2>
                 </ion-item>
 				
+				 <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.treatment-plan">
+					<i class="icon ion-gear-a"></i>
+                    <h2 class="menu-text">Treatment plans</h2>
+                </ion-item>
+				
+				
+				
                 <ion-item class="item-icon-left" nav-clear menu-close ui-sref="{{ userLogged == 1 ? 'app.logout' : 'auth.login'}}">
                     <i class="icon ion-gear-a"></i>
                     <h2 class="menu-text">{{ userLogged == 1 ? 'Logout' : 'Login / Register'}}</h2>

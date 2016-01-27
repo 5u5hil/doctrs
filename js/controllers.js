@@ -362,6 +362,19 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 
+		  .controller('DiagnosisCtrl', function ($scope, $http, $stateParams) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+		
+		
+		  .controller('TreatmentPlanCtrl', function ($scope, $http, $stateParams) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+		
+		
+		
         .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams) {
             $scope.appId = $stateParams.id;
             $scope.userId = get('id');

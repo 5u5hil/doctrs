@@ -175,7 +175,28 @@ angular.module('your_app_name', [
                                 controller: 'EvaluationCtrl'
                             }
                         }
+                    })			
+					
+					.state('app.diagnosis', {
+						  url: "/diagnosis",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/diagnosis.html",
+                                controller: 'DiagnosisCtrl'
+                            }
+                        }
                     })
+					
+					.state('app.treatment-plan', {
+						  url: "/treatmentplan",
+						  views: {
+                            'menuContent': {
+                                templateUrl: "views/app/treatment-plan.html",
+                                controller: 'TreatmentPlanCtrl'
+                            }
+                        }
+                    })
+					
 					
 					
 					
