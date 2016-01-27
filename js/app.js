@@ -167,6 +167,18 @@ angular.module('your_app_name', [
                         }
                     })
 					
+					.state('app.evaluation', {
+						  url: "/evaluation",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/evaluation.html",
+                                controller: 'EvaluationCtrl'
+                            }
+                        }
+                    })
+					
+					
+					
                     .state('app.doctor-current-tab', {
                         url: "/doctor-current-tab/{id:int}",
                         views: {

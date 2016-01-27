@@ -13,8 +13,7 @@
                 <!-- =========== Upcoming ===========-->
                 <ion-tab title="About" >
                     <div class="tabcon2"> 
-                       
-					   <div class="item item-divider">Case Type</div>
+                      <div class="item item-divider">Case Type</div>
 						<ion-list>
 							<div class="row">
 							<div class="col cradio"><ion-radio ng-model="choice" ng-value="'A'" checked>New</ion-radio></div>
@@ -78,25 +77,174 @@
 						
 							<textarea rows="4" cols="50"> </textarea>
 						  </label>	
-							
-							
-							
-							
-					   
-                       
-                    </div>
+					 </div>
                 </ion-tab>
 
                 <ion-tab title="Patient History" >
                     <div class="tabcontainer">
-                        Under Construction	
+                       <label class="item item-input">
+						<span class="input-label">Present History</span>
+						<input type="text">
+						</label>
+					  
+						  <label class="item item-input">
+							<span class="input-label">Past History</span>
+							<input type="text">
+							</label>
+						  <label class="item item-input">
+							<span class="input-label">Personal History</span>
+							<input type="text">
+							</label>
+						  <label class="item item-input">
+							  <span class="input-label">Family History</span>
+							<input type="text">
+							</label>
+							
+							  <label class="item item-input">
+							<span class="input-label">Menstrual & Obstretic History</span>
+							<input type="text">
+							</label>
+							  <label class="item item-input">
+							<span class="input-label">Socio-economic status</span>
+							<input type="text">
+							</label>
+						
+							<label class="item item-input item-select">
+							<div class="input-label">
+							Immunization History
+							</div>
+						 	<select>
+							<option selected>option1</option>
+							  <option >Option2</option>
+							  <option>Option3</option>
+							  <option>Option4</option>
+							
+							</select>
+							</label>
+						
+						
+						
+						
+						
+							<div class="item item-divider">Allergy Status</div>
+							<ion-list>
+							<div class="row">
+							<div class="col cradio"><ion-radio ng-model="choice" ng-value="'A'" checked>Option</ion-radio></div>
+							<div class="col cradio"> <ion-radio ng-model="choice" ng-value="'B'">Option</ion-radio></div>
+							</div>
+							</ion-list>
+						
+						
+						<label class="item item-input">
+						<span class="input-label">Allergy History</span>
+						<input type="text">
+						</label>
+							<label class="item item-input item-select">
+							<div class="input-label">
+							Blood Group
+							</div>
+							<select>
+							<option selected>A</option>
+							  <option >B</option>
+							  <option>AB</option>
+							  <option>O+</option>
+							
+							</select>
+							</label>
+					  
+						<div class="item item-divider prelative formheading">
+						Known Conditions
+					  	<div class=" text-right">
+						  <div class="button caddbtn" ng-click="showPopup()">Add/ Edit</div>
+						</div>
+						</div>
+					  
+					  	<div class="item item-divider mt10">Dynamic Input
+						<div class="ion-plus-circled icon-addbtn"></div>
+						</div>
+						<label class="item item-input">
+						<input type="text" placeholder="Enter Text">
+						</label>
+					  
+					  
+					  
                     </div>
-                </ion-tab>
+                
+				</ion-tab>
                 <ion-tab title="Family History" >
                     <!-- Tab 1 content -->
-                    <div class="tabcon2">
-
+					 <div class="tabcontainer">
+					 <div class="text-right">
+					 <button class="button m15"  ng-click="addreltion()"><span class="ion-plus-circled"></span> Add Relation</button> 
+					 </div>
+					 
+					 
+					 
+					 
+                       <label class="item item-input">
+						<span class="input-label">Present History</span>
+						<input type="text">
+						</label>
+					  
+					  <label class="item item-input">
+						<span class="input-label">Past History</span>
+						<input type="text">
+						</label>
+					  <label class="item item-input">
+						<span class="input-label">Personal History</span>
+						<input type="text">
+						</label>
+					  <label class="item item-input">
+						<span class="input-label">Family History</span>
+						<input type="text">
+						</label>
+						
+						  <label class="item item-input">
+						<span class="input-label">Menstrual & Obstretic History</span>
+						<input type="text">
+						</label>
+						  <label class="item item-input">
+						<span class="input-label">Socio-economic status</span>
+						<input type="text">
+						</label>
+						
+							<label class="item item-input item-select">
+							<div class="input-label">
+							Immunization History
+							</div>
+							<select>
+								<option selected>option1</option>
+							  <option >Option2</option>
+							  <option>Option3</option>
+							  <option>Option4</option>
+							
+							</select>
+							</label>
+						
+						
+						
+						
+						
+							<div class="item item-divider">Allergy Status</div>
+						<ion-list>
+							<div class="row">
+							<div class="col cradio"><ion-radio ng-model="choice" ng-value="'A'" checked>Option</ion-radio></div>
+							<div class="col cradio"> <ion-radio ng-model="choice" ng-value="'B'">Option</ion-radio></div>
+							</div>
+						</ion-list>
+						
+						
+						<label class="item item-input">
+						<span class="input-label">Allergy History</span>
+						<input type="text">
+						</label>
+						<label class="item item-input">
+						<span class="input-label">Blood Group</span>
+						<input type="text">
+						</label>
+					  
                     </div>
+                
                 </ion-tab>
             </ion-tabs>
         </div>
@@ -104,7 +252,7 @@
 
     <div class="footerbar">
 
-        <a class="button" ui-sref="#" style="width:100%">Next <i class="icon ion-arrow-right-c"></i></a>
+        <a class="button" ui-sref="app.evaluation" style="width:100%">Next <i class="icon ion-arrow-right-c"></i></a>
     </div>
 
 </ion-view>
