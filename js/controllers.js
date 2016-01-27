@@ -43,6 +43,27 @@ angular.module('your_app_name.controllers', [])
 			  };
 		})
 		
+		
+					.controller('LoincCtrl',function ($scope, $ionicModal){
+			  $ionicModal.fromTemplateUrl('loinc', {
+				scope: $scope
+			  }).then(function(modal) {
+				$scope.modal = modal;
+			  });
+			  
+			  $scope.submitmodal = function() {        
+				  $scope.modal.hide();
+			  };
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
 .controller('IcdCtrl',function ($scope, $ionicModal){
 			  $ionicModal.fromTemplateUrl('icd', {
 				scope: $scope

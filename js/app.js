@@ -195,6 +195,16 @@ angular.module('your_app_name', [
                                 controller: 'TreatmentPlanCtrl'
                             }
                         }
+                    })	
+					
+					.state('app.treatment-plan-list', {
+						  url: "/treatment-plan-list",
+						  views: {
+                            'menuContent': {
+                                templateUrl: "views/app/treatment-plan-list.html",
+                                controller: 'TreatmentPlanListCtrl'
+                            }
+                        }
                     })
 					
 					
