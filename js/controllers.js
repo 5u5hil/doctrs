@@ -71,6 +71,8 @@ angular.module('your_app_name.controllers', [])
         .controller('ConsultationsNoteCtrl', function ($scope, $http, $stateParams) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
+			
+
 
         })
 
@@ -195,7 +197,7 @@ angular.module('your_app_name.controllers', [])
             $scope.user = {};
         })
 
-        .controller('DoctorConsultationsCtrl', function ($scope, $http, $stateParams, $filter) {
+        .controller('DoctorConsultationsCtrl', function ($scope, $http, $stateParams, $filter,$ionicPopup, $timeout) {
             $scope.drId = get('id');
             $http({
                 method: 'GET',
@@ -269,6 +271,20 @@ angular.module('your_app_name.controllers', [])
                     }
                 }
             };
+			
+		$scope.showAlert = function() {
+		   var alertPopup = $ionicPopup.alert({
+			 title: 'Alert Box',
+			 template: '<ion-checkbox ng-model="filter.snomed1">Snomed1</ion-checkbox><ion-checkbox ng-model="filter.snomed2">Snomed2</ion-checkbox><ion-checkbox ng-model="filter.snomed3">Snomed3</ion-checkbox>'
+		   });
+
+   alertPopup.then(function(res) {
+     console.log('Thank you for not eating my delicious ice cream cone');
+   });
+ };
+			
+				
+			
         })
 
         .controller('DoctorCurrentTabCtrl', function ($scope, $http, $stateParams) {

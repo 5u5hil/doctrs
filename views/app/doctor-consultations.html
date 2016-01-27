@@ -105,7 +105,7 @@
                                                     </a>
                                                     <div class="post-actions  post-footer p0">
                                                         <div class="row cardbtn-small p0">
-                                                            <div class="col"><a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="cbtn">Cancel</a></div>
+                                                            <div class="col"><a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)"  id="{{app.appointment_id}}" class="cbtn" ng-click="showAlert();">Cancel</a></div>
                                                             <div class="col"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a></div>
                                                             <div class="col" ng-if="app.appointments.mode==1"><a ui-sref="#" class="cbtn">Join</a></div>
                                                             <div class="col" ng-if="app.appointments.mode==3 || app.appointments.mode==4"><a ui-sref="#" class="cbtn">Conduct</a></div>
