@@ -55,7 +55,17 @@ angular.module('your_app_name.controllers', [])
 			  };
 		})	
 		
-		
+	.controller('AddrelationCtrl',function ($scope, $ionicModal){
+			  $ionicModal.fromTemplateUrl('addrelation', {
+				  scope: $scope
+			  }).then(function(modal) {
+				$scope.modal = modal;
+			  });
+			  
+			  $scope.submitmodal = function() {        
+					$scope.modal.hide();
+			  };
+		})		
 		
 
         .controller('ConsultationsNoteCtrl', function ($scope, $http, $stateParams) {
