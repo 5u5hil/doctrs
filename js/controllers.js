@@ -44,7 +44,26 @@ angular.module('your_app_name.controllers', [])
 		})
 		
 		
-					.controller('LoincCtrl',function ($scope, $ionicModal){
+					.controller('AddtreatmenttCtrl',function ($scope, $ionicModal){
+			  $ionicModal.fromTemplateUrl('add-treatmentplan', {
+				scope: $scope
+			  }).then(function(modal) {
+				$scope.modal = modal;
+			  });
+			  
+			  $scope.submitmodal = function() {        
+				  $scope.modal.hide();
+			  };
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+			.controller('LoincCtrl',function ($scope, $ionicModal){
 			  $ionicModal.fromTemplateUrl('loinc', {
 				scope: $scope
 			  }).then(function(modal) {
@@ -393,6 +412,12 @@ angular.module('your_app_name.controllers', [])
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
+		
+		 .controller('TreatmentPlanListCtrl', function ($scope, $http, $stateParams) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+		
 		
 		
 		
