@@ -67,9 +67,6 @@ angular.module('your_app_name.controllers', [])
             };
 
         })
-
-
-
         .controller('PlaintestCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('addeval', {
                 scope: $scope
@@ -94,7 +91,6 @@ angular.module('your_app_name.controllers', [])
             };
         })
 
-
         .controller('LoincCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('loinc', {
                 scope: $scope
@@ -106,14 +102,6 @@ angular.module('your_app_name.controllers', [])
                 $scope.modal.hide();
             };
         })
-
-
-
-
-
-
-
-
 
         .controller('IcdCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('icd', {
@@ -228,6 +216,7 @@ angular.module('your_app_name.controllers', [])
             $scope.cancelAppointment = function (appId, drId, mode, startTime) {
                 $scope.appId = appId;
                 $scope.userId = get('id');
+                $scope.cancel = '';
                 console.log(startTime);
                 var curtime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
                 console.log(curtime);
@@ -272,7 +261,7 @@ angular.module('your_app_name.controllers', [])
                             console.log(response);
                         });
                     } else if (mode == 3 || mode == 4) {
-                        //ask for 4 options
+                        //ask for 2 options
                     }
                 }
             };
@@ -280,10 +269,11 @@ angular.module('your_app_name.controllers', [])
             $scope.showAlert = function () {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Alert Box',
-                    template: '<ion-checkbox ng-model="filter.snomed1">Snomed1</ion-checkbox><ion-checkbox ng-model="filter.snomed2">Snomed2</ion-checkbox><ion-checkbox ng-model="filter.snomed3">Snomed3</ion-checkbox>'
+                    template: '<ion-radio ng-model="cancel" ng-value="patient cancel">Cancelled By Patient</ion-radio><ion-radio ng-model="cancel" ng-value="cancel doctor">Cancelled by you</ion-radio><ion-radio ng-model="cancel" ng-value="no doctor">Your No-show</ion-radio><ion-radio ng-model="cancel" ng-value="no patient">Patient No-show</ion-radio>'
                 });
 
                 alertPopup.then(function (res) {
+                    console.log($scope.cancel);
                     console.log('Thank you for not eating my delicious ice cream cone');
                 });
             };
@@ -377,8 +367,6 @@ angular.module('your_app_name.controllers', [])
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
-
-
 
         .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams) {
             $scope.appId = $stateParams.id;
@@ -483,7 +471,7 @@ angular.module('your_app_name.controllers', [])
                             console.log(response);
                         });
                     } else if (mode == 3 || mode == 4) {
-                        //ask for 4 options
+                        //ask for 2 options
                     }
                 }
             };
