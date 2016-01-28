@@ -273,9 +273,37 @@ angular.module('your_app_name', [
                                 controller: 'HomepageCtrl'
                             }
 							}
+                    }) 
+
+					.state('app.patient-list', {
+                        url: "/patient-list",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/patient-list.html",
+                                controller: 'PatientListCtrl'
+                            }
+							}
                     })
 					
+					.state('app.patient', {
+                        url: "/patient",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/patient.html",
+                                controller: 'PatientCtrl'
+                            }
+							}
+                    })		
 					
+					.state('app.patient-record', {
+                        url: "/patient-record",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/patient-record.html",
+                                controller: 'PatientRecordCtrl'
+                            }
+							}
+                    })
 					
 					
 					
