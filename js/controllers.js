@@ -172,6 +172,20 @@ angular.module('your_app_name.controllers', [])
             };
         })
 
+		
+	.controller('CancelDctrCtrl', function ($scope, $ionicModal) {
+            $ionicModal.fromTemplateUrl('canceldctr', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+        })
+		
+		
         .controller('ConsultationsNoteCtrl', function ($scope, $http, $stateParams) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
@@ -310,41 +324,6 @@ angular.module('your_app_name.controllers', [])
                     }
                 }
             };
-
-
-        $scope.showPopup = function() {
-		$scope.data = {};
-			// An elaborate, custom popup
-		  var myPopup = $ionicPopup.show({
-			template: '<form><ion-radio ng-model="data.ab" ng-value="abce">Snomed1</ion-radio><ion-radio ng-model="data.ab">Snomed2</ion-radio><ion-radio ng-model="data.ab">Snomed3</ion-radio></form>',
-			title: 'Select',
-			scope: $scope,
-			buttons: [
-			  { text: 'Cancel' },
-			  {
-				text: '<b>Submit</b>',
-				type: 'button-positive',
-				onTap: function(e) {
-				  if (!$scope.data.ab) {
-					//don't allow the user to close unless he enters wifi password
-					e.preventDefault();
-				  } else {
-					return $scope.data.ab;
-				  }
-				}
-			  }
-			]
-		  });
-
-		  myPopup.then(function(res) {
-			console.log('Tapped!', res);
-		  });
-
- };
-$scope.closePopup =function(){
-	 myPopup.close();
-	
-}
 		})
 
 
