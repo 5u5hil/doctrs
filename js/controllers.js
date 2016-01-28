@@ -15,10 +15,80 @@ angular.module('your_app_name.controllers', [])
         .controller('EvaluationCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
+
+        })
+
+        .controller('PlaintestCtrl', function ($scope, $ionicModal) {
+            $ionicModal.fromTemplateUrl('addeval', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+        })
+
+        .controller('SnowmedtCtrl', function ($scope, $ionicModal) {
+            $ionicModal.fromTemplateUrl('snomed', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
         })
 
 
+        .controller('AddtreatmenttCtrl', function ($scope, $ionicModal) {
+            $ionicModal.fromTemplateUrl('add-treatmentplan', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
 
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+        })
+
+        .controller('LoincCtrl', function ($scope, $ionicModal) {
+            $ionicModal.fromTemplateUrl('loinc', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+        })
+        .controller('IcdCtrl', function ($scope, $ionicModal) {
+            $ionicModal.fromTemplateUrl('icd', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+        })
+
+        .controller('AddrelationCtrl', function ($scope, $ionicModal) {
+            $ionicModal.fromTemplateUrl('addrelation', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+        })
         .controller('PlaintestCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('addeval', {
                 scope: $scope
@@ -277,9 +347,6 @@ angular.module('your_app_name.controllers', [])
                     console.log('Thank you for not eating my delicious ice cream cone');
                 });
             };
-
-
-
         })
 
         .controller('DoctorCurrentTabCtrl', function ($scope, $http, $stateParams) {
