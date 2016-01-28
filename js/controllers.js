@@ -17,6 +17,12 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
 
         })
+		
+	.controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+        })
 
         .controller('PlaintestCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('addeval', {

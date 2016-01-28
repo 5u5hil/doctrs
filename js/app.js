@@ -263,6 +263,24 @@ angular.module('your_app_name', [
                             }
                         }
                     })
+					
+					
+					 .state('app.homepage', {
+                        url: "/homepage",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/homepage.html",
+                                controller: 'HomepageCtrl'
+                            }
+							}
+                    })
+					
+					
+					
+					
+					
+					
+					
 
                     .state('app.logout', {
                         url: "/logout",
