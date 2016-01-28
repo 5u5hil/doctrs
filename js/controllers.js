@@ -345,7 +345,7 @@ $scope.closePopup =function(){
 	 myPopup.close();
 	
 }
-
+		})
 
 
         .controller('DoctorCurrentTabCtrl', function ($scope, $http, $stateParams) {
