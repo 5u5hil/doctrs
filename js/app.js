@@ -125,7 +125,7 @@ angular.module('your_app_name', [
                                 controller: 'ImagePickerCtrl'
                             }
                         }
-                    })                    
+                    })
 
                     .state('app.slider', {
                         url: "/layouts/slider",
@@ -156,9 +156,18 @@ angular.module('your_app_name', [
                             }
                         }
                     })
+                    .state('app.chat-appointments', {
+                        url: "/chat-appointments",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/chat-appointments.html",
+                                controller: 'DoctorChatAppsCtrl'
+                            }
+                        }
+                    })
 
-					  .state('app.consultations-note', {
-						  url: "/consultations-note",
+                    .state('app.consultations-note', {
+                        url: "/consultations-note",
                         views: {
                             'menuContent': {
                                 templateUrl: "views/app/consultations-note.html",
@@ -166,19 +175,19 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					.state('app.evaluation', {
-						  url: "/evaluation",
+
+                    .state('app.evaluation', {
+                        url: "/evaluation",
                         views: {
                             'menuContent': {
                                 templateUrl: "views/app/evaluation.html",
                                 controller: 'EvaluationCtrl'
                             }
                         }
-                    })			
-					
-					.state('app.diagnosis', {
-						  url: "/diagnosis",
+                    })
+
+                    .state('app.diagnosis', {
+                        url: "/diagnosis",
                         views: {
                             'menuContent': {
                                 templateUrl: "views/app/diagnosis.html",
@@ -186,30 +195,19 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					.state('app.treatment-plan', {
-						  url: "/treatmentplan",
-						  views: {
+
+
+                    .state('app.treatment-plan', {
+                        url: "/treatmentplan",
+                        views: {
                             'menuContent': {
                                 templateUrl: "views/app/treatment-plan.html",
                                 controller: 'TreatmentPlanCtrl'
                             }
                         }
-                    })	
-					
-					.state('app.treatment-plan-list', {
-						  url: "/treatment-plan-list",
-						  views: {
-                            'menuContent': {
-                                templateUrl: "views/app/treatment-plan-list.html",
-                                controller: 'TreatmentPlanListCtrl'
-                            }
-                        }
                     })
-					
-					
-					
-					
+
+
                     .state('app.doctor-current-tab', {
                         url: "/doctor-current-tab/{id:int}",
                         views: {
@@ -229,8 +227,24 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-                    
-
+                    .state('app.current-chat', {
+                        url: "/current-chat/{id:int}",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/current-chat.html",
+                                controller: 'CurrentChatCtrl'
+                            }
+                        }
+                    })
+                    .state('app.join-chat', {
+                        url: "/join-chat/{id:int}/{mode:int}",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/join-chat.html",
+                                controller: 'JoinChatCtrl'
+                            }
+                        }
+                    })
                     .state('app.feed-entries', {
                         url: "/feed-entries/:categoryId/:sourceId",
                         views: {
@@ -251,7 +265,6 @@ angular.module('your_app_name', [
                         }
                     })
                     ;
-
             // if none of the above states are matched, use this as the fallback
             $urlRouterProvider.otherwise('/auth/walkthrough');
         });

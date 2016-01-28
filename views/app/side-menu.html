@@ -21,26 +21,27 @@
                             <img class="user-image" ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" spinner-on-load>
                         </pre-img>
                     </div>
-                    <h2 class="greeting">Hi Brynn</h2>
-                    <p class="message">Welcome back</p>
+                    <h2 class="greeting">Hi {{username}}, </h2>
+                    <p class="message">Welcome</p>
                 </ion-item>
                 <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.doctor-consultations">
                     <i class="icon ion-gear-a"></i>
                     <h2 class="menu-text">Home</h2>
                 </ion-item>
-				
-				 <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.consultations-note">
-					<i class="icon ion-gear-a"></i>
+                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.chat-appointments">
+                    <i class="icon ion-gear-a"></i>
+                    <h2 class="menu-text">Chat Appointments</h2>
+                </ion-item>
+
+                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.consultations-note">
+                    <i class="icon ion-gear-a"></i>
                     <h2 class="menu-text">Consultaion Note</h2>
                 </ion-item>
-				
-				 <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.treatment-plan">
-					<i class="icon ion-gear-a"></i>
+
+                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.treatment-plan">
+                    <i class="icon ion-gear-a"></i>
                     <h2 class="menu-text">Treatment plans</h2>
                 </ion-item>
-				
-				
-				
                 <ion-item class="item-icon-left" nav-clear menu-close ui-sref="{{ userLogged == 1 ? 'app.logout' : 'auth.login'}}">
                     <i class="icon ion-gear-a"></i>
                     <h2 class="menu-text">{{ userLogged == 1 ? 'Logout' : 'Login / Register'}}</h2>
