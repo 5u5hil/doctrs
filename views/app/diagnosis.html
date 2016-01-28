@@ -1,6 +1,6 @@
 <ion-view class="records-view">
     <ion-nav-title>
-        <span>Evaluation</span>
+        <span>Diagnosis</span>
     </ion-nav-title>
     <ion-nav-buttons side="right">
         <button class="button button-icon button-clear ion-person"></button>
@@ -60,17 +60,18 @@
                     <div class="tabcon2"> 
 					 
 					 
-				 <div class="row cbtn3">
-				<button class="col button" ng-controller="PlaintestCtrl" ng-click="modal.show()">
-					 <span class="icon ion-plus-circled"></span> Plain Text
+					 <div class="row cbtn3">
+					
+						<button class="col button" ng-controller="PlaintestCtrl" ng-click="modal.show()">
+						 <span class="icon ion-plus-circled"></span> Plain Text
+						</button>
+					<button class="col button" ng-controller="SnowmedtCtrl" ng-click="modal.show()">
+						 <span class="icon ion-plus-circled"></span> Snowmed
 					</button>
-				<button class="col button" ng-controller="SnowmedtCtrl" ng-click="modal.show()">
-					 <span class="icon ion-plus-circled"></span> Snowmed
-				</button>
-				<button class="col button " ng-controller="IcdCtrl" ng-click="modal.show()">
-					  <span class="icon ion-plus-circled"></span> ICD
-					</button>
-				</div>
+					<button class="col button " ng-controller="IcdCtrl" ng-click="modal.show()">
+						  <span class="icon ion-plus-circled"></span> ICD
+						</button>
+					</div>
 					 
 				 <div class="posts-list" >
 					<div  class="list card post-item">
@@ -123,47 +124,68 @@
 
                 <ion-tab title="Test Results" >
                     <div class="tabcontainer">
-						 
-				 <div class="row cbtn3">
-				<button class="col button" ng-controller="PlaintestCtrl" ng-click="modal.show()">
-					 <span class="icon ion-plus-circled"></span> Plain Text
-					</button>
-				<button class="col button" ng-controller="LoincCtrl" ng-click="modal.show()">
-					 <span class="icon ion-plus-circled"></span> Loinc
-				</button>
-				
-				</div>
-					 
-				 <div class="posts-list" >
-					<div  class="list card post-item">
-						<div class="post-content item item-text-wrap p0">
-							<div  class="card-content paraspacing">
-								<div class="cardheading">Plain Text <div class="edit-btn">
-								<a ui-sref="#" ng-controller="PlaintestCtrl" ng-click="modal.show()"><i class="ion-edit"></i></a></div></div>
-								<p>Plain text 1,  Plain text 2, Plain text 1</p>
-								
-								<div class="clr"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				 <div class="posts-list">
-					<div  class="list card post-item">
-						<div class="post-content item item-text-wrap p0">
-							<div  class="card-content paraspacing">
-								<div class="cardheading">Loinc <div class="edit-btn">
-								<a ui-sref="#" ng-controller="LoincCtrl" ng-click="modal.show()"><i class="ion-edit"></i></a></div></div>
-								<p>Loinc 1,  Loinc 2, Loinc 1</p>
-								<div class="clr"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-				
-				
+                     <div class="item item-divider">Reason for Visit</div>	
+					<label class="item item-input">
+					<span class="input-label">BP Systolic</span>
+					<input type="text">
+					</label>
+						
+					<label class="item item-input">
+					<span class="input-label">BP Diastolic</span>
+					<input type="text">
+					</label>	
+					<label class="item item-input">
+					<span class="input-label">BP Diastolic</span>
+					<input type="text">
+					</label>	
+					<label class="item item-input">
+					<span class="input-label">Pulse Rate</span>
+					<input type="text">
+					</label>	  
 					  
-					 </div>
+					<label class="item item-input">
+					<span class="input-label">Temperature</span>
+					<input type="text">
+					</label>	   
+					 <label class="item item-input item-select">
+						<div class="input-label">
+						Temperature Source
+						</div>
+						<select>
+						  <option selected>Oral</option>
+						  <option >Armpit</option>
+						  <option>Groin</option>
+						  <option>Rectal</option>
+						</select>
+					  </label>  
+					<label class="item item-input">
+					<span class="input-label">Respiration Rate</span>
+					<input type="text">
+					</label>
+					 <label class="item item-input">
+					<span class="input-label">Height (in cms)</span>
+					<input type="text">
+					</label> 
+					  
+					<label class="item item-input">
+					<span class="input-label">Weight (in kgs)</span>
+					<input type="text">
+					</label> 
+					   <label class="item item-input">
+					<span class="input-label">Observations</span>
+					<input type="text">
+					</label> 
+				<label class="item item-input">
+					<span class="input-label">Investigation Results</span>
+					<input type="text">
+					</label> 
+					  
+					  
+					  
+					  
+					  
+					  
+                    </div>
                 
 				</ion-tab>
               
@@ -172,8 +194,8 @@
     </ion-content>
 
     <div class="footerbar divider-2">
-        <a class="button" ui-sref="app.diagnosis" style="width:50%">Skip</a>
-        <a class="button" ui-sref="app.diagnosis" style="width:50%">Save & Proceed <i class="icon ion-arrow-right-c"></i></a>
+        <a class="button" ui-sref="#" style="width:50%">Skip</a>
+        <a class="button" ui-sref="#" style="width:50%">Save & Proceed <i class="icon ion-arrow-right-c"></i></a>
     </div>
 
 	
@@ -246,6 +268,7 @@
       </ion-modal-view>
 	</script>
 	
+	
 	<script id="icd" type="text/ng-template">
 	<ion-modal-view>
         <ion-header-bar class="bar app-top-bar">
@@ -259,33 +282,10 @@
 			<input type="text" placeholder="Search">
 		  </label>
 		</div>
-		</ion-content>
+
+	
+	  </ion-content>
       </ion-modal-view>
 	</script>
-	
-	
-	
-	<script id="loinc" type="text/ng-template">
-	<ion-modal-view>
-        <ion-header-bar class="bar app-top-bar">
-           <h1 class="title">Loinc</h1>	 
-		<button class="button button-clear" ng-click="modal.hide()">Cancel</button>
-        </ion-header-bar>
-        <ion-content>
-        <div class="list list-inset">
-		  <label class="item item-input">
-			<i class="icon ion-search placeholder-icon"></i>
-			<input type="text" placeholder="Search">
-		  </label>
-		</div>
-		</ion-content>
-      </ion-modal-view>
-	</script>
-	
-	
-	
-	
-	
-	
 </ion-view>
 
