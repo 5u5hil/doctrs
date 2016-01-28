@@ -16,100 +16,7 @@ angular.module('your_app_name.controllers', [])
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
 
-})
-		
-		
-		
-	.controller('PlaintestCtrl',function ($scope, $ionicModal){
-			  $ionicModal.fromTemplateUrl('addeval', {
-				scope: $scope
-			  }).then(function(modal) {
-				$scope.modal = modal;
-			  });
-			  
-			  $scope.submitmodal = function() {        
-					$scope.modal.hide();
-			  };
-		})
-		
-			.controller('SnowmedtCtrl',function ($scope, $ionicModal){
-			  $ionicModal.fromTemplateUrl('snomed', {
-				scope: $scope
-			  }).then(function(modal) {
-				$scope.modal = modal;
-			  });
-			  
-			  $scope.submitmodal = function() {        
-					$scope.modal.hide();
-			  };
-		})
-		
-		
-					.controller('AddtreatmenttCtrl',function ($scope, $ionicModal){
-			  $ionicModal.fromTemplateUrl('add-treatmentplan', {
-				scope: $scope
-			  }).then(function(modal) {
-				$scope.modal = modal;
-			  });
-			  
-			  $scope.submitmodal = function() {        
-				  $scope.modal.hide();
-			  };
-		})
-		
-		
-		
-		
-		
-		
-		
-		
-			.controller('LoincCtrl',function ($scope, $ionicModal){
-			  $ionicModal.fromTemplateUrl('loinc', {
-				scope: $scope
-			  }).then(function(modal) {
-				$scope.modal = modal;
-			  });
-			  
-			  $scope.submitmodal = function() {        
-				  $scope.modal.hide();
-			  };
-		})
-		
-		
-		
-		
-		
-		
-		
-		
-		
-.controller('IcdCtrl',function ($scope, $ionicModal){
-			  $ionicModal.fromTemplateUrl('icd', {
-				scope: $scope
-			  }).then(function(modal) {
-				$scope.modal = modal;
-			  });
-			  
-			  $scope.submitmodal = function() {        
-					$scope.modal.hide();
-			  };
-		})	
-		
-	.controller('AddrelationCtrl',function ($scope, $ionicModal){
-			  $ionicModal.fromTemplateUrl('addrelation', {
-				  scope: $scope
-			  }).then(function(modal) {
-				$scope.modal = modal;
-			  });
-			  
-			  $scope.submitmodal = function() {        
-					$scope.modal.hide();
-			  };
-		})		
-
-
-
+        })
 
         .controller('PlaintestCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('addeval', {
@@ -135,6 +42,30 @@ angular.module('your_app_name.controllers', [])
             };
         })
 
+
+        .controller('AddtreatmenttCtrl', function ($scope, $ionicModal) {
+            $ionicModal.fromTemplateUrl('add-treatmentplan', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+        })
+
+        .controller('LoincCtrl', function ($scope, $ionicModal) {
+            $ionicModal.fromTemplateUrl('loinc', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+        })
         .controller('IcdCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('icd', {
                 scope: $scope
@@ -157,11 +88,7 @@ angular.module('your_app_name.controllers', [])
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
-
         })
-
-
-
         .controller('PlaintestCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('addeval', {
                 scope: $scope
@@ -185,8 +112,6 @@ angular.module('your_app_name.controllers', [])
                 $scope.modal.hide();
             };
         })
-
-
 		  .controller('CancelDoctrscheCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('snomed', {
                 scope: $scope
@@ -198,16 +123,19 @@ angular.module('your_app_name.controllers', [])
                 $scope.modal.hide();
             };
 			})
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+        .controller('SnowmedtCtrl', function ($scope, $ionicModal) {
+            $ionicModal.fromTemplateUrl('snomed', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+        })
+
         .controller('LoincCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('loinc', {
                 scope: $scope
@@ -219,14 +147,6 @@ angular.module('your_app_name.controllers', [])
                 $scope.modal.hide();
             };
         })
-
-	
-
-
-
-
-
-
 
         .controller('IcdCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('icd', {
@@ -341,6 +261,7 @@ angular.module('your_app_name.controllers', [])
             $scope.cancelAppointment = function (appId, drId, mode, startTime) {
                 $scope.appId = appId;
                 $scope.userId = get('id');
+                $scope.cancel = '';
                 console.log(startTime);
                 var curtime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
                 console.log(curtime);
@@ -385,10 +306,11 @@ angular.module('your_app_name.controllers', [])
                             console.log(response);
                         });
                     } else if (mode == 3 || mode == 4) {
-                        //ask for 4 options
+                        //ask for 2 options
                     }
                 }
             };
+
 
         $scope.showPopup = function() {
 		$scope.data = {};
@@ -425,7 +347,6 @@ $scope.closePopup =function(){
 }
 
 
-        })
 
         .controller('DoctorCurrentTabCtrl', function ($scope, $http, $stateParams) {
             $scope.appId = $stateParams.id;
@@ -517,8 +438,6 @@ $scope.closePopup =function(){
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
-		
-		
 
         .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams) {
             $scope.appId = $stateParams.id;
@@ -623,7 +542,7 @@ $scope.closePopup =function(){
                             console.log(response);
                         });
                     } else if (mode == 3 || mode == 4) {
-                        //ask for 4 options
+                        //ask for 2 options
                     }
                 }
             };
