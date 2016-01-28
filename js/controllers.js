@@ -333,7 +333,7 @@ angular.module('your_app_name.controllers', [])
                 }
             };
         })
-        .controller('CancelDctrCtrl', function ($scope, $ionicModal, $filter, $http) {
+        .controller('CancelDctrCtrl', function ($scope, $ionicModal, $filter, $http, $state) {
             $scope.can = {};
             $ionicModal.fromTemplateUrl('canceldctr', {
                 scope: $scope
@@ -347,7 +347,7 @@ angular.module('your_app_name.controllers', [])
                     $http({
                         method: 'GET',
                         url: domain + 'appointment/dr-cancel-app',
-                        params: {appId: $scope.appId, prodId: $scope.prodid, userId: $scope.userId, cancel: $scope.can.opt}
+                        params: {appId: $scope.appId, mode:$scope.mode, userId: $scope.userId, cancel: $scope.can.opt}
                     }).then(function successCallback(response) {
                         console.log(response.data);
                         if (response.data == 'success') {
@@ -374,7 +374,7 @@ angular.module('your_app_name.controllers', [])
                     $http({
                         method: 'GET',
                         url: domain + 'appointment/dr-cancel-app',
-                        params: {appId: $scope.appId, prodId: $scope.prodid, userId: $scope.userId, cancel: $scope.can.opt}
+                        params: {appId: $scope.appId, mode:$scope.mode, userId: $scope.userId, cancel: $scope.can.opt}
                     }).then(function successCallback(response) {
                         console.log(response.data);
                         if (response.data == 'success') {
@@ -391,6 +391,7 @@ angular.module('your_app_name.controllers', [])
             };
             $scope.cancelApp = function (appId, drId, mode, startTime) {
                 $scope.appId = appId;
+                $scope.mode = mode;
                 $scope.userId = get('id');
                 $scope.cancel = '';
                 console.log(startTime);
