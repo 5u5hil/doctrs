@@ -17,8 +17,8 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
 
         })
-		
-	.controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+
+        .controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
 
@@ -134,7 +134,7 @@ angular.module('your_app_name.controllers', [])
                 $scope.modal.hide();
             };
         })
-		  .controller('CancelDoctrscheCtrl', function ($scope, $ionicModal) {
+        .controller('CancelDoctrscheCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('snomed', {
                 scope: $scope
             }).then(function (modal) {
@@ -144,7 +144,7 @@ angular.module('your_app_name.controllers', [])
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
-			})
+        })
 
         .controller('SnowmedtCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('snomed', {
@@ -194,20 +194,6 @@ angular.module('your_app_name.controllers', [])
             };
         })
 
-		
-	.controller('CancelDctrCtrl', function ($scope, $ionicModal) {
-            $ionicModal.fromTemplateUrl('canceldctr', {
-                scope: $scope
-            }).then(function (modal) {
-                $scope.modal = modal;
-            });
-
-            $scope.submitmodal = function () {
-                $scope.modal.hide();
-            };
-        })
-		
-		
         .controller('ConsultationsNoteCtrl', function ($scope, $http, $stateParams) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
@@ -346,8 +332,113 @@ angular.module('your_app_name.controllers', [])
                     }
                 }
             };
-		})
+        })
+        .controller('CancelDctrCtrl', function ($scope, $ionicModal, $filter, $http) {
+            $scope.can = {};
+            $ionicModal.fromTemplateUrl('canceldctr', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.canceldctr = modal;
+            });
 
+            $scope.submitmodal = function () {
+                console.log($scope.can.opt);
+                if ($scope.can.opt != '') {
+                    $http({
+                        method: 'GET',
+                        url: domain + 'appointment/dr-cancel-app',
+                        params: {appId: $scope.appId, prodId: $scope.prodid, userId: $scope.userId, cancel: $scope.can.opt}
+                    }).then(function successCallback(response) {
+                        console.log(response.data);
+                        if (response.data == 'success') {
+                            alert('Your appointment is cancelled successfully.');
+                        } else {
+                            alert('Sorry your appointment is not cancelled.');
+                        }
+                        $state.go('app.doctor-consultations');
+                    }, function errorCallback(response) {
+                        console.log(response);
+                    });
+                }
+                $scope.canceldctr.hide();
+            };
+            $ionicModal.fromTemplateUrl('canceldr', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.canceldr = modal;
+            });
+
+            $scope.submitmodal = function () {
+                console.log($scope.can.opt);
+                if ($scope.can.opt != '') {
+                    $http({
+                        method: 'GET',
+                        url: domain + 'appointment/dr-cancel-app',
+                        params: {appId: $scope.appId, prodId: $scope.prodid, userId: $scope.userId, cancel: $scope.can.opt}
+                    }).then(function successCallback(response) {
+                        console.log(response.data);
+                        if (response.data == 'success') {
+                            alert('Your appointment is cancelled successfully.');
+                        } else {
+                            alert('Sorry your appointment is not cancelled.');
+                        }
+                        $state.go('app.doctor-consultations');
+                    }, function errorCallback(response) {
+                        console.log(response);
+                    });
+                }
+                $scope.canceldr.hide();
+            };
+            $scope.cancelApp = function (appId, drId, mode, startTime) {
+                $scope.appId = appId;
+                $scope.userId = get('id');
+                $scope.cancel = '';
+                console.log(startTime);
+                var curtime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
+                console.log(curtime);
+                var timeDiff = getTimeDiff(startTime, curtime);
+                console.log(timeDiff);
+                if (timeDiff < 15) {
+                    $scope.canceldctr.show();
+                    /*if ($scope.can.opt!='') {
+                     $http({
+                     method: 'GET',
+                     url: domain + 'appointment/dr-cancel-app',
+                     params: {appId: $scope.appId, prodId: $scope.prodid, userId: $scope.userId, cancel:$scope.can.opt}
+                     }).then(function successCallback(response) {
+                     console.log(response.data);
+                     if (response.data == 'success') {
+                     alert('Your appointment is cancelled successfully.');
+                     } else {
+                     alert('Sorry your appointment is not cancelled.');
+                     }
+                     $state.go('app.doctor-consultations');
+                     }, function errorCallback(response) {
+                     console.log(response);
+                     });
+                     }*/
+                } else {
+                    $scope.canceldr.show();
+                    /*if ($scope.can.opt!='') {
+                     $http({
+                     method: 'GET',
+                     url: domain + 'appointment/dr-cancel-app',
+                     params: {appId: $scope.appId, prodId: $scope.prodid, userId: $scope.userId, cancel:$scope.can.opt}
+                     }).then(function successCallback(response) {
+                     console.log(response.data);
+                     if (response.data == 'success') {
+                     alert('Your appointment is cancelled successfully.');
+                     } else {
+                     alert('Sorry your appointment is not cancelled.');
+                     }
+                     $state.go('app.doctor-consultations');
+                     }, function errorCallback(response) {
+                     console.log(response);
+                     });
+                     }*/
+                }
+            };
+        })
 
         .controller('DoctorCurrentTabCtrl', function ($scope, $http, $stateParams) {
             $scope.appId = $stateParams.id;
@@ -434,8 +525,8 @@ angular.module('your_app_name.controllers', [])
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
-		
-		.controller('TreatmentPlanListCtrl', function ($scope, $http, $stateParams) {
+
+        .controller('TreatmentPlanListCtrl', function ($scope, $http, $stateParams) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })

@@ -33,9 +33,9 @@
                                                     <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content paraspacing">
                                                         <p ng-repeat="user in todays_usersData[$index]"><strong>{{user.fname}} {{user.lname}}</strong></p>
                                                         <div class="row">
-                                                            <div class="col" ng-if="app.appointments.mode==2"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
+                                                            <div class="col" ng-if="app.appointments.mode == 2"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
                                                                     Valid Till {{app.appointments.scheduled_end_time|datetime}} </p></div>
-                                                            <div class="col" ng-if="app.appointments.mode!=2"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
+                                                            <div class="col" ng-if="app.appointments.mode != 2"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
                                                                     {{app.appointments.scheduled_start_time|time}} to {{app.appointments.scheduled_end_time|time}} </p></div>
                                                             <div class="col"><p><strong>Mode</strong> <br/> 
                                                                     {{app.appointments.mode==1 ? 'Video': app.appointments.mode==3? 'Clinic': app.appointments.mode==4? 'Home': app.appointments.mode==2? 'Chat':''}}</p></div>
@@ -45,11 +45,12 @@
                                                     </a>
                                                     <div class="post-actions  post-footer p0">
                                                         <div class="row cardbtn-small p0">
-                                                            <div class="col" ng-if="app.appointments.mode!=2"><a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="cbtn">Cancel</a></div>
-                                                            <div class="col"ng-if="app.appointments.mode!=2"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a></div>
-                                                            <div class="col" ng-if="app.appointments.mode==1"><a ui-sref="#" class="cbtn">Join</a></div>
-                                                            <div class="col" ng-if="app.appointments.mode==2"><a ui-sref="#" class="cbtn">Start Chat</a></div>
-                                                            <div class="col" ng-if="app.appointments.mode==3 || app.appointments.mode==4"><a ui-sref="#" class="cbtn">Conduct</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 1"><a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="cbtn">Cancel</a></div>
+                                                            <!---<div class="col" ng-if="app.appointments.mode == 1"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a></div>-->
+                                                            <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a class="cbtn" ng-controller="CancelDctrCtrl" ng-click="cancelApp(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)">Cancel</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 1"><a ui-sref="#" class="cbtn">Join</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 2"><a ui-sref="#" class="cbtn">Start Chat</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a ui-sref="#" class="cbtn">Conduct</a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -77,11 +78,12 @@
                                                     </a>
                                                     <div class="post-actions  post-footer p0">
                                                         <div class="row cardbtn-small p0">
-                                                            <div class="col"><a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="cbtn">Cancel</a></div>
-                                                            <div class="col"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a></div>
-                                                            <div class="col" ng-if="app.appointments.mode==1"><a ui-sref="#" class="cbtn">Join</a></div>
-                                                            <div class="col" ng-if="app.appointments.mode==2"><a ui-sref="#" class="cbtn">Start Chat</a></div>
-                                                            <div class="col" ng-if="app.appointments.mode==3 || app.appointments.mode==4"><a ui-sref="#" class="cbtn">Conduct</a></div>
+                                                            <div class="col"ng-if="app.appointments.mode == 1"><a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="cbtn">Cancel</a></div>
+                                                            <!---div class="col"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a></div>-->
+                                                            <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a class="cbtn" ng-controller="CancelDctrCtrl" ng-click="cancelApp(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)">Cancel</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 1"><a ui-sref="#" class="cbtn">Join</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 2"><a ui-sref="#" class="cbtn">Start Chat</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a ui-sref="#" class="cbtn">Conduct</a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -109,10 +111,12 @@
                                                     </a>
                                                     <div class="post-actions  post-footer p0">
                                                         <div class="row cardbtn-small p0">
-                                                            <div class="col"><a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)"  id="{{app.appointment_id}}" class="cbtn" ng-controller="CancelDctrCtrl" ng-click="modal.show()">Cancel</a></div>
-                                                            <div class="col"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a></div>
-                                                            <div class="col" ng-if="app.appointments.mode==1"><a ui-sref="#" class="cbtn">Join</a></div>
-                                                            <div class="col" ng-if="app.appointments.mode==3 || app.appointments.mode==4"><a ui-sref="#" class="cbtn">Conduct</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 1"><a class="cbtn" confirmed-click="cancelAppointment(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel?">Cancel</a></div>
+                                                            <!---<div class="col" ng-if="app.appointments.mode == 1"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?" class="cbtn">Reschedule</a></div>-->
+                                                            <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a class="cbtn" ng-controller="CancelDctrCtrl" ng-click="cancelApp(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)">Cancel</a></div>
+                                                            <!---<div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a></div>-->
+                                                            <div class="col" ng-if="app.appointments.mode == 1"><a ui-sref="#" class="cbtn">Join</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a ui-sref="#" class="cbtn">Conduct</a></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -171,10 +175,10 @@
     </ion-content>
 
     <div class="footerbar">
- <a class="button" ui-sref="#" style="width:50%"><i class="icon ion-funnel"></i> Filter</a>
+        <a class="button" ui-sref="#" style="width:50%"><i class="icon ion-funnel"></i> Filter</a>
         <a class="button" ui-sref="#" style="width:50%" ><i class="ion"></i> </a>
     </div>
-<script id="canceldctr" type="text/ng-template">
+    <script id="canceldctr" type="text/ng-template">
 	<ion-modal-view>
         <ion-header-bar class="bar app-top-bar">
            <h1 class="title">Doctor Consultations</h1>	 
@@ -182,11 +186,25 @@
         </ion-header-bar>
         <ion-content>
         <div class="list">
-		  <ion-checkbox ng-model="filter.snomed1">Snomed1</ion-checkbox><ion-checkbox ng-model="filter.snomed2">Snomed2</ion-checkbox><ion-checkbox ng-model="filter.snomed3">Snomed3</ion-checkbox>
+		  <ion-radio ng-model="can.opt" class="can-opt" name="can-option" value="4">Your No Show</ion-radio><ion-radio ng-model="can.opt" class="can-opt" name="can-option" value="3">Patient No Show</ion-radio><ion-radio ng-model="can.option" name="can-opt" value="2">Cancelled by Patient</ion-radio><ion-radio ng-model="can.opt" name="can-option" value="1">Cancelled by you</ion-radio>
+		</div>
+		<button class="button button-full button-positive" ng-click="submitmodal(canoption)">Submit</button>
+		</ion-content>
+      </ion-modal-view>
+    </script>
+    <script id="canceldr" type="text/ng-template">
+	<ion-modal-view>
+        <ion-header-bar class="bar app-top-bar">
+           <h1 class="title">Doctor Consultations</h1>	 
+		<button class="button button-clear" ng-click="modal.hide()">Cancel</button>
+        </ion-header-bar>
+        <ion-content>
+        <div class="list">
+		  <ion-radio ng-model="can.opt" name="can-option" class="can-opt" value="2">Cancelled by Patient</ion-radio><ion-radio ng-model="can.opt" class="can-opt" name="can-option" value="1">Cancelled by you</ion-radio>
 		</div>
 		<button class="button button-full button-positive" ng-click="submitmodal()">Submit</button>
 		</ion-content>
       </ion-modal-view>
-	</script>
+    </script>
 </ion-view>
 
