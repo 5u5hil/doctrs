@@ -206,7 +206,16 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-
+	
+					.state('app.treatment-plan-list', {
+							url: "/treatmentplan-list",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/treatment-plan-list.html",
+                                controller: 'TreatmentPlanListCtrl'
+                            }
+                        }
+                    })
 
                     .state('app.doctor-current-tab', {
                         url: "/doctor-current-tab/{id:int}",
