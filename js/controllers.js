@@ -11,8 +11,18 @@ angular.module('your_app_name.controllers', [])
             if ($rootScope.userLogged == 0)
                 $state.go('auth.login');
         })
+		
+		
+	
+		
+		
 
         .controller('EvaluationCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+        })
+   .controller('PatientChatCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
 
@@ -739,6 +749,11 @@ angular.module('your_app_name.controllers', [])
                 console.log(e.responseText);
             });
         })
+		
+		
+		
+		
+		
         .controller('ImagePickerCtrl', function ($scope, $rootScope, $cordovaCamera) {
             $scope.images = [];
             $scope.selImages = function () {

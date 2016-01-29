@@ -254,6 +254,19 @@ angular.module('your_app_name', [
                             }
                         }
                     })
+					
+					 .state('app.patient-chat', {
+                        url: "/patient-chat/19",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/patient-chat.html",
+                                controller: 'PatientChatCtrl'
+                            }
+                        }
+                    })
+					
+					
+					
                     .state('app.feed-entries', {
                         url: "/feed-entries/:categoryId/:sourceId",
                         views: {
