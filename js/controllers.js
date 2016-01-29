@@ -23,29 +23,29 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
 
         })
-.controller('PatientListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+        .controller('PatientListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
 
         })
-.controller('PatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+        .controller('PatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
 
         })
 
-		.controller('PatientRecordCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-
-        })	
-		
-.controller('PatientConsultCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+        .controller('PatientRecordCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
 
         })
-		
+
+        .controller('PatientConsultCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+        })
+
         .controller('PlaintestCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('addeval', {
                 scope: $scope
@@ -265,6 +265,7 @@ angular.module('your_app_name.controllers', [])
 
         .controller('DoctorConsultationsCtrl', function ($scope, $http, $stateParams, $filter, $ionicPopup, $timeout) {
             $scope.drId = get('id');
+            $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
             $http({
                 method: 'GET',
                 url: domain + 'appointment/get-patient-details',
@@ -353,7 +354,7 @@ angular.module('your_app_name.controllers', [])
                     $http({
                         method: 'GET',
                         url: domain + 'appointment/dr-cancel-app',
-                        params: {appId: $scope.appId, mode:$scope.mode, userId: $scope.userId, cancel: $scope.can.opt}
+                        params: {appId: $scope.appId, mode: $scope.mode, userId: $scope.userId, cancel: $scope.can.opt}
                     }).then(function successCallback(response) {
                         console.log(response.data);
                         if (response.data == 'success') {
@@ -380,7 +381,7 @@ angular.module('your_app_name.controllers', [])
                     $http({
                         method: 'GET',
                         url: domain + 'appointment/dr-cancel-app',
-                        params: {appId: $scope.appId, mode:$scope.mode, userId: $scope.userId, cancel: $scope.can.opt}
+                        params: {appId: $scope.appId, mode: $scope.mode, userId: $scope.userId, cancel: $scope.can.opt}
                     }).then(function successCallback(response) {
                         console.log(response.data);
                         if (response.data == 'success') {
@@ -450,6 +451,7 @@ angular.module('your_app_name.controllers', [])
         .controller('DoctorCurrentTabCtrl', function ($scope, $http, $stateParams) {
             $scope.appId = $stateParams.id;
             $scope.drId = get('id');
+            $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
             $http({
                 method: 'GET',
                 url: domain + 'appointment/get-patient-app-details',
