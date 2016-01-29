@@ -263,7 +263,7 @@ angular.module('your_app_name.controllers', [])
             //window.location.href = "#/";
         })
 
-        .controller('DoctorConsultationsCtrl', function ($scope, $http, $stateParams, $filter, $ionicPopup, $timeout) {
+        .controller('DoctorConsultationsCtrl', function ($scope, $http, $stateParams, $filter, $ionicPopup, $timeout, $filter) {
             $scope.drId = get('id');
             $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
             $http({
@@ -448,7 +448,7 @@ angular.module('your_app_name.controllers', [])
             };
         })
 
-        .controller('DoctorCurrentTabCtrl', function ($scope, $http, $stateParams) {
+        .controller('DoctorCurrentTabCtrl', function ($scope, $http, $stateParams, $filter) {
             $scope.appId = $stateParams.id;
             $scope.drId = get('id');
             $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
