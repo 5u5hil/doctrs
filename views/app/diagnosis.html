@@ -2,11 +2,6 @@
     <ion-nav-title>
         <span>Diagnosis</span>
     </ion-nav-title>
-    <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-person"></button>
-    </ion-nav-buttons>
-
-
     <ion-content>
         <div class="ctab">
             <ion-tabs class="tabs-positive tabs-icon-top">                
@@ -124,68 +119,44 @@
 
                 <ion-tab title="Test Results" >
                     <div class="tabcontainer">
-                     <div class="item item-divider">Reason for Visit</div>	
-					<label class="item item-input">
-					<span class="input-label">BP Systolic</span>
-					<input type="text">
-					</label>
-						
-					<label class="item item-input">
-					<span class="input-label">BP Diastolic</span>
-					<input type="text">
-					</label>	
-					<label class="item item-input">
-					<span class="input-label">BP Diastolic</span>
-					<input type="text">
-					</label>	
-					<label class="item item-input">
-					<span class="input-label">Pulse Rate</span>
-					<input type="text">
-					</label>	  
-					  
-					<label class="item item-input">
-					<span class="input-label">Temperature</span>
-					<input type="text">
-					</label>	   
-					 <label class="item item-input item-select">
-						<div class="input-label">
-						Temperature Source
+						 
+				 <div class="row cbtn3">
+				<button class="col button" ng-controller="PlaintestCtrl" ng-click="modal.show()">
+					 <span class="icon ion-plus-circled"></span> Plain Text
+					</button>
+				<button class="col button" ng-controller="LoincCtrl" ng-click="modal.show()">
+					 <span class="icon ion-plus-circled"></span> Loinc
+				</button>
+				
+				</div>
+					 
+				 <div class="posts-list" >
+					<div  class="list card post-item">
+						<div class="post-content item item-text-wrap p0">
+							<div  class="card-content paraspacing">
+								<div class="cardheading">Plain Text <div class="edit-btn">
+								<a ui-sref="#" ng-controller="PlaintestCtrl" ng-click="modal.show()"><i class="ion-edit"></i></a></div></div>
+								<p>Plain text 1,  Plain text 2, Plain text 1</p>
+								
+								<div class="clr"></div>
+							</div>
 						</div>
-						<select>
-						  <option selected>Oral</option>
-						  <option >Armpit</option>
-						  <option>Groin</option>
-						  <option>Rectal</option>
-						</select>
-					  </label>  
-					<label class="item item-input">
-					<span class="input-label">Respiration Rate</span>
-					<input type="text">
-					</label>
-					 <label class="item item-input">
-					<span class="input-label">Height (in cms)</span>
-					<input type="text">
-					</label> 
-					  
-					<label class="item item-input">
-					<span class="input-label">Weight (in kgs)</span>
-					<input type="text">
-					</label> 
-					   <label class="item item-input">
-					<span class="input-label">Observations</span>
-					<input type="text">
-					</label> 
-				<label class="item item-input">
-					<span class="input-label">Investigation Results</span>
-					<input type="text">
-					</label> 
-					  
-					  
-					  
-					  
-					  
-					  
-                    </div>
+					</div>
+				</div>
+
+				 <div class="posts-list">
+					<div  class="list card post-item">
+						<div class="post-content item item-text-wrap p0">
+							<div  class="card-content paraspacing">
+								<div class="cardheading">Loinc <div class="edit-btn">
+								<a ui-sref="#" ng-controller="LoincCtrl" ng-click="modal.show()"><i class="ion-edit"></i></a></div></div>
+								<p>Loinc 1,  Loinc 2, Loinc 1</p>
+								<div class="clr"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				 </div>
                 
 				</ion-tab>
               

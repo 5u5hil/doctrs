@@ -305,7 +305,15 @@ angular.module('your_app_name', [
 							}
                     })
 					
-					
+						.state('app.patient-consult', {
+                        url: "/patient-consult",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/patient-consult.html",
+                                controller: 'PatientConsultCtrl'
+                            }
+							}
+                    })
 					
 					
 					

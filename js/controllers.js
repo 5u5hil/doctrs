@@ -38,6 +38,12 @@ angular.module('your_app_name.controllers', [])
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
 
+        })	
+		
+.controller('PatientConsultCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
         })
 		
         .controller('PlaintestCtrl', function ($scope, $ionicModal) {
