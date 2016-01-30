@@ -2,27 +2,30 @@
 angular.module('your_app_name.controllers', [])
 
         .controller('AuthCtrl', function ($scope, $state, $ionicConfig, $rootScope) {
-            if ($rootScope.userLogged == 0)
-                $state.go('auth.login');
+            if (window.localStorage.getItem('id') != null) {
+                $rootScope.userLogged = 1;
+            } else {
+                if ($rootScope.userLogged == 0)
+                    $state.go('auth.login');
+            }
         })
 
 // APP
         .controller('AppCtrl', function ($scope, $state, $ionicConfig, $rootScope) {
-            if ($rootScope.userLogged == 0)
-                $state.go('auth.login');
+            if (window.localStorage.getItem('id') != null) {
+                $rootScope.userLogged = 1;
+            } else {
+                if ($rootScope.userLogged == 0)
+                    $state.go('auth.login');
+            }
         })
-		
-		
-	
-		
-		
 
         .controller('EvaluationCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
 
         })
-   .controller('PatientChatCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+        .controller('PatientChatCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
 
@@ -350,6 +353,7 @@ angular.module('your_app_name.controllers', [])
                 }
             };
         })
+
         .controller('CancelDctrCtrl', function ($scope, $ionicModal, $filter, $http, $state) {
             $scope.can = {};
             $ionicModal.fromTemplateUrl('canceldctr', {
@@ -538,7 +542,6 @@ angular.module('your_app_name.controllers', [])
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
-
 
         .controller('TreatmentPlanCtrl', function ($scope, $http, $stateParams) {
             $scope.category_sources = [];
@@ -749,11 +752,11 @@ angular.module('your_app_name.controllers', [])
                 console.log(e.responseText);
             });
         })
-		
-		
-		
-		
-		
+
+
+
+
+
         .controller('ImagePickerCtrl', function ($scope, $rootScope, $cordovaCamera) {
             $scope.images = [];
             $scope.selImages = function () {
