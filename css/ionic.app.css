@@ -4652,7 +4652,7 @@ ion-tabs.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs.tabs-color-a
     position: relative;
     z-index: 2;
     display: block;
-    /* margin: -1px; */
+    margin: -1px; 
     padding: 14px;
     border-width: 1px;
     border-style: solid;
@@ -7896,7 +7896,7 @@ ion-spinner.spinner-on-load {
     border-color: #387ef5 !important;
     border-style: solid; }
 .login-view .login-container {
-    margin-bottom: 0px; }
+    margin-bottom: 0px; background:none;}
 .login-view .login-container .card-heding {
     padding: 0px;
     height: 49px; }
@@ -8441,8 +8441,9 @@ div.iconbuttons[data-tags="twitter"]{ border:1px #28a9e0 solid; color:#28a9e0;}
 }
 .sign-up-container .item.item-input{border-style: dashed;}
 .sign-up-container  .item-input{padding: 6px 0 5px 5px;}
-.cicon{    font-size: 32px;}
+.cicon{    font-size: 28px;}
 .ctitle{font-size:24px; padding-left:5px;}
+.cicon,.ctitle{color:#387ef5;}
 .catlist{margin-top:40px;}
 .catlist p{margin-top:5px;}
 .mtop40{margin-top:40px;}
