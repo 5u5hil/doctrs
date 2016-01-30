@@ -167,6 +167,7 @@ angular.module('your_app_name', [
                     })
 
                     .state('app.doctor-consultations', {
+                        cache: false,
                         url: "/doctor-consultations",
                         views: {
                             'menuContent': {
@@ -176,6 +177,7 @@ angular.module('your_app_name', [
                         }
                     })
                     .state('app.chat-appointments', {
+                        cache: false,
                         url: "/chat-appointments",
                         views: {
                             'menuContent': {
@@ -247,6 +249,7 @@ angular.module('your_app_name', [
                     })
 
                     .state('app.doctor-join', {
+                        cache: false,
                         url: "/doctor-join/{id:int}",
                         views: {
                             'menuContent': {
@@ -256,6 +259,7 @@ angular.module('your_app_name', [
                         }
                     })
                     .state('app.current-chat', {
+                        cache: false,
                         url: "/current-chat/{id:int}",
                         views: {
                             'menuContent': {
