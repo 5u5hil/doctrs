@@ -476,6 +476,7 @@ angular.module('your_app_name.controllers', [])
                 $scope.user = response.data.userData;
                 $scope.products = response.data.products;
                 $scope.time = response.data.time;
+                $scope.endTime = response.data.end_time;
 
             }, function errorCallback(e) {
                 console.log(e);
