@@ -28,7 +28,7 @@ angular.module('your_app_name', [
 ])
 
 
-        .run(function ($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $timeout) {
+        .run(function ($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $timeout, $ionicLoading) {
 
             $ionicPlatform.on("deviceready", function () {
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -42,7 +42,13 @@ angular.module('your_app_name', [
 
                 PushNotificationsService.register();
             });
+            $rootScope.$on('loading:show', function () {
+                $ionicLoading.show({template: 'Loading'})
+            })
 
+            $rootScope.$on('loading:hide', function () {
+                $ionicLoading.hide()
+            })
             // This fixes transitions for transparent background views
             $rootScope.$on("$stateChangeStart", function (event, toState, toParams, fromState, fromParams) {
                 if (toState.name.indexOf('auth.walkthrough') > -1)
@@ -76,7 +82,20 @@ angular.module('your_app_name', [
         })
 
 
-        .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+        .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
+            $httpProvider.interceptors.push(function ($rootScope) {
+                return {
+                    request: function (config) {
+                        $rootScope.$broadcast('loading:show')
+                        return config
+                    },
+                    response: function (response) {
+                        $rootScope.$broadcast('loading:hide')
+                        return response
+                    }
+                }
+            })
+
             $stateProvider
 
                     //INTRO
@@ -206,9 +225,9 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-	
-					.state('app.treatment-plan-list', {
-							url: "/treatmentplan-list",
+
+                    .state('app.treatment-plan-list', {
+                        url: "/treatmentplan-list",
                         views: {
                             'menuContent': {
                                 templateUrl: "views/app/treatment-plan-list.html",
@@ -254,8 +273,8 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					 .state('app.patient-chat', {
+
+                    .state('app.patient-chat', {
                         url: "/patient-chat/19",
                         views: {
                             'menuContent': {
@@ -264,9 +283,9 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					
-					
+
+
+
                     .state('app.feed-entries', {
                         url: "/feed-entries/:categoryId/:sourceId",
                         views: {
@@ -276,60 +295,60 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					
-					 .state('app.homepage', {
+
+
+                    .state('app.homepage', {
                         url: "/homepage",
                         views: {
                             'menuContent': {
                                 templateUrl: "views/app/homepage.html",
                                 controller: 'HomepageCtrl'
                             }
-							}
-                    }) 
+                        }
+                    })
 
-					.state('app.patient-list', {
+                    .state('app.patient-list', {
                         url: "/patient-list",
                         views: {
                             'menuContent': {
                                 templateUrl: "views/app/patient-list.html",
                                 controller: 'PatientListCtrl'
                             }
-							}
+                        }
                     })
-					
-					.state('app.patient', {
+
+                    .state('app.patient', {
                         url: "/patient",
                         views: {
                             'menuContent': {
                                 templateUrl: "views/app/patient.html",
                                 controller: 'PatientCtrl'
                             }
-							}
-                    })		
-					
-					.state('app.patient-record', {
+                        }
+                    })
+
+                    .state('app.patient-record', {
                         url: "/patient-record",
                         views: {
                             'menuContent': {
                                 templateUrl: "views/app/patient-record.html",
                                 controller: 'PatientRecordCtrl'
                             }
-							}
+                        }
                     })
-					
-						.state('app.patient-consult', {
+
+                    .state('app.patient-consult', {
                         url: "/patient-consult",
                         views: {
                             'menuContent': {
                                 templateUrl: "views/app/patient-consult.html",
                                 controller: 'PatientConsultCtrl'
                             }
-							}
+                        }
                     })
-					
-					
-					
+
+
+
 
                     .state('app.logout', {
                         url: "/logout",
