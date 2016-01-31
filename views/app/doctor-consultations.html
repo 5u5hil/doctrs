@@ -2,25 +2,25 @@
     <ion-nav-title>
         <span>Doctor Consultations</span>
     </ion-nav-title>
-  <!--   <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-person"></button>
-    </ion-nav-buttons> -->
+    <!--   <ion-nav-buttons side="right">
+          <button class="button button-icon button-clear ion-person"></button>
+      </ion-nav-buttons> -->
     <ion-content>
         <div class="ctab">
             <ion-tabs class="tabs-positive tabs-icon-top">                
                 <!-- =========== Upcoming ===========-->
                 <ion-tab title="Current" >
                     <div class="tabcon2"> 
-                       <!--  <div class="searchbox">
-                            <div class="item item-input-inset" style="border-bottom:0;">
-                                <label class="item-input-wrapper">
-                                    <input type="text" placeholder="Search..." ng-model="searchKeyword">
-                                </label>
-                                <button class="button button-small">
-                                    <i class="ion-android-search"></i>
-                                </button>
-                            </div>	
-                        </div> -->
+                        <!--  <div class="searchbox">
+                             <div class="item item-input-inset" style="border-bottom:0;">
+                                 <label class="item-input-wrapper">
+                                     <input type="text" placeholder="Search..." ng-model="searchKeyword">
+                                 </label>
+                                 <button class="button button-small">
+                                     <i class="ion-android-search"></i>
+                                 </button>
+                             </div>	
+                         </div> -->
                         <div class="ctab commontab">
                             <ion-tabs class="tabs-positive tabs-icon-top">
 
@@ -47,11 +47,11 @@
                                                         <div class="row cardbtn-small p0">
                                                             <div class="col" ng-if="app.appointments.mode == 1"><a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="cbtn">Cancel</a></div>
                                                             <!---<div class="col" ng-if="app.appointments.mode == 1"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a></div>-->
-                                                            <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a class="cbtn" ng-controller="CancelDctrCtrl" ng-click="cancelApp(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)">Cancel</a></div>
-                                                            <div class="col" ng-if="app.appointments.mode == 1"><a ng-if="curTime>=todays_time[$index] && curTime<=todays_end_time[$index]" ui-sref="app.doctor-join({'id': app.appointment_id, 'res': 'json'})" class="cbtn">Join</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a class="cbtn" ng-controller="CancelDctrCtrl" ng-click="cancelApp(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)">Cancel</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 1"><a ng-click="joinVideo(app.appointments.mode, todays_time[$index], todays_end_time[$index], app.appointment_id)" class="cbtn">Join</a></div>
                                                             <div class="col" ng-if="app.appointments.mode == 2"><a ui-sref="#" class="cbtn">Start Chat</a></div>
                                                             <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a ui-sref="#" class="cbtn">Conduct</a></div>
-                                                        </div>
+                                                        </div><!----   ng-if="curTime>=todays_time[$index] && curTime<=todays_end_time[$index]" ui-sref="app.doctor-join({'id': app.appointment_id, 'res': 'json'})"   --->
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,9 +80,9 @@
                                                         <div class="row cardbtn-small p0">
                                                             <div class="col"ng-if="app.appointments.mode == 1"><a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="cbtn">Cancel</a></div>
                                                             <!---div class="col"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a></div>-->
-                                                            <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a class="cbtn" ng-controller="CancelDctrCtrl" ng-click="cancelApp(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)">Cancel</a></div>
-                                                            <div class="col" ng-if="app.appointments.mode == 1"><a ng-if="curTime>=week_time[$index] && curTime<=week_end_time[$index]" ui-sref="app.doctor-join({'id': app.appointment_id, 'res': 'json'})" class="cbtn">Join</a></div>
-                                                            
+                                                            <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a class="cbtn" ng-controller="CancelDctrCtrl" ng-click="cancelApp(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)">Cancel</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 1"><a ng-if="curTime >= week_time[$index] && curTime <= week_end_time[$index]" ui-sref="app.doctor-join({'id': app.appointment_id, 'res': 'json'})" class="cbtn">Join</a></div>
+
                                                             <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a ui-sref="#" class="cbtn">Conduct</a></div>
                                                         </div>
                                                     </div>
@@ -113,9 +113,9 @@
                                                         <div class="row cardbtn-small p0">
                                                             <div class="col" ng-if="app.appointments.mode == 1"><a class="cbtn" confirmed-click="cancelAppointment(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel?">Cancel</a></div>
                                                             <!---<div class="col" ng-if="app.appointments.mode == 1"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?" class="cbtn">Reschedule</a></div>-->
-                                                            <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a class="cbtn" ng-controller="CancelDctrCtrl" ng-click="cancelApp(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)">Cancel</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a class="cbtn" ng-controller="CancelDctrCtrl" ng-click="cancelApp(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)">Cancel</a></div>
                                                             <!---<div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"   class="cbtn">Reschedule</a></div>-->
-                                                            <div class="col" ng-if="app.appointments.mode == 1"><a ng-if="curTime>=all_time[$index] && curTime<=all_end_time[$index]" ui-sref="app.doctor-join({'id': app.appointment_id, 'res': 'json'})" class="cbtn">Join</a></div>
+                                                            <div class="col" ng-if="app.appointments.mode == 1"><a ng-if="curTime >= all_time[$index] && curTime <= all_end_time[$index]" ui-sref="app.doctor-join({'id': app.appointment_id, 'res': 'json'})" class="cbtn">Join</a></div>
                                                             <div class="col" ng-if="app.appointments.mode == 3 || app.appointments.mode == 4"><a ui-sref="#" class="cbtn">Conduct</a></div>
                                                         </div>
                                                     </div>
@@ -131,85 +131,85 @@
 
                 <ion-tab title="Past" >
                     <div class="tabcontainer">
-                       <p class="txt-center"> Coming Soon	</p>
+                        <p class="txt-center"> Coming Soon	</p>
                     </div>
                 </ion-tab>
-               <!--  <ion-tab title="Book" >
-                    
-                    <div class="tabcon2">
+                <!--  <ion-tab title="Book" >
+                     
+                     <div class="tabcon2">
+ 
+                         <div class="searchbox">
+                             <div class="item item-input-inset" style="border-bottom:0;">
+                                 <label class="item-input-wrapper">
+                                     <input type="text" placeholder="Search...">
+                                 </label>
+                                 <button class="button button-small">
+                                     <i class="ion-android-search"></i>
+                                 </button>
+                             </div>	
+                         </div>
+ 
+                         <div class="list miscellaneous-functionalities">
+ 
+                             <a class="item  item-icon-right" ui-sref="app.consultation-cards">
+                                 <div>
+                                     <span class="stitle">Dermatology</span>
+                                     <p class="">Skin, Hair, Acne, Skin, Hair, Acne, Skin, Hair, Acne, Skin, Hair, Acne,  </p>
+                                 </div>
+                                 <i class="icon ion-arrow-right-c"></i>
+                             </a>
+ 
+                             <a class="item item-icon-right" ui-sref="app.consultation-cards">
+                                 <div>
+                                     <span class="stitle">Diet & Nutrition</span>
+                                     <p class="">Weight loss, Weight gain, Muscle gain, Fitness, Immunity..</p>
+                                 </div>
+                                 <i class="icon ion-arrow-right-c"></i>
+                             </a>
+                         </div>
+ 
+                     </div>
+                 </ion-tab>
+                -->
 
-                        <div class="searchbox">
-                            <div class="item item-input-inset" style="border-bottom:0;">
-                                <label class="item-input-wrapper">
-                                    <input type="text" placeholder="Search...">
-                                </label>
-                                <button class="button button-small">
-                                    <i class="ion-android-search"></i>
-                                </button>
-                            </div>	
-                        </div>
 
-                        <div class="list miscellaneous-functionalities">
-
-                            <a class="item  item-icon-right" ui-sref="app.consultation-cards">
-                                <div>
-                                    <span class="stitle">Dermatology</span>
-                                    <p class="">Skin, Hair, Acne, Skin, Hair, Acne, Skin, Hair, Acne, Skin, Hair, Acne,  </p>
-                                </div>
-                                <i class="icon ion-arrow-right-c"></i>
-                            </a>
-
-                            <a class="item item-icon-right" ui-sref="app.consultation-cards">
-                                <div>
-                                    <span class="stitle">Diet & Nutrition</span>
-                                    <p class="">Weight loss, Weight gain, Muscle gain, Fitness, Immunity..</p>
-                                </div>
-                                <i class="icon ion-arrow-right-c"></i>
-                            </a>
-                        </div>
-
-                    </div>
-                </ion-tab>
-				 -->
-				
-				
             </ion-tabs>
         </div>
     </ion-content>
 
-  <!--   <div class="footerbar">
-        <a class="button" ui-sref="#" style="width:50%"><i class="icon ion-funnel"></i> Filter</a>
-        <a class="button" ui-sref="#" style="width:50%" ><i class="ion"></i> Sort </a>
-    </div> -->
-	
-	
+    <!--   <div class="footerbar">
+          <a class="button" ui-sref="#" style="width:50%"><i class="icon ion-funnel"></i> Filter</a>
+          <a class="button" ui-sref="#" style="width:50%" ><i class="ion"></i> Sort </a>
+      </div> -->
+
+
     <script id="canceldctr" type="text/ng-template">
-	<ion-modal-view>
+        <ion-modal-view>
         <ion-header-bar class="bar app-top-bar">
-           <h1 class="title">Doctor Consultations</h1>	 
-		<button class="button button-clear" ng-click="modal.hide()">Cancel</button>
+        <h1 class="title">Doctor Consultations</h1>	 
+        <button class="button button-clear" ng-click="modal.hide()">Cancel</button>
         </ion-header-bar>
         <ion-content>
         <div class="list">
-		  <ion-radio ng-model="can.opt" class="can-opt" name="can-option" value="4">Your No Show</ion-radio><ion-radio ng-model="can.opt" class="can-opt" name="can-option" value="3">Patient No Show</ion-radio><ion-radio ng-model="can.option" name="can-opt" value="2">Cancelled by Patient</ion-radio><ion-radio ng-model="can.opt" name="can-option" value="1">Cancelled by you</ion-radio>
-		</div>
-		<button class="button button-full button-positive" ng-click="submitmodal(canoption)">Submit</button>
-		</ion-content>
-      </ion-modal-view>
+        <ion-radio ng-model="can.opt" class="can-opt" name="can-option" value="4">Your No Show</ion-radio><ion-radio ng-model="can.opt" class="can-opt" name="can-option" value="3">Patient No Show</ion-radio><ion-radio ng-model="can.option" name="can-opt" value="2">Cancelled by Patient</ion-radio><ion-radio ng-model="can.opt" name="can-option" value="1">Cancelled by you</ion-radio>
+        </div>
+        <button class="button button-full button-positive" ng-click="submitmodal(canoption)">Submit</button>
+        </ion-content>
+        </ion-modal-view>
     </script>
     <script id="canceldr" type="text/ng-template">
-	<ion-modal-view>
+        <ion-modal-view>
         <ion-header-bar class="bar app-top-bar">
-           <h1 class="title">Doctor Consultations</h1>	 
-		<button class="button button-clear" ng-click="modal.hide()">Cancel</button>
+        <h1 class="title">Doctor Consultations</h1>	 
+        <button class="button button-clear" ng-click="modal.hide()">Cancel</button>
         </ion-header-bar>
         <ion-content>
         <div class="list">
-		  <ion-radio ng-model="can.opt" name="can-option" class="can-opt" value="2">Cancelled by Patient</ion-radio><ion-radio ng-model="can.opt" class="can-opt" name="can-option" value="1">Cancelled by you</ion-radio>
-		</div>
-		<button class="button button-full button-positive" ng-click="submitmodal()">Submit</button>
-		</ion-content>
-      </ion-modal-view>
+        <ion-radio ng-model="can.opt" name="can-option" class="can-opt" value="2">Cancelled by Patient</ion-radio><ion-radio ng-model="can.opt" class="can-opt" name="can-option" value="1">Cancelled by you</ion-radio>
+        </div>
+        <button class="button button-full button-positive" ng-click="submitmodal()">Submit</button>
+        </ion-content>
+        </ion-modal-view>
     </script>
 </ion-view>
 

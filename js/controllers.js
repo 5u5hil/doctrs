@@ -278,7 +278,7 @@ angular.module('your_app_name.controllers', [])
             //window.location.href = "#/";
         })
 
-        .controller('DoctorConsultationsCtrl', function ($scope, $http, $stateParams, $filter, $ionicPopup, $timeout, $ionicHistory, $filter) {
+        .controller('DoctorConsultationsCtrl', function ($scope, $http, $stateParams, $filter, $ionicPopup, $timeout, $ionicHistory, $filter, $state) {
             $scope.drId = get('id');
             $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
             $ionicHistory.nextViewOptions({
@@ -358,6 +358,16 @@ angular.module('your_app_name.controllers', [])
                     } else if (mode == 3 || mode == 4) {
                         //ask for 2 options
                     }
+                }
+            };
+            $scope.joinVideo = function (mode, start, end, appId) {
+                console.log(mode + "===" + start + '===' + end + "===" + $scope.curTime + "==" + appId);
+                if ($scope.curTime >= start || $scope.curTime <= end) {
+                    console.log('redirect');
+                    //$state.go('app.patient-join', {}, {reload: true});
+                    $state.go('app.doctor-join', {'id': appId, 'mode': mode}, {reload: true});
+                } else {
+                    alert("You can join video before 15 minutes.");
                 }
             };
         })
@@ -470,7 +480,7 @@ angular.module('your_app_name.controllers', [])
             };
         })
 
-        .controller('DoctorCurrentTabCtrl', function ($scope, $http, $stateParams, $filter, $ionicHistory) {
+        .controller('DoctorCurrentTabCtrl', function ($scope, $http, $stateParams, $filter, $ionicHistory, $state) {
             $ionicHistory.nextViewOptions({
                 disableBack: true
             });
@@ -541,6 +551,16 @@ angular.module('your_app_name.controllers', [])
                     } else if (mode == 3 || mode == 4) {
                         //ask for 4 options
                     }
+                }
+            };
+            $scope.joinPatient = function (mode, start, end, appId) {
+                console.log(mode + "===" + start + '===' + end + "===" + $scope.curTime + "==" + appId);
+                if ($scope.curTime >= start || $scope.curTime <= end) {
+                    console.log('redirect');
+                    //$state.go('app.patient-join', {}, {reload: true});
+                    $state.go('app.doctor-join', {'id': appId, 'mode': mode}, {reload: true});
+                } else {
+                    alert("You can join video before 15 minutes.");
                 }
             };
         })

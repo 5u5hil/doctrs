@@ -57,27 +57,27 @@
 
     </ion-content>
 
-   <div class="bar bar-footer p0" style="padding:0; margin:0;">
-<div class="button-bar">
-        <a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="button">Cancel</a>
-        <a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"  class="button">Reschedule</a>
-        <a ng-if="mode==2" class="button" ui-sref="app.join-chat({'id': app[0].appointment_id, 'mode': mode})" > Start Chat</a>
-		
-        <a ng-if="mode==1 && curTime>=time || curTime<=endTime" class="button"ui-sref="app.doctor-join({'id': app[0].appointments.id, 'res': 'json'})"><i class="ion"></i> Join</a>
-		</div>
+    <div class="bar bar-footer p0" style="padding:0; margin:0;">
+        <div class="button-bar">
+            <a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="button">Cancel</a>
+            <a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"  class="button">Reschedule</a>
+            <a ng-if="app[0].appointments.mode == 2" class="button" ui-sref="app.join-chat({'id': app[0].appointment_id, 'mode': mode})" > Start Chat</a>
+            <a ng-if="app[0].appointments.mode==1" class="button" ng-click="joinPatient(app[0].appointments.mode, time, endTime, app[0].appointment_id)"><i class="ion"></i> Join</a>
+        </div>
     </div> 
-	
-	
-	
-<!-- 	<div class="bar bar-footer" style="padding:0; margin:0;">
-<div class="button-bar">
-  <a class="button">First</a>
-  <a class="button">Second</a>
-  <a class="button">Third</a>
-</div>
-</div> -->
-	
-	
+
+
+
+    <!-- 	 ui-sref="app.doctor-join({'id': app[0].appointments.id, 'res': 'json'})"
+    <div class="bar bar-footer" style="padding:0; margin:0;">
+    <div class="button-bar">
+      <a class="button">First</a>
+      <a class="button">Second</a>
+      <a class="button">Third</a>
+    </div>
+    </div> -->
+
+
 
 </ion-view>
 
