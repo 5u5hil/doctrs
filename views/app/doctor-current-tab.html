@@ -17,6 +17,7 @@
                             <p><strong>Mode: </strong> {{app[0].appointments.mode==1 ? 'Video': app[0].appointments.mode==3? 'Clinic': app[0].appointments.mode==4? 'Home': app[0].appointments.mode==2? 'Chat':''}}</p>
                             <p><strong>Languages: </strong>
                                 <span ng-repeat="lang in user[0].languages">
+                                    {{user[0].languages.length==0? 'NA': ''}}
                                     {{lang.language}}{{$last==true? '': ',&nbsp;'}}
                                 </span></p>
                             <div class="clr"></div>
@@ -62,7 +63,7 @@
         <a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"  class="button">Reschedule</a>
         <a ng-if="mode==2" class="button" ui-sref="app.join-chat({'id': app[0].appointment_id, 'mode': mode})" > Start Chat</a>
 		
-        <a ng-if="mode==1 && curTime<=time || curTime>=endTime" class="button"ui-sref="app.doctor-join({'id': app[0].appointments.id, 'res': 'json'})"><i class="ion"></i> Join</a>
+        <a ng-if="mode==1 && curTime>=time || curTime<=endTime" class="button"ui-sref="app.doctor-join({'id': app[0].appointments.id, 'res': 'json'})"><i class="ion"></i> Join</a>
 		</div>
     </div> 
 	

@@ -1,4 +1,5 @@
-
+var publisher;
+var subscriber;
 angular.module('your_app_name.controllers', [])
 
         .controller('AuthCtrl', function ($scope, $state, $ionicConfig, $rootScope) {
@@ -273,13 +274,16 @@ angular.module('your_app_name.controllers', [])
             window.localStorage.clear();
             $rootScope.userLogged = 0;
             $rootScope.$digest;
-            $state.go('auth.walkthrough');
+            $state.go('auth.login', {}, {reload: true});
             //window.location.href = "#/";
         })
 
-        .controller('DoctorConsultationsCtrl', function ($scope, $http, $stateParams, $filter, $ionicPopup, $timeout, $filter) {
+        .controller('DoctorConsultationsCtrl', function ($scope, $http, $stateParams, $filter, $ionicPopup, $timeout, $ionicHistory, $filter) {
             $scope.drId = get('id');
             $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
+            $ionicHistory.nextViewOptions({
+                disableBack: true
+            });
             $http({
                 method: 'GET',
                 url: domain + 'appointment/get-patient-details',
@@ -290,14 +294,17 @@ angular.module('your_app_name.controllers', [])
                 $scope.todays_usersData = response.data.todays_usersData;
                 $scope.todays_products = response.data.todays_products;
                 $scope.todays_time = response.data.todays_time;
+                $scope.todays_end_time = response.data.todays_end_time;
                 $scope.week_app = response.data.week_appointments;
                 $scope.week_usersData = response.data.week_usersData;
                 $scope.week_products = response.data.week_products;
                 $scope.week_time = response.data.week_time;
+                $scope.week_end_time = response.data.week_end_time;
                 $scope.all_app = response.data.all_appointments;
                 $scope.all_usersData = response.data.all_usersData;
                 $scope.all_products = response.data.all_products;
                 $scope.all_time = response.data.all_time;
+                $scope.all_end_time = response.data.all_end_time;
             }, function errorCallback(e) {
                 console.log(e);
             });
@@ -463,7 +470,10 @@ angular.module('your_app_name.controllers', [])
             };
         })
 
-        .controller('DoctorCurrentTabCtrl', function ($scope, $http, $stateParams, $filter) {
+        .controller('DoctorCurrentTabCtrl', function ($scope, $http, $stateParams, $filter, $ionicHistory) {
+            $ionicHistory.nextViewOptions({
+                disableBack: true
+            });
             $scope.appId = $stateParams.id;
             $scope.drId = get('id');
             $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
@@ -555,15 +565,20 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 
-        .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams) {
+        .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams, $ionicHistory, $state) {
+
+            $ionicHistory.clearHistory();
             $scope.appId = $stateParams.id;
             $scope.userId = get('id');
+            $ionicHistory.nextViewOptions({
+                disableBack: true
+            });
             $http({
                 method: 'GET',
                 url: domain + 'appointment/join-patient',
                 params: {id: $scope.appId, userId: $scope.userId}
             }).then(function sucessCallback(response) {
-                console.log(response.data);
+                //console.log(response.data);
                 $scope.user = response.data.user;
                 $scope.app = response.data.app;
                 //$scope.oToken = "https://test.doctrs.in/opentok/opentok?session=" + response.data.app[0].appointments.opentok_session_id;
@@ -573,19 +588,58 @@ angular.module('your_app_name.controllers', [])
                 var session = OT.initSession(apiKey, sessionId);
                 session.on({
                     streamCreated: function (event) {
-                        session.subscribe(event.stream, 'subscribersDiv', {width: "100%", height: "100%"});
+                        subscriber = OT.initSubscriber('subscribersDiv', {width: "100%", height: "100%"});
+                        session.publish(subscriber);
+                    },
+                    sessionDisconnected: function (event) {
+                        if (event.reason === 'networkDisconnected') {
+                            alert('You lost your internet connection.'
+                                    + 'Please check your connection and try connecting again.');
+                        }
                     }
                 });
                 session.connect(token, function (error) {
                     if (error) {
                         console.log(error.message);
                     } else {
-                        session.publish('myPublisherDiv', {width: "30%", height: "30%"});
+                        jQuery('#myPublisherDiv').html('Waiting for doctor to join!');
+                        publisher = OT.initPublisher('myPublisherDiv', {width: "30%", height: "30%"});
+                        session.publish(publisher);
+                        var mic = 1;
+                        var mute = 1;
+                        jQuery(".muteMic").click(function () {
+                            if (mic == 1) {
+                                publisher.publishAudio(false);
+                                mic = 0;
+                            } else {
+                                publisher.publishAudio(true);
+                                mic = 1;
+                            }
+                        });
+                        jQuery(".muteSub").click(function () {
+                            if (mute == 1) {
+                                subscriber.subscribeToAudio(false);
+                                mute = 0;
+                            } else {
+                                subscriber.subscribeToAudio(true);
+                                mute = 1;
+                            }
+                        });
                     }
                 });
             }, function errorCallback(e) {
                 console.log(e);
             });
+            $scope.exitVideo = function () {
+                console.log('leaved');
+                try {
+                    publisher.destroy();
+                    subscriber.destroy();
+                    $state.go('app.doctor-consultations', {}, {reload: true});
+                } catch (err) {
+                    $state.go('app.doctor-consultations', {}, {reload: true});
+                }
+            };
         })
 
         .controller('DoctorChatAppsCtrl', function ($scope, $http, $stateParams, $filter, $ionicPopup, $timeout) {
@@ -676,7 +730,8 @@ angular.module('your_app_name.controllers', [])
 
 
 
-        })
+        }
+        )
         .controller('CurrentChatCtrl', function ($scope, $http, $stateParams, $filter) {
             $scope.appId = $stateParams.id;
             $scope.drId = get('id');
@@ -754,10 +809,6 @@ angular.module('your_app_name.controllers', [])
                 console.log(e.responseText);
             });
         })
-
-
-
-
 
         .controller('ImagePickerCtrl', function ($scope, $rootScope, $cordovaCamera) {
             $scope.images = [];
