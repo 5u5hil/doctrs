@@ -281,9 +281,6 @@ angular.module('your_app_name.controllers', [])
         .controller('DoctorConsultationsCtrl', function ($scope, $http, $stateParams, $filter, $ionicPopup, $timeout, $ionicHistory, $filter, $state) {
             $scope.drId = get('id');
             $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
-            $ionicHistory.nextViewOptions({
-                disableBack: true
-            });
             $http({
                 method: 'GET',
                 url: domain + 'appointment/get-patient-details',
@@ -481,9 +478,6 @@ angular.module('your_app_name.controllers', [])
         })
 
         .controller('DoctorCurrentTabCtrl', function ($scope, $http, $stateParams, $filter, $ionicHistory, $state) {
-            $ionicHistory.nextViewOptions({
-                disableBack: true
-            });
             $scope.appId = $stateParams.id;
             $scope.drId = get('id');
             $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
@@ -586,13 +580,9 @@ angular.module('your_app_name.controllers', [])
         })
 
         .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams, $ionicHistory, $state) {
-
-            $ionicHistory.clearHistory();
+            //$ionicHistory.clearHistory();
             $scope.appId = $stateParams.id;
             $scope.userId = get('id');
-            $ionicHistory.nextViewOptions({
-                disableBack: true
-            });
             $http({
                 method: 'GET',
                 url: domain + 'appointment/join-patient',
@@ -747,11 +737,7 @@ angular.module('your_app_name.controllers', [])
                     console.log('Thank you for not eating my delicious ice cream cone');
                 });
             };
-
-
-
-        }
-        )
+        })
         .controller('CurrentChatCtrl', function ($scope, $http, $stateParams, $filter) {
             $scope.appId = $stateParams.id;
             $scope.drId = get('id');
