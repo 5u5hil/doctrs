@@ -359,7 +359,7 @@ angular.module('your_app_name.controllers', [])
             };
             $scope.joinVideo = function (mode, start, end, appId) {
                 console.log(mode + "===" + start + '===' + end + "===" + $scope.curTime + "==" + appId);
-                if ($scope.curTime >= start && $scope.curTime <= end) {
+                if ($scope.curTime >= start || $scope.curTime <= end) {
                     console.log('redirect');
                     //$state.go('app.patient-join', {}, {reload: true});
                     $state.go('app.doctor-join', {'id': appId, 'mode': mode}, {reload: true});
@@ -549,7 +549,7 @@ angular.module('your_app_name.controllers', [])
             };
             $scope.joinPatient = function (mode, start, end, appId) {
                 console.log(mode + "===" + start + '===' + end + "===" + $scope.curTime + "==" + appId);
-                if ($scope.curTime >= start && $scope.curTime <= end) {
+                if ($scope.curTime >= start || $scope.curTime <= end) {
                     console.log('redirect');
                     //$state.go('app.patient-join', {}, {reload: true});
                     $state.go('app.doctor-join', {'id': appId, 'mode': mode}, {reload: true});
