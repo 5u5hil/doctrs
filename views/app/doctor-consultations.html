@@ -26,7 +26,7 @@
 
                                 <ion-tab title="Today({{todays_app.length}})" >
                                     <div class="tabcontainer p0">
-                                        <h4> {{todays_app.length==0? 'No appointments': ''}}</h4>
+                                        <h4 class="txt-center"> {{todays_app.length==0? 'No appointments': ''}}</h4>
                                         <div class="posts-list" ng-repeat="app in todays_app track by $index | filter: searchKeyword" >
                                             <div  class="list card post-item" ng-repeat="prod in todays_products[$index]">
                                                 <div class="post-content item item-text-wrap p0">
@@ -65,7 +65,7 @@
                                         <div class="posts-list" ng-repeat="app in week_app track by $index | filter : searchKeyword" >
                                             <div  class="list card post-item" ng-repeat="prod in week_products[$index]">
                                                 <div class="post-content item item-text-wrap p0">
-                                                    <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content paraspacing">
+                                                    <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content">
                                                         <p ng-repeat="user in week_usersData[$index]"><strong>{{user.fname}} {{user.lname}}</strong></p>
                                                         <div class="row">
                                                             <div class="col"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
@@ -98,7 +98,7 @@
                                         <div class="posts-list" ng-repeat="app in all_app track by $index | filter : searchKeyword" >
                                             <div  class="list card post-item" ng-repeat="prod in all_products[$index]">
                                                 <div class="post-content item item-text-wrap p0">
-                                                    <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content paraspacing">
+                                                    <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content">
                                                         <p ng-repeat="user in all_usersData[$index]"><strong>{{user.fname}} {{user.lname}}</strong></p>
                                                         <div class="row">
                                                             <div class="col"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
@@ -131,11 +131,11 @@
 
                 <ion-tab title="Past" >
                     <div class="tabcontainer">
-                        Under Construction	
+                       <p class="txt-center"> Coming Soon	</p>
                     </div>
                 </ion-tab>
-                <ion-tab title="Book" >
-                    <!-- Tab 1 content -->
+               <!--  <ion-tab title="Book" >
+                    
                     <div class="tabcon2">
 
                         <div class="searchbox">
@@ -170,14 +170,19 @@
 
                     </div>
                 </ion-tab>
+				 -->
+				
+				
             </ion-tabs>
         </div>
     </ion-content>
 
-    <div class="footerbar">
+  <!--   <div class="footerbar">
         <a class="button" ui-sref="#" style="width:50%"><i class="icon ion-funnel"></i> Filter</a>
-        <a class="button" ui-sref="#" style="width:50%" ><i class="ion"></i> </a>
-    </div>
+        <a class="button" ui-sref="#" style="width:50%" ><i class="ion"></i> Sort </a>
+    </div> -->
+	
+	
     <script id="canceldctr" type="text/ng-template">
 	<ion-modal-view>
         <ion-header-bar class="bar app-top-bar">

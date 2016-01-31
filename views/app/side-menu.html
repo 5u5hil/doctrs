@@ -29,7 +29,7 @@
                     <h2 class="menu-text">Home</h2>
                 </ion-item>
 				
-				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.doctor-consultations">
+			<!--	<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.doctor-consultations">
                     <i class="icon ion-gear-a"></i>
                     <h2 class="menu-text">Consultations</h2>
                 </ion-item>
@@ -49,8 +49,11 @@
                     <i class="icon ion-gear-a"></i>
                     <h2 class="menu-text">Treatment plans</h2>
                 </ion-item>
+				
+				-->
+				
                 <ion-item class="item-icon-left" nav-clear menu-close ui-sref="{{ userLogged == 1 ? 'app.logout' : 'auth.login'}}">
-                    <i class="icon ion-gear-a"></i>
+                    <i class="icon ion-android-unlock"></i>
                     <h2 class="menu-text">{{ userLogged == 1 ? 'Logout' : 'Login / Register'}}</h2>
                 </ion-item>
 
