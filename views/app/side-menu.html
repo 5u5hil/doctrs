@@ -17,8 +17,9 @@
             <ion-list>
                 <ion-item class="heading-item item item-avatar" nav-clear menu-close ui-sref="app.profile" style="padding:0;">
                     <div class="user-image-container">
-                        <pre-img ratio="_1_1" helper-class="rounded-image">
-                            <img class="user-image" ng-src="img/default-profile.jpg" spinner-on-load>
+                        <pre-img ratio="_1_1" helper-class="rounded-image" >
+                            <img class="user-image" ng-if="userimage!=''" ng-src="img/userimg/{{userimage}}" spinner-on-load>
+                            <img class="user-image" ng-if="userimage==''" ng-src="img/default-user.jpg" spinner-on-load>
                         </pre-img>
                     </div>
                     <h2 class="greeting">Hi {{username}}, </h2>

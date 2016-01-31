@@ -239,6 +239,7 @@ angular.module('your_app_name.controllers', [])
                             store(response);
                             $rootScope.userLogged = 1;
                             $rootScope.username = response.fname;
+                            $rootScope.userimage = response.image;
                             //if ($rootScope.url != '') {
                             if (window.localStorage.getItem('url') != null) {
                                 $state.go(window.localStorage.getItem('url'));
