@@ -61,7 +61,7 @@
 
                                 <ion-tab title="This Week({{week_app.length}})" >
                                     <div class="tabcontainer p0">
-                                        <h4> {{week_app.length==0? 'No appointments': ''}}</h4>
+                                        <h4 class="txt-center"> {{week_app.length==0? 'No appointments': ''}}</h4>
                                         <div class="posts-list" ng-repeat="app in week_app track by $index | filter : searchKeyword" >
                                             <div  class="list card post-item" ng-repeat="prod in week_products[$index]">
                                                 <div class="post-content item item-text-wrap p0">
@@ -93,7 +93,7 @@
 
                                 <ion-tab title="All({{all_app.length}})" >
                                     <div class="tabcontainer p0">
-                                        <h4> {{all_app.length==0? 'No appointments': ''}}</h4>
+                                        <h4 class="txt-center"> {{all_app.length==0? 'No appointments': ''}}</h4>
                                         <div class="posts-list" ng-repeat="app in all_app track by $index | filter : searchKeyword" >
                                             <div  class="list card post-item" ng-repeat="prod in all_products[$index]">
                                                 <div class="post-content item item-text-wrap p0">
