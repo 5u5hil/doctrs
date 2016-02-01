@@ -10,7 +10,7 @@ var $rootScope = injector.get('$rootScope');
     if (get('id') != null) {
         $rootScope.$apply(function () {
             $rootScope.userLogged = 1;
-            window.location.href = "#/app/category-listing";
+            window.location.href = "#/app/doctor-consultations";
         });
     } else {
         $rootScope.$apply(function () {

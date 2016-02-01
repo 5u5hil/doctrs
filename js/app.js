@@ -26,8 +26,6 @@ angular.module('your_app_name', [
     'ionic.contrib.ui.tinderCards',
     'youtube-embed'
 ])
-
-
         .run(function ($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $timeout, $ionicLoading) {
 
             $ionicPlatform.on("deviceready", function () {
