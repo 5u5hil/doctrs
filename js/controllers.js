@@ -269,12 +269,22 @@ angular.module('your_app_name.controllers', [])
             });
         })
 
-        .controller('LogoutCtrl', function ($scope, $state, $templateCache, $q, $rootScope) {
+        .controller('LogoutCtrl', function ($scope, $state, $ionicLoading, $ionicHistory, $timeout, $q, $rootScope) {
+//            window.localStorage.clear();
+//            $rootScope.userLogged = 0;
+//            $rootScope.$digest;
+//            $state.go('auth.login', {}, {reload: true});
+            $ionicLoading.show({template: 'Logging out....'});
             window.localStorage.clear();
             $rootScope.userLogged = 0;
             $rootScope.$digest;
-            $state.go('auth.login', {}, {reload: true});
-            //window.location.href = "#/";
+            $timeout(function () {
+                $ionicLoading.hide();
+                $ionicHistory.clearCache();
+                $ionicHistory.clearHistory();
+                $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
+                $state.go('auth.walkthrough', {}, {reload: true});
+            }, 30);
         })
 
         .controller('DoctorConsultationsCtrl', function ($scope, $http, $stateParams, $filter, $ionicPopup, $timeout, $ionicHistory, $filter, $state) {
