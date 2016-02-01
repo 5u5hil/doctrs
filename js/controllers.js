@@ -14,7 +14,7 @@ angular.module('your_app_name.controllers', [])
         })
 
 // APP
-        .controller('AppCtrl', function ($scope, $state, $ionicConfig, $rootScope) {
+        .controller('AppCtrl', function ($scope, $state, $ionicConfig, $rootScope, $ionicLoading, $timeout, $ionicHistory) {
             if (window.localStorage.getItem('id') != null) {
                 $rootScope.userLogged = 1;
                 $rootScope.username = window.localStorage.getItem('fname');
@@ -23,6 +23,19 @@ angular.module('your_app_name.controllers', [])
                 if ($rootScope.userLogged == 0)
                     $state.go('auth.login');
             }
+            $scope.logout = function () {
+                $ionicLoading.show({template: 'Logging out....'});
+                window.localStorage.clear();
+                $rootScope.userLogged = 0;
+                $rootScope.$digest;
+                $timeout(function () {
+                    $ionicLoading.hide();
+                    $ionicHistory.clearCache();
+                    $ionicHistory.clearHistory();
+                    $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
+                    $state.go('auth.walkthrough', {}, {reload: true});
+                }, 30);
+            };
         })
 
         .controller('EvaluationCtrl', function ($scope, $http, $stateParams, $ionicModal) {
