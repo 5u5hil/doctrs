@@ -11,8 +11,7 @@
                 <div  class="list card post-item">
                     <div class="post-content item item-text-wrap p0">
                         <div  class="card-content paraspacing">
-
-                            <p><strong > {{user[0].fname}} {{user[0].lname}}</strong></p>
+							<p><strong > {{user[0].fname}} {{user[0].lname}}</strong></p>
                             <p><strong>Appointment Time: </strong> {{app[0].appointments.scheduled_start_time|dateFormat}} <br/> {{app[0].appointments.scheduled_start_time|time}} to {{app[0].appointments.scheduled_end_time|time}} </p>
                             <p><strong>Mode: </strong> {{app[0].appointments.mode==1 ? 'Video': app[0].appointments.mode==3? 'Clinic': app[0].appointments.mode==4? 'Home': app[0].appointments.mode==2? 'Chat':''}}</p>
                             <p><strong>Languages: </strong>
@@ -22,23 +21,20 @@
                                 </span></p>
                             <div class="clr"></div>
                         </div>
-
-
-                    </div>
+					</div>
                 </div>
             </div>
-
-        </div>
+		</div>
 
 
     </ion-content>
 
     <div class="bar bar-footer p0" style="padding:0; margin:0;">
         <div class="button-bar">
-            <a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="button">Cancel</a>
+            <a confirmed-click="cancelAppointment(app.appointment_id,prod.user_id,app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to cancel appointment?" id="{{app.appointment_id}}" class="button cancel">Cancel</a>
             <!----<a confirmed-click="reschedule(app.appointment_id, prod.user_id, app.appointments.mode, app.appointments.scheduled_start_time)" ng-confirm-click="Do you really want to reschedule?"  class="button">Reschedule</a>---->
-            <a ng-if="app[0].appointments.mode == 2" class="button" ui-sref="app.join-chat({'id': app[0].appointment_id, 'mode': mode})" > Start Chat</a>
-            <a ng-if="app[0].appointments.mode==1" class="button" ng-click="joinPatient(app[0].appointments.mode, time, endTime, app[0].appointment_id)"><i class="ion"></i> Join</a>
+            <a ng-if="app[0].appointments.mode == 2" class="button conduct" ui-sref="app.join-chat({'id': app[0].appointment_id, 'mode': mode})" > Start Chat</a>
+            <a ng-if="app[0].appointments.mode==1" class="button join" ng-click="joinPatient(app[0].appointments.mode, time, endTime, app[0].appointment_id)"><i class="ion"></i> Join</a>
         </div>
     </div> 
 
