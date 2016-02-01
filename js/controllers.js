@@ -5,6 +5,8 @@ angular.module('your_app_name.controllers', [])
         .controller('AuthCtrl', function ($scope, $state, $ionicConfig, $rootScope) {
             if (window.localStorage.getItem('id') != null) {
                 $rootScope.userLogged = 1;
+                $rootScope.username = window.localStorage.getItem('fname');
+                $rootScope.userimage = window.localStorage.getItem('image');
             } else {
                 if ($rootScope.userLogged == 0)
                     $state.go('auth.login');
@@ -15,6 +17,8 @@ angular.module('your_app_name.controllers', [])
         .controller('AppCtrl', function ($scope, $state, $ionicConfig, $rootScope) {
             if (window.localStorage.getItem('id') != null) {
                 $rootScope.userLogged = 1;
+                $rootScope.username = window.localStorage.getItem('fname');
+                $rootScope.userimage = window.localStorage.getItem('image');
             } else {
                 if ($rootScope.userLogged == 0)
                     $state.go('auth.login');
