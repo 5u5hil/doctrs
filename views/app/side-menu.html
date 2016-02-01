@@ -18,45 +18,48 @@
                 <ion-item class="heading-item item item-avatar" nav-clear menu-close ui-sref="app.profile" style="padding:0;">
                     <div class="user-image-container">
                         <pre-img ratio="_1_1" helper-class="rounded-image" >
-                            <img class="user-image" ng-if="userimage!=''" ng-src="img/userimg/{{userimage}}" spinner-on-load>
-                            <img class="user-image" ng-if="userimage==''" ng-src="img/default-user.jpg" spinner-on-load>
+                            <img class="user-image" ng-if="userimage != ''" ng-src="img/userimg/{{userimage}}" spinner-on-load>
+                            <img class="user-image" ng-if="userimage == ''" ng-src="img/default-user.jpg" spinner-on-load>
                         </pre-img>
                     </div>
                     <h2 class="greeting">Hi {{username}}, </h2>
                     <p class="message">Welcome</p>
                 </ion-item>
                 <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.homepage">
-                      <i class="icon ion-android-home"></i>
+                    <i class="icon ion-android-home"></i>
                     <h2 class="menu-text">Home</h2>
                 </ion-item>
-				
-			<!--	<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.doctor-consultations">
-                    <i class="icon ion-gear-a"></i>
-                    <h2 class="menu-text">Consultations</h2>
-                </ion-item>
-				
-				
-                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.chat-appointments">
-                    <i class="icon ion-gear-a"></i>
-                    <h2 class="menu-text">Chat Appointments</h2>
-                </ion-item>
-
-                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.consultations-note">
-                    <i class="icon ion-gear-a"></i>
-                    <h2 class="menu-text">Consultaion Note</h2>
-                </ion-item>
-
-                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.treatment-plan">
-                    <i class="icon ion-gear-a"></i>
-                    <h2 class="menu-text">Treatment plans</h2>
-                </ion-item>
-				
-				-->
-				
-                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="{{ userLogged == 1 ? 'app.logout' : 'auth.login'}}">
+                <ion-item class="item-icon-left logoutbtn" nav-clear menu-close ng-if="userLogged == 1" ng-click="logout()" >
                     <i class="icon ion-android-unlock"></i>
-                    <h2 class="menu-text">{{ userLogged == 1 ? 'Logout' : 'Login / Register'}}</h2>
-                </ion-item>
+                    <h2 class="menu-text">Logout</h2>
+                </ion-item> 		
+                <!--	<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.doctor-consultations">
+            <i class="icon ion-gear-a"></i>
+            <h2 class="menu-text">Consultations</h2>
+        </ion-item>
+                        
+                        
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.chat-appointments">
+            <i class="icon ion-gear-a"></i>
+            <h2 class="menu-text">Chat Appointments</h2>
+        </ion-item>
+
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.consultations-note">
+            <i class="icon ion-gear-a"></i>
+            <h2 class="menu-text">Consultaion Note</h2>
+        </ion-item>
+
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.treatment-plan">
+            <i class="icon ion-gear-a"></i>
+            <h2 class="menu-text">Treatment plans</h2>
+        </ion-item>
+                        
+                        
+                        
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="{{ userLogged == 1 ? 'app.logout' : 'auth.login'}}">
+            <i class="icon ion-android-unlock"></i>
+            <h2 class="menu-text">{{ userLogged == 1 ? 'Logout' : 'Login / Register'}}</h2>
+        </ion-item>-->
 
                 <!---<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.category-list">
                     <i class="icon ion-gear-a"></i>
