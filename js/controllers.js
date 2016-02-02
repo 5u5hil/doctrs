@@ -667,8 +667,10 @@ angular.module('your_app_name.controllers', [])
                 try {
                     publisher.destroy();
                     subscriber.destroy();
+                    $ionicHistory.clearCache();
                     $state.go('app.doctor-consultations', {}, {reload: true});
                 } catch (err) {
+                    $ionicHistory.clearCache();
                     $state.go('app.doctor-consultations', {}, {reload: true});
                 }
             };
