@@ -622,6 +622,15 @@ angular.module('your_app_name.controllers', [])
                     streamCreated: function (event) {
                         subscriber = OT.initSubscriber('subscribersDiv', {width: "100%", height: "100%"});
                         session.publish(subscriber);
+                        $http({
+                            method: 'GET',
+                            url: domain + 'appointment/update-join',
+                            params: {id: $scope.appId, userId: $scope.userId}
+                        }).then(function sucessCallback(response) {
+                            console.log(response);
+                        }, function errorCallback(e) {
+                            console.log(e);
+                        });
                     },
                     sessionDisconnected: function (event) {
                         if (event.reason === 'networkDisconnected') {
@@ -634,15 +643,6 @@ angular.module('your_app_name.controllers', [])
                     if (error) {
                         console.log(error.message);
                     } else {
-                        $http({
-                            method: 'GET',
-                            url: domain + 'appointment/update-join',
-                            params: {id: $scope.appId, userId: $scope.userId, role: '2'}
-                        }).then(function sucessCallback(response) {
-                            console.log(response);
-                        }, function errorCallback(e) {
-                            console.log(e);
-                        });
                         jQuery('#myPublisherDiv').html('Waiting for patient to join!');
                         publisher = OT.initPublisher('myPublisherDiv', {width: "30%", height: "30%"});
                         session.publish(publisher);
