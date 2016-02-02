@@ -602,7 +602,7 @@ angular.module('your_app_name.controllers', [])
         })
 
         .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams, $ionicHistory, $state) {
-            //$ionicHistory.clearHistory();
+            $ionicHistory.clearCache();
             $scope.appId = $stateParams.id;
             $scope.userId = get('id');
             $http({
@@ -634,7 +634,16 @@ angular.module('your_app_name.controllers', [])
                     if (error) {
                         console.log(error.message);
                     } else {
-                        jQuery('#myPublisherDiv').html('Waiting for doctor to join!');
+                        $http({
+                            method: 'GET',
+                            url: domain + 'appointment/update-join',
+                            params: {id: $scope.appId, userId: $scope.userId, role: '2'}
+                        }).then(function sucessCallback(response) {
+                            console.log(response);
+                        }, function errorCallback(e) {
+                            console.log(e);
+                        });
+                        jQuery('#myPublisherDiv').html('Waiting for patient to join!');
                         publisher = OT.initPublisher('myPublisherDiv', {width: "30%", height: "30%"});
                         session.publish(publisher);
                         var mic = 1;
