@@ -602,7 +602,7 @@ angular.module('your_app_name.controllers', [])
         })
 
         .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams, $ionicHistory, $state) {
-            $ionicHistory.clearCache();
+            //$ionicHistory.clearCache();
             $scope.appId = $stateParams.id;
             $scope.userId = get('id');
             $http({
@@ -622,15 +622,7 @@ angular.module('your_app_name.controllers', [])
                     streamCreated: function (event) {
                         subscriber = OT.initSubscriber('subscribersDiv', {width: "100%", height: "100%"});
                         session.publish(subscriber);
-                        $http({
-                            method: 'GET',
-                            url: domain + 'appointment/update-join',
-                            params: {id: $scope.appId, userId: $scope.userId}
-                        }).then(function sucessCallback(response) {
-                            console.log(response);
-                        }, function errorCallback(e) {
-                            console.log(e);
-                        });
+
                     },
                     sessionDisconnected: function (event) {
                         if (event.reason === 'networkDisconnected') {
