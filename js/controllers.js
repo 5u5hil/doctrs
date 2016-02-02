@@ -620,8 +620,7 @@ angular.module('your_app_name.controllers', [])
                 var session = OT.initSession(apiKey, sessionId);
                 session.on({
                     streamCreated: function (event) {
-                        subscriber = OT.initSubscriber('subscribersDiv', {width: "100%", height: "100%"});
-                        session.publish(subscriber);
+                       subscriber = session.subscribe(event.stream, 'subscribersDiv', {width: "100%", height: "100%"});
 
                     },
                     sessionDisconnected: function (event) {
