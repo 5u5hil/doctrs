@@ -3,7 +3,9 @@
  
     <name>Doctrs</name>
     <preference name="orientation" value="portrait" />
-    <preference name="fullscreen" value="false" />
+     <preference name="fullscreen" value="false" />
+	<preference name="SplashScreen" value="splash" />
+	<preference name="SplashScreenDelay" value="10000"/>
     
     <gap:platform name="ios" />
     <gap:platform name="android" />
@@ -17,6 +19,18 @@
     </author>
     
     <icon src="icon.png" />
+	
+		<platform name="android">
+		<splash src="splash/splash.png" />
+		<splash src="splash/drawable-port-ldpi-screen.png" platform="android" qualifier="ldpi" />
+		<splash src="splash/drawable-port-mdpi-screen.png" platform="android" qualifier="mdpi" />
+		<splash src="splash/drawable-port-hdpi-screen.png" platform="android" qualifier="hdpi" />
+		<splash src="splash/drawable-port-xhdpi-screen.png" platform="android" qualifier="xhdpi" />
+	<!-- 	<splash src="splash/fr-xhdpi.png" platform="android" qualifier="fr-xhdpi" /> -->
+		<splash src="splash/drawable-port-xxhdpi-screen.png" platform="android" qualifier="port-xxhdpi" />
+	  </platform>
+	
+	
 <!--    
     <icon src="icon-57.png" platform="ios" width="57" height="57" />
      iPad 
