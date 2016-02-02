@@ -602,7 +602,7 @@ angular.module('your_app_name.controllers', [])
         })
 
         .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams, $ionicHistory, $state) {
-            //$ionicHistory.clearCache();
+            $ionicHistory.clearCache();
             $scope.appId = $stateParams.id;
             $scope.userId = get('id');
             $http({
