@@ -8966,7 +8966,10 @@ span.count-t{    display: inline-block;
 
 .joinfooter .tab-item i{color:#387ef5;}
 	.joinfooter .tab-item{    max-width: 250px; opacity:1;}
-.joinfooter .tab-item.active,.joinfooter .tab-item.active i.icon{color:#ccc;}
+/* .joinfooter .tab-item.active,.joinfooter .tab-item.active i.icon{color:#ccc;} */
+.joinfooter .tab-item .ion-ios-mic-off{display:none;}
+.joinfooter .tab-item.active .ion-ios-mic{display:none;}
+.joinfooter .tab-item.active .ion-ios-mic-off{display:block;}
 
 	 .greyitem{background:#eee;}
 	 .greyitem .cicon{color:#000;}
