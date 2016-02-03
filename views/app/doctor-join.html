@@ -1,4 +1,4 @@
-<ion-view class="rjoin-view">
+<ion-view class="rjoin-view" hide-back-button="true">
     <ion-nav-title>
         <span> {{user[0].fname}} {{user[0].lname}}</span>
     </ion-nav-title>
@@ -20,15 +20,15 @@
     </ion-content>
     <div class="sticyfooter joinfooter">
         <div class="tabs tabs-icon-top">
-            <div class="tab-item muteMic" ng-click="">
+            <div class="tab-item muteMic" onclick="classtoggle(this)">
                 <i class="icon ion-mic-a"></i>
                 Mic
             </div>
-            <div class="tab-item" >
+           <!--   <div class="tab-item" onclick="classtoggle(this)" >
                 <i class="icon ion-videocamera"></i>
                 Video
             </div>
-           <!--  <a class="tab-item" >
+           <a class="tab-item" >
                 <i class="icon ion-refresh"></i>
                 Switch
             </a>

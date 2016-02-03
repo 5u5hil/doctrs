@@ -8964,15 +8964,16 @@ span.count-t{    display: inline-block;
                          line-height: 32px;  }
 .logoutbtn.item.activated{background: none !important; border-color: transparent !important;}
 
-.joinfooter a i{color:#387ef5;}
-.joinfooter a.active,.joinfooter a.active i{color:#eee;}
+.joinfooter .tab-item i{color:#387ef5;}
+	.joinfooter .tab-item{    max-width: 250px; opacity:1;}
+.joinfooter .tab-item.active,.joinfooter .tab-item.active i.icon{color:#ccc;}
+
 	 .greyitem{background:#eee;}
 	 .greyitem .cicon{color:#000;}
 	 .comingsoon{    color: #f00;
     position: absolute;
     right: 18px;
     top: 20px;}
-	.joinfooter .tab-item{    max-width: 250px;}
 
 
 
