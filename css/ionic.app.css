@@ -8936,9 +8936,7 @@ span.count-t{    display: inline-block;
                          border-top: 0 !important;}
 .txt-center{text-align:center;}
 
-.cancel{background:#EF473A; color:#fff;}
-.join{background:#387ef5; color:#fff;}
-.conduct{background:#886AEA; color:#fff;}
+
 
 .logoutbtn{background: none;}
 
@@ -8963,6 +8961,11 @@ span.count-t{    display: inline-block;
                          height: 32px;
                          line-height: 32px;  }
 .logoutbtn.item.activated{background: none !important; border-color: transparent !important;}
+.join,.startchat{background:#387ef5; color:#fff;}
+.cancel{background:#EF473A; color:#fff;}
+.reschedule,.conduct{background:#579511; color:#fff;}
+.cancel i,.join i,.startchat i,.reschedule i,.conduct i{color:#fff;}
+
 
 .joinfooter .tab-item i{color:#387ef5;}
 	.joinfooter .tab-item{    max-width: 250px; opacity:1;}
