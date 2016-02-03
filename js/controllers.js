@@ -1,4 +1,5 @@
 var publisher;
+var session;
 var subscriber;
 angular.module('your_app_name.controllers', [])
 
@@ -630,7 +631,7 @@ angular.module('your_app_name.controllers', [])
                 var apiKey = '45463682';
                 var sessionId = response.data.app[0].appointments.opentok_session_id;
                 var token = response.data.oToken;
-                var session = OT.initSession(apiKey, sessionId);
+                 session = OT.initSession(apiKey, sessionId);
                 session.on({
                     streamCreated: function (event) {
                        subscriber = session.subscribe(event.stream, 'subscribersDiv', {width: "100%", height: "100%"});
@@ -679,6 +680,7 @@ angular.module('your_app_name.controllers', [])
                 try {
                     publisher.destroy();
                     subscriber.destroy();
+                    session.disconnect();
                     $ionicHistory.nextViewOptions({
 						  historyRoot: true
 							})
