@@ -605,6 +605,16 @@ angular.module('your_app_name.controllers', [])
         })
 
         .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams, $ionicHistory, $state) {
+             if (!get('loadedOnce')) {
+                   store({'loadedOnce':'true'});
+                   $window.location.reload(true);
+                   // don't reload page, but clear localStorage value so it'll get reloaded next time
+
+               } else {
+                   // set the flag and reload the page
+                   window.localStorage.removeItem('loadedOnce');
+
+               }
             //$ionicHistory.clearCache();
             $scope.appId = $stateParams.id;
             $scope.userId = get('id');
