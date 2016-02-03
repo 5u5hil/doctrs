@@ -244,7 +244,7 @@ angular.module('your_app_name.controllers', [])
         .controller('LoginCtrl', function ($scope, $state, $templateCache, $q, $rootScope,$ionicLoading) {
             $scope.doLogIn = function () {
                 var data = new FormData(jQuery("#loginuser")[0]);
-				 $ionicLoading.show({template: 'Loading...'});
+				
                 $.ajax({
                     type: 'POST',
                     url: domain + "chk-dr-user",
@@ -261,7 +261,7 @@ angular.module('your_app_name.controllers', [])
                             $rootScope.userLogged = 1;
                             $rootScope.username = response.fname;
                             $rootScope.userimage = response.image;
-							
+							 $ionicLoading.show({template: 'Loading...'});
                             $state.go('app.homepage');
                         } else {
                             $rootScope.userLogged = 0;
