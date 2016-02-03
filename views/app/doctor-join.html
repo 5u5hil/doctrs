@@ -7,7 +7,7 @@
     </ion-nav-buttons>
     <div class="bar bar-subheader cbar">
         <div class="row">
-            <div class="col-80 txt-centre"><h5><a  ui-sref="#">Appointment at {{app[0].appointments.scheduled_start_time|time}}</a></h5></div>
+            <div class="col txt-centre"><h5><a  ui-sref="#">Appointment at {{app[0].appointments.scheduled_start_time|time}}</a></h5></div>
         </div>
     </div>
     <ion-content>
@@ -18,24 +18,24 @@
             <div id='subscribersDiv' class="subscribediv">Waiting for patient to join!</div> 
         </div>
     </ion-content>
-    <div class="sticyfooter">
+    <div class="sticyfooter joinfooter">
         <div class="tabs tabs-icon-top">
-            <a class="tab-item muteMic" >
+            <div class="tab-item muteMic" ng-click="">
                 <i class="icon ion-mic-a"></i>
                 Mic
-            </a>
-            <a class="tab-item" >
+            </div>
+            <div class="tab-item" >
                 <i class="icon ion-videocamera"></i>
                 Video
-            </a>
-            <a class="tab-item" >
+            </div>
+           <!--  <a class="tab-item" >
                 <i class="icon ion-refresh"></i>
                 Switch
             </a>
             <a class="tab-item muteSub" >
                 <i class="icon ion-volume-low"></i>
                 Valume
-            </a>
+            </a> -->
         </div>
     </div>
 </ion-view>

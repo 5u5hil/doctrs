@@ -4,6 +4,7 @@ angular.module('your_app_name.controllers', [])
 
         .controller('AuthCtrl', function ($scope, $state, $ionicConfig, $rootScope) {
             if (window.localStorage.getItem('id') != null) {
+			
                 $rootScope.userLogged = 1;
                 $rootScope.username = window.localStorage.getItem('fname');
                 $rootScope.userimage = window.localStorage.getItem('image');
@@ -239,9 +240,10 @@ angular.module('your_app_name.controllers', [])
 
         })
 //LOGIN
-        .controller('LoginCtrl', function ($scope, $state, $templateCache, $q, $rootScope) {
+        .controller('LoginCtrl', function ($scope, $state, $templateCache, $q, $rootScope,$ionicLoading) {
             $scope.doLogIn = function () {
                 var data = new FormData(jQuery("#loginuser")[0]);
+				 $ionicLoading.show({template: 'Loading...'});
                 $.ajax({
                     type: 'POST',
                     url: domain + "chk-dr-user",
@@ -258,7 +260,8 @@ angular.module('your_app_name.controllers', [])
                             $rootScope.userLogged = 1;
                             $rootScope.username = response.fname;
                             $rootScope.userimage = response.image;
-                            $state.go('app.doctor-consultations');
+							
+                            $state.go('app.homepage');
                         } else {
                             $rootScope.userLogged = 0;
                             $scope.loginError = response;
@@ -675,8 +678,14 @@ angular.module('your_app_name.controllers', [])
                 try {
                     publisher.destroy();
                     subscriber.destroy();
+					$ionicHistory.nextViewOptions({
+						  historyRoot: true
+							})
                     $state.go('app.doctor-consultations', {}, {reload: true});
                 } catch (err) {
+				$ionicHistory.nextViewOptions({
+						  historyRoot: true
+							})
                     $state.go('app.doctor-consultations', {}, {reload: true});
                 }
             };
