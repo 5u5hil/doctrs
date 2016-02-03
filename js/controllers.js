@@ -250,7 +250,7 @@ angular.module('your_app_name.controllers', [])
                     contentType: false,
                     processData: false,
                     success: function (response) {
-                        //console.log(response);
+                      //  console.log("@@@@"+response.fname);
                         if (angular.isObject(response)) {
                             $scope.loginError = '';
                             $scope.loginError.digest;

@@ -62,11 +62,11 @@
                                 <ion-tab title="This Week({{week_app.length}})" >
                                     <div class="tabcontainer p0">
                                         <h4 class="txt-center"> {{week_app.length==0? 'No appointments': ''}}</h4>
-                                        <div class="posts-list" ng-repeat="app in week_app| orderBy: '-appointments.scheduled_start_time'" >
+                                        <div class="posts-list" ng-repeat="app in week_app" > <!--| orderBy: '-appointments.scheduled_start_time'-->
                                             <div  class="list card post-item" ng-repeat="prod in week_products[$index]">
-                                                <div class="post-content item item-text-wrap p0">
+                                                <div class="post-content item item-text-wrap p0"> {{app.appointment_id}}
                                                     <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content">
-                                                        <p ng-repeat="user in week_usersData[$parent.$index]"><strong>{{user.fname}} {{user.lname}}</strong></p>
+                                                        <p ng-repeat="user in week_usersData[$parent.$index]"><strong>{{user.id}}{{user.fname}} {{user.lname}}</strong></p>
                                                         <div class="row">
                                                             <div class="col"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
                                                                     {{app.appointments.scheduled_start_time|time}} to {{app.appointments.scheduled_end_time|time}} </p></div>
