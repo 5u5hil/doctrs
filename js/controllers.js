@@ -605,7 +605,7 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 
-        .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams, $ionicHistory, $state) {
+        .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams, $ionicHistory, $state,$window) {
              if (!get('loadedOnce')) {
                    store({'loadedOnce':'true'});
                    $window.location.reload(true);
