@@ -5,7 +5,7 @@ angular.module('your_app_name.controllers', [])
 
         .controller('AuthCtrl', function ($scope, $state, $ionicConfig, $rootScope) {
             if (window.localStorage.getItem('id') != null) {
-			
+
                 $rootScope.userLogged = 1;
                 $rootScope.username = window.localStorage.getItem('fname');
                 $rootScope.userimage = window.localStorage.getItem('image');
@@ -241,10 +241,10 @@ angular.module('your_app_name.controllers', [])
 
         })
 //LOGIN
-        .controller('LoginCtrl', function ($scope, $state, $templateCache, $q, $rootScope,$ionicLoading) {
+        .controller('LoginCtrl', function ($scope, $state, $templateCache, $q, $rootScope, $ionicLoading) {
             $scope.doLogIn = function () {
                 var data = new FormData(jQuery("#loginuser")[0]);
-				
+
                 $.ajax({
                     type: 'POST',
                     url: domain + "chk-dr-user",
@@ -253,7 +253,7 @@ angular.module('your_app_name.controllers', [])
                     contentType: false,
                     processData: false,
                     success: function (response) {
-                      //  console.log("@@@@"+response.fname);
+                        //  console.log("@@@@"+response.fname);
                         if (angular.isObject(response)) {
                             $scope.loginError = '';
                             $scope.loginError.digest;
@@ -261,7 +261,7 @@ angular.module('your_app_name.controllers', [])
                             $rootScope.userLogged = 1;
                             $rootScope.username = response.fname;
                             $rootScope.userimage = response.image;
-							 $ionicLoading.show({template: 'Loading...'});
+                            $ionicLoading.show({template: 'Loading...'});
                             $state.go('app.homepage');
                         } else {
                             $rootScope.userLogged = 0;
@@ -605,17 +605,17 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 
-        .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams, $ionicHistory, $state,$window) {
-             if (!get('loadedOnce')) {
-                   store({'loadedOnce':'true'});
-                   $window.location.reload(true);
-                   // don't reload page, but clear localStorage value so it'll get reloaded next time
+        .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams, $ionicHistory, $state, $window) {
+            if (!get('loadedOnce')) {
+                store({'loadedOnce': 'true'});
+                $window.location.reload(true);
+                // don't reload page, but clear localStorage value so it'll get reloaded next time
 
-               } else {
-                   // set the flag and reload the page
-                   window.localStorage.removeItem('loadedOnce');
+            } else {
+                // set the flag and reload the page
+                window.localStorage.removeItem('loadedOnce');
 
-               }
+            }
             //$ionicHistory.clearCache();
             $scope.appId = $stateParams.id;
             $scope.userId = get('id');
@@ -631,10 +631,13 @@ angular.module('your_app_name.controllers', [])
                 var apiKey = '45463682';
                 var sessionId = response.data.app[0].appointments.opentok_session_id;
                 var token = response.data.oToken;
-                 session = OT.initSession(apiKey, sessionId);
+                session = OT.initSession(apiKey, sessionId);
                 session.on({
+                    streamDestroyed: function (event) {
+                        jQuery("#subscribersDiv").html("Patient Left the Consultation");
+                    },
                     streamCreated: function (event) {
-                       subscriber = session.subscribe(event.stream, 'subscribersDiv', {width: "100%", height: "100%"});
+                        subscriber = session.subscribe(event.stream, 'subscribersDiv', {insertMode: "replace", width: "100%", height: "100%"});
 
                     },
                     sessionDisconnected: function (event) {
@@ -676,19 +679,17 @@ angular.module('your_app_name.controllers', [])
                 console.log(e);
             });
             $scope.exitVideo = function () {
-                console.log('leaved');
                 try {
                     publisher.destroy();
-                    subscriber.destroy();
-                   // session.disconnect();
+                     session.disconnect();
                     $ionicHistory.nextViewOptions({
-						  historyRoot: true
-							})
+                        historyRoot: true
+                    })
                     $state.go('app.doctor-consultations', {}, {reload: true});
                 } catch (err) {
-                   $ionicHistory.nextViewOptions({
-						  historyRoot: true
-							})
+                    $ionicHistory.nextViewOptions({
+                        historyRoot: true
+                    })
                     $state.go('app.doctor-consultations', {}, {reload: true});
                 }
             };
