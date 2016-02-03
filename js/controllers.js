@@ -252,7 +252,7 @@ angular.module('your_app_name.controllers', [])
                     contentType: false,
                     processData: false,
                     success: function (response) {
-                        //console.log(response);
+                      //  console.log("@@@@"+response.fname);
                         if (angular.isObject(response)) {
                             $scope.loginError = '';
                             $scope.loginError.digest;
@@ -623,17 +623,8 @@ angular.module('your_app_name.controllers', [])
                 var session = OT.initSession(apiKey, sessionId);
                 session.on({
                     streamCreated: function (event) {
-                        subscriber = OT.initSubscriber('subscribersDiv', {width: "100%", height: "100%"});
-                        session.publish(subscriber);
-                        $http({
-                            method: 'GET',
-                            url: domain + 'appointment/update-join',
-                            params: {id: $scope.appId, userId: $scope.userId}
-                        }).then(function sucessCallback(response) {
-                            console.log(response);
-                        }, function errorCallback(e) {
-                            console.log(e);
-                        });
+                       subscriber = session.subscribe(event.stream, 'subscribersDiv', {width: "100%", height: "100%"});
+
                     },
                     sessionDisconnected: function (event) {
                         if (event.reason === 'networkDisconnected') {
@@ -678,12 +669,12 @@ angular.module('your_app_name.controllers', [])
                 try {
                     publisher.destroy();
                     subscriber.destroy();
-					$ionicHistory.nextViewOptions({
+                    $ionicHistory.nextViewOptions({
 						  historyRoot: true
 							})
                     $state.go('app.doctor-consultations', {}, {reload: true});
                 } catch (err) {
-				$ionicHistory.nextViewOptions({
+                   $ionicHistory.nextViewOptions({
 						  historyRoot: true
 							})
                     $state.go('app.doctor-consultations', {}, {reload: true});
