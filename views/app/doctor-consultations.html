@@ -61,7 +61,7 @@
 
                                 <ion-tab title="This Week({{week_app.length}})" >
                                     <div class="tabcontainer p0">
-                                        <h4 class="txt-center"> {{week_app.length==0? 'No appointments': ''}}</h4>
+                                        <h4 class="txt-center"> {{week_app.length==0? 'No appointments': ''}}</h4> 
                                         <div class="posts-list" ng-repeat="app in week_app" > <!--| orderBy: '-appointments.scheduled_start_time'-->
                                             <div  class="list card post-item" ng-repeat="prod in week_products[$index]">
                                                 <div class="post-content item item-text-wrap p0"> 
