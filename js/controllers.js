@@ -606,6 +606,7 @@ angular.module('your_app_name.controllers', [])
         })
 
         .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams, $ionicHistory, $state, $window) {
+				$scope.subcount='0';
             if (!get('loadedOnce')) {
                 store({'loadedOnce': 'true'});
                 $window.location.reload(true);
@@ -634,9 +635,12 @@ angular.module('your_app_name.controllers', [])
                 session = OT.initSession(apiKey, sessionId);
                 session.on({
                     streamDestroyed: function (event) {
-                        jQuery("#subscribersDiv").html("Patient Left the Consultation");
+                        event.preventDefault();
+						$scope.subcount=session.getSubscribersForStream(event.stream);
+						jQuery("#subscribersDiv").html("Patient Left the Consultation");
                     },
                     streamCreated: function (event) {
+					$scope.subcount=session.getSubscribersForStream(event.stream);
                         subscriber = session.subscribe(event.stream, 'subscribersDiv', {insertMode: "replace", width: "100%", height: "100%"});
 
                     },
@@ -681,6 +685,7 @@ angular.module('your_app_name.controllers', [])
             $scope.exitVideo = function () {
                 try {
                     publisher.destroy();
+					subscriber.destroy();
                      session.disconnect();
                     $ionicHistory.nextViewOptions({
                         historyRoot: true
