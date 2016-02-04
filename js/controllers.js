@@ -682,14 +682,14 @@ angular.module('your_app_name.controllers', [])
                 try {
                     publisher.destroy();
                      session.disconnect();
-                    $ionicHistory.nextViewOptions({
-                        historyRoot: true
-                    })
+                    // $ionicHistory.nextViewOptions({
+                        // historyRoot: true
+                    // })
                     $state.go('app.doctor-consultations', {}, {reload: true});
                 } catch (err) {
-                    $ionicHistory.nextViewOptions({
-                        historyRoot: true
-                    })
+                    // $ionicHistory.nextViewOptions({
+                        // historyRoot: true
+                    // })
                     $state.go('app.doctor-consultations', {}, {reload: true});
                 }
             };
