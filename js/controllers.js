@@ -330,11 +330,25 @@ angular.module('your_app_name.controllers', [])
                 $scope.week_products = response.data.week_products;
                 $scope.week_time = response.data.week_time;
                 $scope.week_end_time = response.data.week_end_time;
+                //past section 
+                 $scope.week_app_past = response.data.week_appointments_past;
+                $scope.week_usersData_past = response.data.week_usersData_past;
+                $scope.week_products_past = response.data.week_products_past;
+                $scope.week_time_past = response.data.week_time_past;
+                $scope.week_end_time_past = response.data.week_end_time_past;
+                //end past section
                 $scope.all_app = response.data.all_appointments;
                 $scope.all_usersData = response.data.all_usersData;
                 $scope.all_products = response.data.all_products;
                 $scope.all_time = response.data.all_time;
                 $scope.all_end_time = response.data.all_end_time;
+                //past section //
+                $scope.all_app_past = response.data.all_appointments_past;
+                $scope.all_usersData_past = response.data.all_usersData_past;
+                $scope.all_products_past = response.data.all_products_past;
+                $scope.all_time_past = response.data.all_time_past;
+                $scope.all_end_time_past = response.data.all_end_time_past;
+                //end past section//
             }, function errorCallback(e) {
                 console.log(e);
             });
