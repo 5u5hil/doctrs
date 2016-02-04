@@ -21,7 +21,7 @@
                                  </button>
                              </div>	
                          </div> -->
-                        <div class="ctab commontab">
+                        <div class="ctab">
                             <ion-tabs class="tabs-positive tabs-icon-top">
 
                                 <ion-tab title="Today({{todays_app.length}})" >
@@ -129,48 +129,100 @@
                 </ion-tab>
 
                 <ion-tab title="Past" >
-                    <div class="tabcontainer">
-                        <p class="txt-center"> Coming Soon	</p>
+                    <div class="tabcon2"> 
+                        <div class="ctab">
+                            <ion-tabs class="tabs-positive tabs-icon-top">
+
+                                <ion-tab title="Today({{todays_app.length}})" >
+                                    <div class="tabcontainer p0">
+                                        <h4 class="txt-center"> {{todays_app.length==0? 'No appointments': ''}}</h4>
+                                        <div class="posts-list" ng-repeat="app in todays_app" ><!--| orderBy: '-appointments.scheduled_start_time'-->
+                                            <div  class="list card post-item" ng-repeat="prod in todays_products[$index]">
+                                                <div class="post-content item item-text-wrap p0">
+                                                    <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content">
+                                                        <p ng-repeat="user in todays_usersData[$parent.$index]"><strong>{{user.fname}} {{user.lname}}</strong></p>
+                                                        <div class="row">
+                                                            <div class="col" ng-if="app.appointments.mode == 2"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
+                                                                    Valid Till {{app.appointments.scheduled_end_time|datetime}} </p></div>
+                                                            <div class="col" ng-if="app.appointments.mode != 2"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
+                                                                    {{app.appointments.scheduled_start_time|time}} to {{app.appointments.scheduled_end_time|time}} </p></div>
+                                                            <div class="col"><p><strong>Mode</strong> <br/> 
+                                                                    {{app.appointments.mode==1 ? 'Video': app.appointments.mode==3? 'Clinic': app.appointments.mode==4? 'Home': app.appointments.mode==2? 'Chat':''}}</p></div>
+                                                        </div>
+
+                                                        <div class="clr"></div>
+                                                    </a>
+                                                     <div class="post-actions  post-footer p0">
+                                                        <div class="row cardbtn-small p0">
+                                                       <div class="cardpast-bar fgreen"><i class="ion-checkmark"></i> &nbsp; Canceled</div>
+                                                        </div>
+                                                     </div>
+                                                
+												
+												</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ion-tab>
+
+                                <ion-tab title="This Week({{week_app.length}})" >
+                                    <div class="tabcontainer p0">
+                                        <h4 class="txt-center"> {{week_app.length==0? 'No appointments': ''}}</h4> 
+                                        <div class="posts-list" ng-repeat="app in week_app" > <!--| orderBy: '-appointments.scheduled_start_time'-->
+                                            <div  class="list card post-item" ng-repeat="prod in week_products[$index]">
+                                                <div class="post-content item item-text-wrap p0"> 
+                                                    <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content">
+                                                        <p ng-repeat="user in week_usersData[$parent.$index]"><strong>{{user.fname}} {{user.lname}}</strong></p>
+                                                        <div class="row">
+                                                            <div class="col"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
+                                                                    {{app.appointments.scheduled_start_time|time}} to {{app.appointments.scheduled_end_time|time}} </p></div>
+                                                            <div class="col"><p><strong>Mode</strong> <br/> 
+                                                                    {{app.appointments.mode==1 ? 'Video': app.appointments.mode==3? 'Clinic': app.appointments.mode==4? 'Home': app.appointments.mode==2? 'Chat':''}}</p></div>
+                                                        </div>                                                        
+                                                        <div class="clr"></div>
+                                                    </a>
+                                                    <div class="post-actions  post-footer p0">
+                                                        <div class="row cardbtn-small p0">
+                                                       <div class="cardpast-bar fgreen"><i class="ion-checkmark"></i> &nbsp; Canceled</div>
+                                                        </div>
+                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ion-tab>
+
+                                <ion-tab title="All({{all_app.length}})" >
+                                    <div class="tabcontainer p0">
+                                        <h4 class="txt-center"> {{all_app.length==0? 'No appointments': ''}}</h4>
+                                        <div class="posts-list" ng-repeat="app in all_app | orderBy: '-appointments.scheduled_start_time'" ><!---->
+                                            <div  class="list card post-item" ng-repeat="prod in all_products[$index]">
+                                                <div class="post-content item item-text-wrap p0">
+                                                    <a ui-sref="app.doctor-current-tab({'id': app.appointment_id})" class="card-content">
+                                                        <p ng-repeat="user in all_usersData[$parent.$index]| orderBy: '-appointments.scheduled_start_time'"><strong> {{user.fname}} {{user.lname}}</strong></p>
+                                                        <div class="row">
+                                                            <div class="col"><p><strong>Appointment Time : </strong>{{app.appointments.scheduled_start_time|dateFormat3}} <br/> 
+                                                                    {{app.appointments.scheduled_start_time|time}} to {{app.appointments.scheduled_end_time|time}} </p></div>
+                                                            <div class="col"><p><strong>Mode</strong> <br/> 
+                                                                    {{app.appointments.mode==1? 'Video': app.appointments.mode==3? 'Clinic': app.appointments.mode==4? 'Home': app.appointments.mode==2? 'Chat':''}}</p></div>
+                                                        </div>
+                                                        <div class="clr"></div>
+                                                    </a>
+                                                    <div class="post-actions  post-footer p0">
+                                                        <div class="row cardbtn-small p0">
+                                                       <div class="cardpast-bar fgreen"><i class="ion-checkmark"></i> &nbsp; Canceled</div>
+                                                        </div>
+                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ion-tab>
+                            </ion-tabs>
+                        </div>
                     </div>
                 </ion-tab>
-                <!--  <ion-tab title="Book" >
-                     
-                     <div class="tabcon2">
- 
-                         <div class="searchbox">
-                             <div class="item item-input-inset" style="border-bottom:0;">
-                                 <label class="item-input-wrapper">
-                                     <input type="text" placeholder="Search...">
-                                 </label>
-                                 <button class="button button-small">
-                                     <i class="ion-android-search"></i>
-                                 </button>
-                             </div>	
-                         </div>
- 
-                         <div class="list miscellaneous-functionalities">
- 
-                             <a class="item  item-icon-right" ui-sref="app.consultation-cards">
-                                 <div>
-                                     <span class="stitle">Dermatology</span>
-                                     <p class="">Skin, Hair, Acne, Skin, Hair, Acne, Skin, Hair, Acne, Skin, Hair, Acne,  </p>
-                                 </div>
-                                 <i class="icon ion-arrow-right-c"></i>
-                             </a>
- 
-                             <a class="item item-icon-right" ui-sref="app.consultation-cards">
-                                 <div>
-                                     <span class="stitle">Diet & Nutrition</span>
-                                     <p class="">Weight loss, Weight gain, Muscle gain, Fitness, Immunity..</p>
-                                 </div>
-                                 <i class="icon ion-arrow-right-c"></i>
-                             </a>
-                         </div>
- 
-                     </div>
-                 </ion-tab>
-                -->
-
+               
 
             </ion-tabs>
         </div>
