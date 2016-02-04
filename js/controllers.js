@@ -318,6 +318,13 @@ angular.module('your_app_name.controllers', [])
                 $scope.todays_products = response.data.todays_products;
                 $scope.todays_time = response.data.todays_time;
                 $scope.todays_end_time = response.data.todays_end_time;
+                //past section
+                $scope.todays_app_past = response.data.todays_appointments_past;
+                $scope.todays_usersData_past = response.data.todays_usersData_past;
+                $scope.todays_products_past = response.data.todays_products_past;
+                $scope.todays_time_past = response.data.todays_time_past;
+                $scope.todays_end_time_past = response.data.todays_end_time_past;
+                // end past section //
                 $scope.week_app = response.data.week_appointments;
                 $scope.week_usersData = response.data.week_usersData;
                 $scope.week_products = response.data.week_products;
