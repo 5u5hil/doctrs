@@ -51,13 +51,13 @@ angular.module('your_app_name.controllers', [])
 
         })
 
-	.controller('MyCtrl',function($scope, $ionicTabsDelegate){
-		  $scope.selectTabWithIndex = function(index) {
-    $ionicTabsDelegate.select(index);
-		  }
-		})	
-		
-		
+        .controller('MyCtrl', function ($scope, $ionicTabsDelegate) {
+            $scope.selectTabWithIndex = function (index) {
+                $ionicTabsDelegate.select(index);
+            }
+        })
+
+
         .controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
@@ -338,7 +338,7 @@ angular.module('your_app_name.controllers', [])
                 $scope.week_time = response.data.week_time;
                 $scope.week_end_time = response.data.week_end_time;
                 //past section 
-                 $scope.week_app_past = response.data.week_appointments_past;
+                $scope.week_app_past = response.data.week_appointments_past;
                 $scope.week_usersData_past = response.data.week_usersData_past;
                 $scope.week_products_past = response.data.week_products_past;
                 $scope.week_time_past = response.data.week_time_past;
@@ -633,8 +633,8 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 
-        .controller('DoctorJoinCtrl', function ($scope, $http, $stateParams, $ionicHistory, $state, $window) {
-				
+        .controller('DoctorJoinCtrl', function ($ionicLoading, $scope, $http, $stateParams, $ionicHistory, $state, $window) {
+
             if (!get('loadedOnce')) {
                 store({'loadedOnce': 'true'});
                 $window.location.reload(true);
@@ -660,16 +660,23 @@ angular.module('your_app_name.controllers', [])
                 var apiKey = '45463682';
                 var sessionId = response.data.app[0].appointments.opentok_session_id;
                 var token = response.data.oToken;
-                session = OT.initSession(apiKey, sessionId);
+                if (TB.checkSystemRequirements() == 1) {
+                    session = TB.initSession(apiKey, sessionId);
+                    $ionicLoading.hide();
+                } else {
+                    $ionicLoading.hide();
+                    alert("Your device is not compatible");
+                }
+
                 session.on({
                     streamDestroyed: function (event) {
                         event.preventDefault();
-						
-						jQuery("#subscribersDiv").html("Patient Left the Consultation");
+
+                        jQuery("#subscribersDiv").html("Patient Left the Consultation");
                     },
                     streamCreated: function (event) {
-					
-                        subscriber = session.subscribe(event.stream, 'subscribersDiv', {insertMode: "replace", width: "100%", height: "100%"});
+
+                        subscriber = session.subscribe(event.stream, 'subscribersDiv', {subscribeToAudio: true, insertMode: "replace", width: "100%", height: "100%"});
 
                     },
                     sessionDisconnected: function (event) {
@@ -683,8 +690,9 @@ angular.module('your_app_name.controllers', [])
                     if (error) {
                         console.log(error.message);
                     } else {
-                        publisher = OT.initPublisher('myPublisherDiv', {width: "30%", height: "30%"});
+                        publisher = TB.initPublisher(event.stream, 'myPublisherDiv', {width: "200", height: "200", publishAudio: true});
                         session.publish(publisher);
+
                         var mic = 1;
                         var mute = 1;
                         jQuery(".muteMic").click(function () {
@@ -713,8 +721,10 @@ angular.module('your_app_name.controllers', [])
             $scope.exitVideo = function () {
                 try {
                     publisher.destroy();
-					subscriber.destroy();
-                     session.disconnect();
+                    subscriber.destroy();
+                    session.unsubscribe();
+                    session.disconnect();
+
                     $ionicHistory.nextViewOptions({
                         historyRoot: true
                     })
