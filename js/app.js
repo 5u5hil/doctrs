@@ -174,6 +174,28 @@ angular.module('your_app_name', [
                             }
                         }
                     })
+					
+				 .state('app.consultation-past', {
+                        url: "/consultations/past",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultations/consultations-past.html",
+                                controller: 'DoctorConsultationsCtrl'
+                            }
+                        }
+                    })
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
                     .state('app.chat-appointments', {
                         cache: false,
                         url: "/chat-appointments",
@@ -195,6 +217,11 @@ angular.module('your_app_name', [
                         }
                     })
 
+			
+
+					
+					
+					
                     .state('app.evaluation', {
                         url: "/evaluation",
                         views: {

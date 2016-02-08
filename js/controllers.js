@@ -51,6 +51,13 @@ angular.module('your_app_name.controllers', [])
 
         })
 
+	.controller('MyCtrl',function($scope, $ionicTabsDelegate){
+		  $scope.selectTabWithIndex = function(index) {
+    $ionicTabsDelegate.select(index);
+		  }
+		})	
+		
+		
         .controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
