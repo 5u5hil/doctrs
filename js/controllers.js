@@ -407,7 +407,7 @@ angular.module('your_app_name.controllers', [])
                             } else {
                                 alert('Sorry your appointment is not cancelled.');
                             }
-                            $state.go('app.consultations-list');
+                            $state.go('app.consultations-list',{}, {reload: true});
                         }, function errorCallback(response) {
                             console.log(response);
                         });
