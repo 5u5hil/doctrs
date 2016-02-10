@@ -250,6 +250,7 @@ angular.module('your_app_name.controllers', [])
 //LOGIN
         .controller('LoginCtrl', function ($scope, $state, $templateCache, $q, $rootScope, $ionicLoading) {
             $scope.doLogIn = function () {
+			 $ionicLoading.show({template: 'Loading...'});
                 var data = new FormData(jQuery("#loginuser")[0]);
 
                 $.ajax({
@@ -268,13 +269,17 @@ angular.module('your_app_name.controllers', [])
                             $rootScope.userLogged = 1;
                             $rootScope.username = response.fname;
                             $rootScope.userimage = response.image;
-                            $ionicLoading.show({template: 'Loading...'});
+                           $ionicLoading.hide();
                             $state.go('app.homepage');
                         } else {
                             $rootScope.userLogged = 0;
                             $scope.loginError = response;
                             $scope.loginError.digest;
-                            //alert(response);
+							 $ionicLoading.hide();
+                            $timeout(function() {
+							$scope.loginError = response;
+                            $scope.loginError.digest;
+							})
                         }
                         $rootScope.$digest;
                     },
