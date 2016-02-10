@@ -662,11 +662,12 @@ angular.module('your_app_name.controllers', [])
                 $scope.user = response.data.user;
                 $scope.app = response.data.app;
                 //$scope.oToken = "https://test.doctrs.in/opentok/opentok?session=" + response.data.app[0].appointments.opentok_session_id;
-                var apiKey = '45463682';
+                 var apiKey = '45121182';
                 var sessionId = response.data.app[0].appointments.opentok_session_id;
                 var token = response.data.oToken;
-                if (TB.checkSystemRequirements() == 1) {
-                    session = TB.initSession(apiKey, sessionId);
+
+                if (OT.checkSystemRequirements() == 1) {
+                    session = OT.initSession(apiKey, sessionId);
                     $ionicLoading.hide();
                 } else {
                     $ionicLoading.hide();
@@ -695,7 +696,7 @@ angular.module('your_app_name.controllers', [])
                     if (error) {
                         console.log(error.message);
                     } else {
-                        publisher = TB.initPublisher(event.stream, 'myPublisherDiv', {width: "200", height: "200", publishAudio: true});
+                              publisher = OT.initPublisher('myPublisherDiv', {width: "30%", height: "30%"});
                         session.publish(publisher);
 
                         var mic = 1;
@@ -863,7 +864,7 @@ angular.module('your_app_name.controllers', [])
                 $scope.app = response.data.app;
                 $scope.msgs = response.data.chat;
                 //$scope.oToken = "https://test.doctrs.in/opentok/opentok?session=" + response.data.app[0].appointments.opentok_session_id;
-                var apiKey = '45463682';
+                var apiKey = '45121182';
                 var sessionId = response.data.app[0].appointments.opentok_session_id;
                 var token = response.data.oToken;
                 var session = OT.initSession(apiKey, sessionId);
