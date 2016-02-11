@@ -404,6 +404,7 @@ angular.module('your_app_name.controllers', [])
                             console.log(response.data);
                             if (response.data == 'success') {
                                 alert('Your appointment is cancelled successfully.');
+								$state.go('app.doctor-consultations', {}, {reload: true});
                             } else {
                                 alert('Sorry your appointment is not cancelled.');
                             }
@@ -474,6 +475,7 @@ angular.module('your_app_name.controllers', [])
                         console.log(response.data);
                         if (response.data == 'success') {
                             alert('Your appointment is cancelled successfully.');
+							$state.go('app.doctor-consultations', {}, {reload: true});
                         } else {
                             alert('Sorry your appointment is not cancelled.');
                         }
@@ -556,6 +558,7 @@ angular.module('your_app_name.controllers', [])
                 console.log(e);
             });
             $scope.cancelAppointment = function (appId, drId, mode, startTime) {
+				console.log(mode);
                 $scope.appId = appId;
                 $scope.userId = get('id');
                 console.log(startTime);
@@ -567,6 +570,7 @@ angular.module('your_app_name.controllers', [])
                     if (mode == 1) {
                         alert("Appointment can not be cancelled now!");
                     } else {
+					console.log('dddd');
                         //ask 4 options
                         /*$http({
                          method: 'GET',
@@ -585,7 +589,9 @@ angular.module('your_app_name.controllers', [])
                          });*/
                     }
                 } else {
+				
                     if (mode == 1) {
+					console.log('fasd');
                         $http({
                             method: 'GET',
                             url: domain + 'appointment/dr-cancel-app',
@@ -594,14 +600,17 @@ angular.module('your_app_name.controllers', [])
                             console.log(response.data);
                             if (response.data == 'success') {
                                 alert('Your appointment is cancelled successfully.');
+								$state.go('app.doctor-consultations', {}, {reload: true});
                             } else {
                                 alert('Sorry your appointment is not cancelled.');
+								$state.go('app.doctor-consultations', {}, {reload: true});
                             }
                             $state.go('app.consultations-list');
                         }, function errorCallback(response) {
                             console.log(response);
                         });
                     } else if (mode == 3 || mode == 4) {
+					
                         //ask for 4 options
                     }
                 }
@@ -768,6 +777,7 @@ angular.module('your_app_name.controllers', [])
                 console.log(e);
             });
             $scope.cancelAppointment = function (appId, drId, mode, startTime) {
+			
                 $scope.appId = appId;
                 $scope.userId = get('id');
                 console.log(startTime);
@@ -798,6 +808,7 @@ angular.module('your_app_name.controllers', [])
                     }
                 } else {
                     if (mode == 1) {
+					console.log('mode-1');
                         $http({
                             method: 'GET',
                             url: domain + 'appointment/dr-cancel-app',
@@ -806,6 +817,7 @@ angular.module('your_app_name.controllers', [])
                             console.log(response.data);
                             if (response.data == 'success') {
                                 alert('Your appointment is cancelled successfully.');
+									
                             } else {
                                 alert('Sorry your appointment is not cancelled.');
                             }
@@ -814,6 +826,7 @@ angular.module('your_app_name.controllers', [])
                             console.log(response);
                         });
                     } else if (mode == 3 || mode == 4) {
+					console.log('mode-123');
                         //ask for 2 options
                     }
                 }
