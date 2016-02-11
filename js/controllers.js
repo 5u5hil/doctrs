@@ -17,7 +17,8 @@ angular.module('your_app_name.controllers', [])
 
 // APP
         .controller('AppCtrl', function ($scope, $state, $ionicConfig, $rootScope, $ionicLoading, $timeout, $ionicHistory) {
-            if (window.localStorage.getItem('id') != null) {
+             $rootScope.imgpath = domain + "/public/frontend/user/";
+                    if (window.localStorage.getItem('id') != null) {
                 $rootScope.userLogged = 1;
                 $rootScope.username = window.localStorage.getItem('fname');
                 $rootScope.userimage = window.localStorage.getItem('image');
