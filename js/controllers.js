@@ -432,7 +432,7 @@ angular.module('your_app_name.controllers', [])
 
         .controller('CancelDctrCtrl', function ($scope, $ionicModal, $filter, $http, $state) {
             $scope.can = {};
-            $ionicModal.fromTemplateUrl('canceldctr', {
+            $ionicModal.fromTemplateUrl('viewmoreprofile', {
                 scope: $scope
             }).then(function (modal) {
                 $scope.canceldctr = modal;
