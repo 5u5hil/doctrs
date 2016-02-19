@@ -66,7 +66,7 @@
 		  <option value="7">Sun</option>
 		</select>
     </label>  --> 
-                <span ng-if="instant_permission[0].instant_permission">  
+                <span ng-show="instant_permission[0].instant_permission">  
 		<div class="item">
 	  <div  class="row">
 	 <div class="col-33"> Available Days </div>
@@ -115,7 +115,7 @@
 	 </div>
 	 </div>
                 </span>
-	<button class="button button-block button-positive" ng-click="showLogOutMenu()">
+	<button class="button button-block button-positive" >
         Save
       </button>
         </form>
