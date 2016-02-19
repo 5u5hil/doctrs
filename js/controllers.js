@@ -81,6 +81,15 @@ angular.module('your_app_name.controllers', [])
 
         })
 
+		   .controller('DoctorSettingsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+})
+		
+		
+		
+		
         .controller('PatientConsultCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;

@@ -164,6 +164,17 @@ angular.module('your_app_name', [
                         }
                     })
 
+					 .state('app.doctor-settings', {
+						 cache: false,
+                        url: "/doctor-settings",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/doctor-settings.html",
+                                controller: 'DoctorSettingsCtrl'
+                            }
+                        }
+                    })
+					
                     .state('app.doctor-consultations', {
                         cache: false,
                         url: "/doctor-consultations",
