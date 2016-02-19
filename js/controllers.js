@@ -81,9 +81,63 @@ angular.module('your_app_name.controllers', [])
 
         })
 
-		   .controller('DoctorSettingsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
+	    .controller('DoctorSettingsCtrl', function ($scope, $http, $stateParams, $ionicModal,$ionicLoading,$state) {
+            
+            
+            $http({
+                method: 'GET',
+                url: domain + 'doctors/get-doctor-setting',
+                params: {docId: window.localStorage.getItem('id')}
+            }).then(function successCallback(response) {
+                $scope.instant_permission = response.data;
+                $scope.instant_days = [ { text: "Monday", value:'1'},
+                    {text: "Tuesday",value:'2'},
+                    {text: "Wednesday",value:'3'},
+                    {text: "Thursday",value:'4'},
+                    {text: "Friday",value:'5'},
+                    {text: "Saturday",value:'6'},
+                    {text: "Sunday" ,value:'7'}];
+                 $scope.instant_time = [ { text: "9:00", value:'9:00:00'},
+                    {text: "10:00",value:'10:00:00'},
+                    {text: "11:00",value:'11:00:00'},
+                    {text: "12:00",value:'12:00:00'},
+                    {text: "13:00",value:'13:00:00'},
+                    {text: "14:00",value:'14:00:00'},
+                    {text: "15:00" ,value:'15:00:00'},
+                    {text: "16:00", value:'16:00:00'},
+                    {text: "17:00", value:'17:00:00'},
+                    {text: "18:00", value:'18:00:00'},
+                    {text: "19:00", value:'19:00:00'},
+                    {text: "20:00", value:'20:00:00'},
+                    {text: "21:00", value:'21:00:00'},
+                    {text: "22:00", value:'22:00:00'},
+                    {text: "23:00", value:'23:00:00'}];
+               // $scope.settingsList = [ { text: "Wireless", checked: true }];
+               console.log(response.data);
+            }, function errorCallback(e) {
+                console.log(e);
+            });
+            $scope.submitInstantPermission = function(){
+              
+                var data = new FormData(jQuery("#instantpermission")[0]);
+                $.ajax({
+                    type: 'POST',
+                    url: domain + "doctors/update-doctor-permission",
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        $ionicLoading.hide();
+                        console.log(response);
+                        $state.go('app.doctor-settings',{},{reload:true});
+                       
+                    },
+                    error: function (e) {
+                        //  console.log(e.responseText);
+                    }
+                });
+            }
 
 })
 		
