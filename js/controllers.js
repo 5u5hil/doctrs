@@ -89,13 +89,14 @@ angular.module('your_app_name.controllers', [])
                 url: domain + 'doctors/get-doctor-setting',
                 params: {docId: window.localStorage.getItem('id')}
             }).then(function successCallback(response) {
+
                 $scope.instant_permission = response.data;
-                if($scope.instant_permission[0].instant_permission){
+                if ($scope.instant_permission[0].instant_permission) {
                     jQuery('#setting').removeClass('hide');
-                }else{
+                } else {
                     jQuery('#setting').addClass('hide');
                 }
-                
+
                 $scope.instant_days = [{text: "Monday", value: '1'},
                     {text: "Tuesday", value: '2'},
                     {text: "Wednesday", value: '3'},
@@ -165,6 +166,12 @@ angular.module('your_app_name.controllers', [])
                     success: function (response) {
                         $ionicLoading.hide();
                         console.log(response);
+                        if (response == '0') {
+                            alert('End time cannot be earlier than start time');
+                        }
+                        if (response == '2') {
+                            alert('End day cannot be earlier than start day');
+                        }
                         $state.go('app.doctor-settings', {}, {reload: true});
 
                     },
