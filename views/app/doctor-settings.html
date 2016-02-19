@@ -82,7 +82,7 @@
               <span>To </span>
 	  <div class="col-50">
 		<select class="timeoption" name="availto">>
-		  <option ng-repeat="days in instant_days" ng-selected="days.value == instant_permission[0].instant_day_end" value="{{ days.value }}" > {{ days.text }}</option>
+		  <option ng-repeat="days_end in instant_days_end" ng-selected="days_end.value == instant_permission[0].instant_day_end" value="{{ days_end.value }}" > {{ days_end.text }}</option>
 		</select>
 	 </div>
 	  
@@ -106,7 +106,7 @@
               <span>To </span>
 	  <div class="col-50">
 		 <select class="timeoption"  name="timeend">
-		   <option  ng-repeat="time in instant_time" ng-selected="time.value == instant_permission[0].instant_end_time" value="{{ time.value }}" > {{ time.text }}</option>
+		   <option  ng-repeat="time_end in instant_time_end" ng-selected="time_end.value == instant_permission[0].instant_end_time" value="{{ time_end.value }}" > {{ time_end.text }}</option>
 		</select>
 	 </div>
 	  
