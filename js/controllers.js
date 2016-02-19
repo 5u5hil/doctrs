@@ -17,8 +17,8 @@ angular.module('your_app_name.controllers', [])
 
 // APP
         .controller('AppCtrl', function ($scope, $state, $ionicConfig, $rootScope, $ionicLoading, $timeout, $ionicHistory) {
-             $rootScope.imgpath = domain + "/public/frontend/user/";
-                    if (window.localStorage.getItem('id') != null) {
+            $rootScope.imgpath = domain + "/public/frontend/user/";
+            if (window.localStorage.getItem('id') != null) {
                 $rootScope.userLogged = 1;
                 $rootScope.username = window.localStorage.getItem('fname');
                 $rootScope.userimage = window.localStorage.getItem('image');
@@ -81,66 +81,79 @@ angular.module('your_app_name.controllers', [])
 
         })
 
-	    .controller('DoctorSettingsCtrl', function ($scope, $http, $stateParams, $ionicModal,$ionicLoading,$state) {
-            
-            
+        .controller('DoctorSettingsCtrl', function ($scope, $http, $stateParams, $ionicModal, $ionicLoading, $state) {
+
+
             $http({
                 method: 'GET',
                 url: domain + 'doctors/get-doctor-setting',
                 params: {docId: window.localStorage.getItem('id')}
             }).then(function successCallback(response) {
                 $scope.instant_permission = response.data;
-                $scope.instant_days = [ { text: "Monday", value:'1'},
-                    {text: "Tuesday",value:'2'},
-                    {text: "Wednesday",value:'3'},
-                    {text: "Thursday",value:'4'},
-                    {text: "Friday",value:'5'},
-                    {text: "Saturday",value:'6'},
-                    {text: "Sunday" ,value:'7'}];
-                $scope.instant_days_end = [ { text: "Monday", value:'1'},
-                    {text: "Tuesday",value:'2'},
-                    {text: "Wednesday",value:'3'},
-                    {text: "Thursday",value:'4'},
-                    {text: "Friday",value:'5'},
-                    {text: "Saturday",value:'6'},
-                    {text: "Sunday" ,value:'7'}];
-                 $scope.instant_time = [ { text: "9:00", value:'9:00:00'},
-                    {text: "10:00",value:'10:00:00'},
-                    {text: "11:00",value:'11:00:00'},
-                    {text: "12:00",value:'12:00:00'},
-                    {text: "13:00",value:'13:00:00'},
-                    {text: "14:00",value:'14:00:00'},
-                    {text: "15:00" ,value:'15:00:00'},
-                    {text: "16:00", value:'16:00:00'},
-                    {text: "17:00", value:'17:00:00'},
-                    {text: "18:00", value:'18:00:00'},
-                    {text: "19:00", value:'19:00:00'},
-                    {text: "20:00", value:'20:00:00'},
-                    {text: "21:00", value:'21:00:00'},
-                    {text: "22:00", value:'22:00:00'},
-                    {text: "23:00", value:'23:00:00'}];
-                $scope.instant_time_end = [ { text: "9:00", value:'9:00:00'},
-                    {text: "10:00",value:'10:00:00'},
-                    {text: "11:00",value:'11:00:00'},
-                    {text: "12:00",value:'12:00:00'},
-                    {text: "13:00",value:'13:00:00'},
-                    {text: "14:00",value:'14:00:00'},
-                    {text: "15:00" ,value:'15:00:00'},
-                    {text: "16:00", value:'16:00:00'},
-                    {text: "17:00", value:'17:00:00'},
-                    {text: "18:00", value:'18:00:00'},
-                    {text: "19:00", value:'19:00:00'},
-                    {text: "20:00", value:'20:00:00'},
-                    {text: "21:00", value:'21:00:00'},
-                    {text: "22:00", value:'22:00:00'},
-                    {text: "23:00", value:'23:00:00'}];
-               // $scope.settingsList = [ { text: "Wireless", checked: true }];
-               console.log(response.data);
+                if($scope.instant_permission[0].instant_permission){
+                    jQuery('#setting').removeClass('hide');
+                }else{
+                    jQuery('#setting').addClass('hide');
+                }
+                
+                $scope.instant_days = [{text: "Monday", value: '1'},
+                    {text: "Tuesday", value: '2'},
+                    {text: "Wednesday", value: '3'},
+                    {text: "Thursday", value: '4'},
+                    {text: "Friday", value: '5'},
+                    {text: "Saturday", value: '6'},
+                    {text: "Sunday", value: '7'}];
+                $scope.instant_days_end = [{text: "Monday", value: '1'},
+                    {text: "Tuesday", value: '2'},
+                    {text: "Wednesday", value: '3'},
+                    {text: "Thursday", value: '4'},
+                    {text: "Friday", value: '5'},
+                    {text: "Saturday", value: '6'},
+                    {text: "Sunday", value: '7'}];
+                $scope.instant_time = [{text: "09:00", value: '09:00:00'},
+                    {text: "10:00", value: '10:00:00'},
+                    {text: "11:00", value: '11:00:00'},
+                    {text: "12:00", value: '12:00:00'},
+                    {text: "13:00", value: '13:00:00'},
+                    {text: "14:00", value: '14:00:00'},
+                    {text: "15:00", value: '15:00:00'},
+                    {text: "16:00", value: '16:00:00'},
+                    {text: "17:00", value: '17:00:00'},
+                    {text: "18:00", value: '18:00:00'},
+                    {text: "19:00", value: '19:00:00'},
+                    {text: "20:00", value: '20:00:00'},
+                    {text: "21:00", value: '21:00:00'},
+                    {text: "22:00", value: '22:00:00'},
+                    {text: "23:00", value: '23:00:00'}];
+                $scope.instant_time_end = [{text: "09:00", value: '09:00:00'},
+                    {text: "10:00", value: '10:00:00'},
+                    {text: "11:00", value: '11:00:00'},
+                    {text: "12:00", value: '12:00:00'},
+                    {text: "13:00", value: '13:00:00'},
+                    {text: "14:00", value: '14:00:00'},
+                    {text: "15:00", value: '15:00:00'},
+                    {text: "16:00", value: '16:00:00'},
+                    {text: "17:00", value: '17:00:00'},
+                    {text: "18:00", value: '18:00:00'},
+                    {text: "19:00", value: '19:00:00'},
+                    {text: "20:00", value: '20:00:00'},
+                    {text: "21:00", value: '21:00:00'},
+                    {text: "22:00", value: '22:00:00'},
+                    {text: "23:00", value: '23:00:00'}];
+                // $scope.settingsList = [ { text: "Wireless", checked: true }];
+                console.log(response.data);
             }, function errorCallback(e) {
                 console.log(e);
             });
-            $scope.submitInstantPermission = function(){
-              
+            $scope.checkp = function (val) {
+                if (val) {
+                    jQuery('#setting').removeClass('hide');
+                } else {
+                    jQuery('#setting').addClass('hide');
+                }
+            }
+            $scope.submitInstantPermission = function () {
+
                 var data = new FormData(jQuery("#instantpermission")[0]);
                 $.ajax({
                     type: 'POST',
@@ -152,8 +165,8 @@ angular.module('your_app_name.controllers', [])
                     success: function (response) {
                         $ionicLoading.hide();
                         console.log(response);
-                        $state.go('app.doctor-settings',{},{reload:true});
-                       
+                        $state.go('app.doctor-settings', {}, {reload: true});
+
                     },
                     error: function (e) {
                         //  console.log(e.responseText);
@@ -161,11 +174,11 @@ angular.module('your_app_name.controllers', [])
                 });
             }
 
-})
-		
-		
-		
-		
+        })
+
+
+
+
         .controller('PatientConsultCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
@@ -336,7 +349,7 @@ angular.module('your_app_name.controllers', [])
 //LOGIN
         .controller('LoginCtrl', function ($scope, $state, $templateCache, $q, $rootScope, $ionicLoading) {
             $scope.doLogIn = function () {
-			 $ionicLoading.show({template: 'Loading...'});
+                $ionicLoading.show({template: 'Loading...'});
                 var data = new FormData(jQuery("#loginuser")[0]);
 
                 $.ajax({
@@ -355,17 +368,17 @@ angular.module('your_app_name.controllers', [])
                             $rootScope.userLogged = 1;
                             $rootScope.username = response.fname;
                             $rootScope.userimage = response.image;
-                           $ionicLoading.hide();
+                            $ionicLoading.hide();
                             $state.go('app.homepage');
                         } else {
                             $rootScope.userLogged = 0;
                             $scope.loginError = response;
                             $scope.loginError.digest;
-							 $ionicLoading.hide();
-                            $timeout(function() {
-							$scope.loginError = response;
-                            $scope.loginError.digest;
-							})
+                            $ionicLoading.hide();
+                            $timeout(function () {
+                                $scope.loginError = response;
+                                $scope.loginError.digest;
+                            })
                         }
                         $rootScope.$digest;
                     },
@@ -490,11 +503,11 @@ angular.module('your_app_name.controllers', [])
                             console.log(response.data);
                             if (response.data == 'success') {
                                 alert('Your appointment is cancelled successfully.');
-								$state.go('app.doctor-consultations', {}, {reload: true});
+                                $state.go('app.doctor-consultations', {}, {reload: true});
                             } else {
                                 alert('Sorry your appointment is not cancelled.');
                             }
-                            $state.go('app.consultations-list',{}, {reload: true});
+                            $state.go('app.consultations-list', {}, {reload: true});
                         }, function errorCallback(response) {
                             console.log(response);
                         });
@@ -561,7 +574,7 @@ angular.module('your_app_name.controllers', [])
                         console.log(response.data);
                         if (response.data == 'success') {
                             alert('Your appointment is cancelled successfully.');
-							$state.go('app.doctor-consultations', {}, {reload: true});
+                            $state.go('app.doctor-consultations', {}, {reload: true});
                         } else {
                             alert('Sorry your appointment is not cancelled.');
                         }
@@ -644,7 +657,7 @@ angular.module('your_app_name.controllers', [])
                 console.log(e);
             });
             $scope.cancelAppointment = function (appId, drId, mode, startTime) {
-				console.log(mode);
+                console.log(mode);
                 $scope.appId = appId;
                 $scope.userId = get('id');
                 console.log(startTime);
@@ -656,7 +669,7 @@ angular.module('your_app_name.controllers', [])
                     if (mode == 1) {
                         alert("Appointment can not be cancelled now!");
                     } else {
-					console.log('dddd');
+                        console.log('dddd');
                         //ask 4 options
                         /*$http({
                          method: 'GET',
@@ -675,9 +688,9 @@ angular.module('your_app_name.controllers', [])
                          });*/
                     }
                 } else {
-				
+
                     if (mode == 1) {
-					console.log('fasd');
+                        console.log('fasd');
                         $http({
                             method: 'GET',
                             url: domain + 'appointment/dr-cancel-app',
@@ -686,17 +699,17 @@ angular.module('your_app_name.controllers', [])
                             console.log(response.data);
                             if (response.data == 'success') {
                                 alert('Your appointment is cancelled successfully.');
-								$state.go('app.doctor-consultations', {}, {reload: true});
+                                $state.go('app.doctor-consultations', {}, {reload: true});
                             } else {
                                 alert('Sorry your appointment is not cancelled.');
-								$state.go('app.doctor-consultations', {}, {reload: true});
+                                $state.go('app.doctor-consultations', {}, {reload: true});
                             }
                             $state.go('app.consultations-list');
                         }, function errorCallback(response) {
                             console.log(response);
                         });
                     } else if (mode == 3 || mode == 4) {
-					
+
                         //ask for 4 options
                     }
                 }
@@ -757,7 +770,7 @@ angular.module('your_app_name.controllers', [])
                 $scope.user = response.data.user;
                 $scope.app = response.data.app;
                 //$scope.oToken = "https://test.doctrs.in/opentok/opentok?session=" + response.data.app[0].appointments.opentok_session_id;
-                 var apiKey = '45121182';
+                var apiKey = '45121182';
                 var sessionId = response.data.app[0].appointments.opentok_session_id;
                 var token = response.data.oToken;
 
@@ -791,7 +804,7 @@ angular.module('your_app_name.controllers', [])
                     if (error) {
                         console.log(error.message);
                     } else {
-                              publisher = OT.initPublisher('myPublisherDiv', {width: "30%", height: "30%"});
+                        publisher = OT.initPublisher('myPublisherDiv', {width: "30%", height: "30%"});
                         session.publish(publisher);
 
                         var mic = 1;
@@ -863,7 +876,7 @@ angular.module('your_app_name.controllers', [])
                 console.log(e);
             });
             $scope.cancelAppointment = function (appId, drId, mode, startTime) {
-			
+
                 $scope.appId = appId;
                 $scope.userId = get('id');
                 console.log(startTime);
@@ -894,7 +907,7 @@ angular.module('your_app_name.controllers', [])
                     }
                 } else {
                     if (mode == 1) {
-					console.log('mode-1');
+                        console.log('mode-1');
                         $http({
                             method: 'GET',
                             url: domain + 'appointment/dr-cancel-app',
@@ -903,7 +916,7 @@ angular.module('your_app_name.controllers', [])
                             console.log(response.data);
                             if (response.data == 'success') {
                                 alert('Your appointment is cancelled successfully.');
-									
+
                             } else {
                                 alert('Sorry your appointment is not cancelled.');
                             }
@@ -912,7 +925,7 @@ angular.module('your_app_name.controllers', [])
                             console.log(response);
                         });
                     } else if (mode == 3 || mode == 4) {
-					console.log('mode-123');
+                        console.log('mode-123');
                         //ask for 2 options
                     }
                 }
@@ -980,26 +993,26 @@ angular.module('your_app_name.controllers', [])
                 });
                 $scope.send = function () {
                     session.signal({data: jQuery("[name='msg']").val()},
-                            function (error) {
-                                if (error) {
-                                    console.log("signal error ("
-                                            + error.code
-                                            + "): " + error.message);
-                                } else {
-                                    var msg = jQuery("[name='msg']").val();
-                                    $http({
-                                        method: 'GET',
-                                        url: domain + 'chat/add-patient-chat',
-                                        params: {from: $scope.userId, to: $scope.user[0].id, msg: msg}
-                                    }).then(function sucessCallback(response) {
-                                        console.log(response);
-                                        jQuery("[name='msg']").val('');
-                                    }, function errorCallback(e) {
-                                        console.log(e.responseText);
-                                    });
-                                    console.log("signal sent.");
-                                }
-                            }
+                    function (error) {
+                        if (error) {
+                            console.log("signal error ("
+                                    + error.code
+                                    + "): " + error.message);
+                        } else {
+                            var msg = jQuery("[name='msg']").val();
+                            $http({
+                                method: 'GET',
+                                url: domain + 'chat/add-patient-chat',
+                                params: {from: $scope.userId, to: $scope.user[0].id, msg: msg}
+                            }).then(function sucessCallback(response) {
+                                console.log(response);
+                                jQuery("[name='msg']").val('');
+                            }, function errorCallback(e) {
+                                console.log(e.responseText);
+                            });
+                            console.log("signal sent.");
+                        }
+                    }
                     );
                 };
             }, function errorCallback(e) {

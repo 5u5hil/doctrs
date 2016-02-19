@@ -27,9 +27,9 @@
 
       <div class="item item-divider">Instant Video</div>
 	<div class="sinfo">Note : These settings are only for instant video and will not affect your scheduled time slots.</div>
-        <form ng-click="submitInstantPermission()" name="instantpermission" id="instantpermission">
+        <form  name="instantpermission" id="instantpermission">
             <input type="hidden" name="did" id="did" value="{{instant_permission[0].doctor_id}}">
-            <ion-toggle ng-model="instantvideo" ng-checked="instant_permission[0].instant_permission" name="permission"  toggle-class="toggle-positive"> Allow Instant Video </ion-toggle>
+            <ion-toggle ng-model="instantvideo" ng-checked="instant_permission[0].instant_permission" ng-click="checkp(instantvideo)" name="permission"  toggle-class="toggle-positive"> Allow Instant Video </ion-toggle>
 	<!-- <div class="sinfo">Enabling this will send you instant video calls only when you are marked "Online"</div>
 	 
 	<ion-toggle ng-model="airplaneMode" toggle-class="toggle-positive"> When Online Only </ion-toggle>-->
@@ -37,49 +37,21 @@
 	  <!--<div class="sinfo">Enabling this will send you instant video calls only when you are marked "Online"</div>-->
 		  
 		  
-		<!--<label class="item item-input item-select">
-		<div class="input-label">
-		  Available From
-		  </div>
-		<select name="availfrom">
-                  <option value="1">Mon</option>
-                  <option value="2" selected>Tue</option>
-		  <option value="3">Wed</option>
-		  <option value="4">Thurs</option>
-		  <option value="5">Fri</option>
-		  <option value="6">Sat</option>
-		  <option value="7">Sun</option>
-		</select>
-	  </label>  
-          
-          <label class="item item-input item-select">
-		<div class="input-label">
-		  Available To
-		  </div>
-		<select name="availto">>
-		  <option value="1">Mon</option>
-                  <option value="2" selected>Tue</option>
-		  <option value="3">Wed</option>
-		  <option value="4">Thurs</option>
-		  <option value="5">Fri</option>
-		  <option value="6">Sat</option>
-		  <option value="7">Sun</option>
-		</select>
-    </label>  --> 
-                <span ng-show="instant_permission[0].instant_permission">  
+		 
+                <span class="" id="setting">  
 		<div class="item">
 	  <div  class="row">
 	 <div class="col-33"> Available Days </div>
       
 	  <div class="col-67">
-	  <div  class="row">
+	  <div  class="row" style="padding: 0;">
 		<div class="col-50">
 		<select class="timeoption" name="availfrom" >
                     <option ng-repeat="days in instant_days" ng-selected="days.value == instant_permission[0].instant_days" value="{{ days.value }}" > {{ days.text }}</option>
                   
 		</select>
 	  </div>
-              <span>To </span>
+              <span class="optiondivider">To </span>
 	  <div class="col-50">
 		<select class="timeoption" name="availto">>
 		  <option ng-repeat="days_end in instant_days_end" ng-selected="days_end.value == instant_permission[0].instant_day_end" value="{{ days_end.value }}" > {{ days_end.text }}</option>
@@ -96,14 +68,14 @@
 	 <div class="col-33"> Available Time </div>
       
 	  <div class="col-67">
-	  <div  class="row">
+              <div  class="row" style="padding: 0;">
 		<div class="col-50">
                     <select class="timeoption" name="timestart">
                   <option  ng-repeat="time in instant_time" ng-selected="time.value == instant_permission[0].instant_start_time" value="{{ time.value }}" > {{ time.text }}</option>
 		 
 		</select>
 	  </div>
-              <span>To </span>
+              <span class="optiondivider">To </span>
 	  <div class="col-50">
 		 <select class="timeoption"  name="timeend">
 		   <option  ng-repeat="time_end in instant_time_end" ng-selected="time_end.value == instant_permission[0].instant_end_time" value="{{ time_end.value }}" > {{ time_end.text }}</option>
@@ -115,7 +87,7 @@
 	 </div>
 	 </div>
                 </span>
-	<button class="button button-block button-positive" >
+	<button class="button button-block button-positive" ng-click="submitInstantPermission()">
         Save
       </button>
         </form>
