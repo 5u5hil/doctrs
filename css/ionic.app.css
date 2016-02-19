@@ -9012,8 +9012,11 @@ span.count-t{    display: inline-block;
 	.radioptions{ width:33.33%; float:left;}
 	.radioptions.item-radio .item-content{padding-right: 30px;}
 	.radioptions.item-radio .radio-icon{padding: 6px;}
-	
-	
+	.optiondivider{    display: block;
+    margin-left: -5px;
+    padding: 0 5px;}
+	.sdiv{position:relative; }
+	.sdiv .overlay{position:absolute; width:100%; height:100%; background:rgba(255,255,255,0.3); z-index:99;}
 	
 	/* endcss */
 
