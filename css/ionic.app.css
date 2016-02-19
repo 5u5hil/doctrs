@@ -6451,7 +6451,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
     top: 0;
     bottom: 0;
     right: 0;
-    padding: 14px 48px 16px 16px;
+    padding: 14px 48px 11px 16px;
     max-width: 65%;
     border: none;
     background: #fff;
