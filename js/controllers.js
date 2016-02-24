@@ -16,7 +16,7 @@ angular.module('your_app_name.controllers', [])
         })
 
 // APP
-        .controller('AppCtrl', function ($scope, $state, $ionicConfig, $rootScope, $ionicLoading, $timeout, $ionicHistory) {
+        .controller('AppCtrl', function ($scope, $http, $state, $ionicConfig, $rootScope, $ionicLoading, $timeout, $ionicHistory) {
             $rootScope.imgpath = domain + "/public/frontend/user/";
             if (window.localStorage.getItem('id') != null) {
                 $rootScope.userLogged = 1;
@@ -28,6 +28,12 @@ angular.module('your_app_name.controllers', [])
             }
             $scope.logout = function () {
                 $ionicLoading.show({template: 'Logging out....'});
+                 $http({
+                method: 'GET',
+                url: domain + 'doctors/doctor-logout',
+                params: {docId: window.localStorage.getItem('id')}
+            }).then(function successCallback(response) {
+                
                 window.localStorage.clear();
                 $rootScope.userLogged = 0;
                 $rootScope.$digest;
@@ -38,6 +44,12 @@ angular.module('your_app_name.controllers', [])
                     $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
                     $state.go('auth.walkthrough', {}, {reload: true});
                 }, 30);
+                
+           }, function errorCallback(e) {
+                console.log(e);
+            });
+                
+               
             };
         })
 
@@ -89,9 +101,11 @@ angular.module('your_app_name.controllers', [])
                 url: domain + 'doctors/get-doctor-setting',
                 params: {docId: window.localStorage.getItem('id')}
             }).then(function successCallback(response) {
-
-                $scope.instant_permission = response.data;
-                if ($scope.instant_permission[0].instant_permission) {
+                console.log(response.data);
+                $scope.instant_permission = response.data.schedule;
+                $scope.instant_status = response.data.status;
+                $scope.status = $scope.instant_status.presence;
+                if ($scope.instant_permission.instant_permission) {
                     jQuery('#setting').removeClass('hide');
                 } else {
                     jQuery('#setting').addClass('hide');
@@ -142,7 +156,7 @@ angular.module('your_app_name.controllers', [])
                     {text: "22:00", value: '22:00:00'},
                     {text: "23:00", value: '23:00:00'}];
                 // $scope.settingsList = [ { text: "Wireless", checked: true }];
-                console.log(response.data);
+                
             }, function errorCallback(e) {
                 console.log(e);
             });
@@ -177,6 +191,22 @@ angular.module('your_app_name.controllers', [])
                     },
                     error: function (e) {
                         //  console.log(e.responseText);
+                    }
+                });
+            }
+
+            $scope.doctor_presence = function (value) {
+
+                var id = window.localStorage.getItem('id');
+
+                var data = {status: value, did: id};
+                $.ajax({
+                    type: 'POST',
+                    url: domain + "doctors/update-doctor-presense",
+                    data: data,
+                    cache: false,
+                    success: function (response) {
+
                     }
                 });
             }
@@ -409,6 +439,8 @@ angular.module('your_app_name.controllers', [])
 //            $rootScope.userLogged = 0;
 //            $rootScope.$digest;
 //            $state.go('auth.login', {}, {reload: true});
+
+
             $ionicLoading.show({template: 'Logging out....'});
             window.localStorage.clear();
             $rootScope.userLogged = 0;
