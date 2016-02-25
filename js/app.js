@@ -197,16 +197,6 @@ angular.module('your_app_name', [
                     })
 					
 					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
                     .state('app.chat-appointments', {
                         cache: false,
                         url: "/chat-appointments",
@@ -229,7 +219,100 @@ angular.module('your_app_name', [
                     })
 
 			
-
+					.state('app.about', {
+                        url: "/consultation-note/about",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultation-note/about.html",
+                                controller: 'ConsultationsNoteCtrl'
+                            }
+                        }
+                    })
+			
+					.state('app.patient-history', {
+                        url: "/consultation-note/patient-history",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultation-note/patient-history.html",
+                                controller: 'ConsultationsNoteCtrl'
+                            }
+                        }
+                    })
+					
+						.state('app.family-history', {
+                        url: "/consultation-note/family-history",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultation-note/family-history.html",
+                                controller: 'ConsultationsNoteCtrl'
+                            }
+                        }
+                    })
+					
+					.state('app.measurement', {
+                        url: "/consultation-note/measurement",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultation-note/measurement.html",
+                                controller: 'ConsultationsNoteCtrl'
+                            }
+                        }
+                    })
+					.state('app.observation', {
+                        url: "/consultation-note/observation",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultation-note/observation.html",
+                                controller: 'ConsultationsNoteCtrl'
+                            }
+                        }
+                    })
+					
+					.state('app.testresult', {
+                        url: "/consultation-note/testresult",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultation-note/testresult.html",
+                                controller: 'ConsultationsNoteCtrl'
+                            }
+                        }
+                    })
+					.state('app.investigations', {
+                        url: "/consultation-note/investigations",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultation-note/investigations.html",
+                                controller: 'ConsultationsNoteCtrl'
+                            }
+                        }
+                    })
+					
+					.state('app.medication', {
+                        url: "/consultation-note/medication",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultation-note/medication.html",
+                                controller: 'ConsultationsNoteCtrl'
+                            }
+                        }
+                    })	
+					
+					.state('app.procedure', {
+                        url: "/consultation-note/procedure",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/consultation-note/procedure.html",
+                                controller: 'ConsultationsNoteCtrl'
+                            }
+                        }
+                    })
+					
+					
+					
+					
+					
+					
+					
 					
 					
 					
@@ -315,7 +398,7 @@ angular.module('your_app_name', [
                     })
 
                     .state('app.patient-chat', {
-                        url: "/patient-chat/19",
+                        url: "/patient-chat",
                         views: {
                             'menuContent': {
                                 templateUrl: "views/app/patient-chat.html",
