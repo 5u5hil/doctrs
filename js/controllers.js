@@ -196,9 +196,7 @@ angular.module('your_app_name.controllers', [])
             }
 
             $scope.doctor_presence = function (value) {
-
                 var id = window.localStorage.getItem('id');
-
                 var data = {status: value, did: id};
                 $.ajax({
                     type: 'POST',
@@ -206,7 +204,8 @@ angular.module('your_app_name.controllers', [])
                     data: data,
                     cache: false,
                     success: function (response) {
-                        $state.go('app.doctor-settings', {}, {reload: true});
+                        alert('Your status has been changed');
+                         $state.go('app.doctor-settings');
                     }
                 });
             }
