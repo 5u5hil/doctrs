@@ -206,7 +206,7 @@ angular.module('your_app_name.controllers', [])
                     data: data,
                     cache: false,
                     success: function (response) {
-
+                        $state.go('app.doctor-settings', {}, {reload: true});
                     }
                 });
             }
