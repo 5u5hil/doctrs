@@ -5,17 +5,52 @@
 
   <ion-content>
  <div class="tabcon2"> 
-                      <div class="item item-divider">Case Type</div>
+                      <div class="item item-divider">Consultation Details</div>
+					   
+					   <label class="item item-input item-select">
+						   <div class="input-label">
+							Patient
+							</div>
+							<select>
+							  <option selected>Patient</option>
+							  <option >Patient</option>
+							  <option>Patient</option>
+							  <option>Patient</option>
+							  <option>Patient</option>
+							</select>
+						  </label>	
+						  
+						  
+						  <label class="item item-input item-select">
+						   <div class="input-label">
+							Doctor
+							</div>
+							<select>
+							  <option selected>Doctor</option>
+							  <option >Doctor</option>
+							  <option>Doctor</option>
+							  <option>Doctor</option>
+							  <option>Doctor</option>
+							</select>
+						  </label>	 
+						   
+
+					     <label class="item item-input ">
+							<span class="input-label">Date</span>
+							<input type="date">
+						 </label>
+							
+						 <label class="item item-input">
+							<span class="input-label">Time</span>
+							<input type="time">
+						 </label>	
 						<ion-list>
 							<div class="row">
 							<div class="col cradio"><ion-radio ng-model="choice" ng-value="'A'" checked>New</ion-radio></div>
 							<div class="col cradio"> <ion-radio ng-model="choice" ng-value="'B'">Ongoing</ion-radio></div>
 							</div>
 						</ion-list>
-					   <label class="item item-input">
-						<span class="input-label">Select from existing </span>
-						<input type="text">
-					  </label>
+					 
 					   
 					    <label class="item item-input">
 						<span class="input-label">Case Name*</span>
@@ -24,7 +59,7 @@
 					   
 					   <label class="item item-input item-select">
 						<div class="input-label">
-						Consultation Type
+						Type
 						</div>
 						<select>
 						  <option selected>Outpatient</option>
@@ -38,27 +73,14 @@
 						<span class="input-label">Consultation Number</span>
 						<input type="text" value="012" readonly>
 						</label>
-					    <div class="item item-divider">Consultation Date & Time</div>
-					   
-					     <label class="item item-input ">
-							<span class="input-label">Date</span>
-							<input type="date">
-						 </label>
-							
-						 <label class="item item-input">
-							<span class="input-label">Time</span>
-							<input type="time">
-						 </label>	
+					  
 						 
-						 <label class="item item-input">
-							<span class="input-label">Attach</span>
-							<input type="file" accept="image/*; capture=camera">
-						 </label>	
+						
 						 
 							
 						<label class="item item-input item-select">
 						<div class="input-label">
-						Consultation Mode
+						Mode
 						</div>
 						<select>
 						  <option selected>Video</option>
@@ -76,10 +98,11 @@
 							<textarea rows="4" cols="50"> </textarea>
 						  </label>	
 					 </div>
-                
-	  
-	  
-	  
- 
+
   </ion-content>
+  <div class="footer bar">
+	  <div class="button">Cancel</div>
+	  <div class="button">Save</div>
+	  </div>
+  
 </ion-view>
