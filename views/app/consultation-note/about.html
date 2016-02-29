@@ -43,7 +43,23 @@
 						 <label class="item item-input">
 							<span class="input-label">Time</span>
 							<input type="time">
-						 </label>	
+						 </label>
+						 
+						 <label class="item item-input item-select">
+						<div class="input-label">
+							Mode
+						</div>
+						<select>
+						  <option selected>Video</option>
+						  <option >Clinic</option>
+						  <option>Home</option>
+						  <option>Phone</option>
+						  <option>Chat</option>
+						</select>
+					  </label>
+						 
+						 
+						    <div class="item item-divider">Case Details</div>
 						<ion-list>
 							<div class="row">
 							<div class="col cradio"><ion-radio ng-model="choice" ng-value="'A'" checked>New</ion-radio></div>
@@ -53,9 +69,22 @@
 					 
 					   
 					    <label class="item item-input">
-						<span class="input-label">Case Name*</span>
-						<input type="text">
-						</label>
+                            <input type="text" placeholder="Plain Text">
+                        </label>
+						
+						
+					  <label class="item item-input item-select">
+						<select class="cselect">
+						  <option selected>Dropdown</option>
+						  <option >Inpatient</option>
+						  <option>Emergency</option>
+						  <option>Investigations</option>
+						</select>
+					  </label> 
+					   
+					   
+					   
+						
 					   
 					   <label class="item item-input item-select">
 						<div class="input-label">
@@ -78,18 +107,7 @@
 						
 						 
 							
-						<label class="item item-input item-select">
-						<div class="input-label">
-						Mode
-						</div>
-						<select>
-						  <option selected>Video</option>
-						  <option >Clinic</option>
-						  <option>Home</option>
-						  <option>Phone</option>
-						  <option>Chat</option>
-						</select>
-					  </label>	
+							
 						
 						<div class="item item-divider">Other</div>
 						
@@ -98,6 +116,12 @@
 							<textarea rows="4" cols="50"> </textarea>
 						  </label>	
 					 </div>
+					 
+					 
+					 
+					
+					 
+					 
 
   </ion-content>
   <div class="fixedbar">
