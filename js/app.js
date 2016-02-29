@@ -1,5 +1,5 @@
 // Ionic Starter App
-var domain = "http://test.doctrs.in/";
+var domain = "http://stage.doctrs.in/";
 //var domain = "http://192.168.2.169/doctors/";
 angular.module('underscore', [])
         .factory('_', function () {
