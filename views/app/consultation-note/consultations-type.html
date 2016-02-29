@@ -12,7 +12,7 @@
 							Patient
 							</div>
 							<select>
-							  <option selected>Mr. Naresh G</option>
+							  <option selected>Patient</option>
 							  <option >Patient</option>
 							  <option>Patient</option>
 							  <option>Patient</option>
@@ -26,7 +26,7 @@
 							Doctor
 							</div>
 							<select>
-							  <option selected>Dr. Abc</option>
+							  <option selected>Doctor</option>
 							  <option >Doctor</option>
 							  <option>Doctor</option>
 							  <option>Doctor</option>
@@ -79,7 +79,7 @@
 						</ion-list>
 					 
 					   
-					  <!--   <label class="item item-input">
+					    <label class="item item-input">
                             <input type="text" placeholder="Plain Text">
                         </label>
 						
@@ -91,51 +91,87 @@
 						  <option>Emergency</option>
 						  <option>Investigations</option>
 						</select>
-					  </label>  -->
+					  </label> 
 		
 		
+		
+		
+		
+		
+		
+                        <div class="item item-divider">History</div>
+						  <div class="row cbtn3 mtb15">
+								<div class="col">
+									<a class="custombtn" ui-sref="app.about">Patient</a> 
+								</div>
+								
+								<div class="col">
+									<a class="custombtn" ui-sref="app.family-history">Family</a> 
+								</div>
+								
+								
+							</div>	
+
+							
 						<div class="item item-divider">Images</div> 
 							
 							<div class="row cbtn3 mtb15">
 								<div class="col">
-									<div class="Cstmbutn button-small" >
-										<span class="icon ion-plus-circled"></span> Select Files</div> 
+									<div class="custombtn" >File Selector</div> 
 								</div>
 								<div class="col">
-									<div class=" Cstmbutn button-small">
-										<span class="icon ion-plus-circled"></span> Camera </div> 
+									<div class="custombtn">Camera</div> 
 								</div>
 								
 							</div>	
-		
-		
-		
-		<div class="flexcont">
-			<div class="innerdiv col-50 brdright">
-				<div class="item item-divider">Notes</div>
-				<div class="p10">
-				<button  class="Cstmbutn button-small mb15" ng-controller="noteType" ng-click="modal.show()"><span class="icon ion-plus-circled"></span> Add</button>
-				
-					<!-- <div class="custombtn" ng-click="gotopage('app.patient-history')">Patient</div>  -->
-				</div>
-				
-			</div>
-			<div class="innerdiv col-50">
-				<div class="item item-divider">Treatment Plan</div>
-				
-				<div class="p10">
-					
-				<button class="Cstmbutn button-small mb15" ng-controller="treaTmentp" ng-click="modal.show()"><span class="icon ion-plus-circled"></span> Add </button>	
-					
-					
-				</div>
-				
-			</div>
-			
-		</div>
-		
-                        
-		</div>
+							
+							
+							
+							
+                        <div class="item item-divider">Evaluation</div>
+
+							  <div class="row cbtn3 mtb15">
+								<div class="col">
+									<a class="custombtn" ui-sref="app.measurement">Measurements</a> 
+								</div>
+								<div class="col">
+									<a class="custombtn" ui-sref="app.observation">Observations</a> 
+								</div>
+								
+								<div class="col">
+									<a class="custombtn" ui-sref="app.testresult">Test Results</a> 
+								</div>
+							</div>	
+
+                        <div class="item item-divider">Diagnosis</div>  
+							  <div class="row cbtn3 mtb15">
+								<div class="col">
+									<div class="custombtn" ng-controller="PlaintestCtrl" ng-click="modal.show()">Plain Text</div> 
+								</div>
+								<div class="col">
+									<div class="custombtn" ng-controller="SnowmedtCtrl" ng-click="modal.show()">Snomed</div> 
+								</div>
+								
+								<div class="col">
+									<div class="custombtn" ng-controller="IcdCtrl" ng-click="modal.show()">ICD</div> 
+								</div>
+							</div>		 
+                      <div class="item item-divider">Treatment Plan</div>  
+							 <div class="row cbtn3 mtb15">
+								<div class="col">
+									<a class="custombtn" ui-sref="app.investigations">Investigation</a> 
+								</div>
+								<div class="col">
+									<a class="custombtn" ui-sref="app.medication">Medication</a> 
+								</div>
+								
+								<div class="col">
+									<a class="custombtn" ui-sref="app.procedure">Procedure</a> 
+								</div>
+							</div>
+
+						    
+                    </div>
   </ion-content>
 
     <div class="footerbar">
@@ -174,7 +210,7 @@
  <script id="snomed" type="text/ng-template">
         <ion-modal-view>
         <ion-header-bar class="bar app-top-bar">
-        <h1 class="title">SNOMED</h1>	 
+        <h1 class="title">Snomed</h1>	 
       
         </ion-header-bar>
         <ion-content>
@@ -217,7 +253,7 @@
         </ion-modal-view>
     </script>
 
-	<script id="icd" type="text/ng-template">
+	    <script id="icd" type="text/ng-template">
         <ion-modal-view>
         <ion-header-bar class="bar app-top-bar">
         <h1 class="title">ICD</h1>	 
@@ -236,136 +272,10 @@
 				  <div class="button btn-add" ng-click="submitmodal()"><i class="ion-checkmark"></i> Save</div>
 				</div>
         </ion-modal-view>
-	</script>
+		
+</script>
 
 
-	<script id="notetype" type="text/ng-template">
-        <ion-modal-view>
-        <ion-header-bar class="bar app-top-bar">
-        <h1 class="title">Select Category</h1>	 
-     
-        </ion-header-bar>
-        <ion-content>
 
-    <div class="item item-divider">History</div>
-				  <div class="row cbtn3">
-						<div class="col">
-							<div class="Cstmbutn button-small" ng-click="modalclose('app.patient-history')"><span class="icon ion-plus-circled"></span>  Patient</div> 
-						</div>
-						
-						<div class="col">
-							<div class="Cstmbutn button-small" ng-click="modalclose('app.family-history')"><span class="icon ion-plus-circled"></span>  Family</div> 
-						</div>
-					</div>	
 
-							
-						
-							
-							
-							
-							
-                        <div class="item item-divider">Evaluation</div>
 
-							  <div class="row cbtn3">
-								<div class="col">
-									<div class="Cstmbutn button-small" ng-click="modalclose('app.measurement')"><span class="icon ion-plus-circled"></span> Measurements</div> 
-								</div>
-								
-								
-								<div class="col">
-									<div class="Cstmbutn button-small" ng-click="modalclose('app.testresult')"> <span class="icon ion-plus-circled"></span> Test Results</div> 
-								</div>
-							</div>	
-
-							<div class="row cbtn3">
-							<div class="col">
-									<div class="Cstmbutn button-small" ng-click="modalclose('app.observation')"> <span class="icon ion-plus-circled"></span> Observations</div> 
-								</div>
-							</div>
-							
-							
-							
-                        <div class="item item-divider">Diagnosis</div>  
-							  <div class="row cbtn3">
-							
-								<div class="col">
-									<div class="Cstmbutn button-small" ng-controller="SnowmedtCtrl" ng-click="modal.show()"><span class="icon ion-plus-circled"></span> SNOMED</div> 
-								</div>
-								
-								<div class="col">
-									<div class="Cstmbutn button-small" ng-controller="IcdCtrl" ng-click="modal.show()"><span class="icon ion-plus-circled"></span> ICD</div> 
-								</div>
-							</div>		 
-                     
-					   <div class="row cbtn3">
-					 
-					 	<div class="col">
-									<div class="Cstmbutn button-small" ng-controller="PlaintestCtrl" ng-click="modal.show()"> <span class="icon ion-plus-circled"></span> Text</div> 
-								</div>
-					   </div>
-					 
-					 
-					 
-					 
-					 
-      
-        </ion-content>
-		<div class="fixedbar">
-						<div class="button btn-delete" nav-clear ng-click="modal.hide()" ><i class="ion-close"></i> Cancel</div>
-				
-				</div>
-        </ion-modal-view>
-	</script>
-
-	
-	
-	<script id="treatmentp" type="text/ng-template">
-        <ion-modal-view>
-        <ion-header-bar class="bar app-top-bar">
-        <h1 class="title">Select Category</h1>	 
-     
-        </ion-header-bar>
-        <ion-content>
-	 <div class="item item-divider">Treatment Plan</div>  
-				 <div class="row cbtn3">
-					<div class="col">
-						<div class="Cstmbutn button-small" ng-click="modalclose('app.investigations')"><span class="icon ion-plus-circled"></span> Investigation</div> 
-					</div>
-					<div class="col">
-						<div class="Cstmbutn button-small" ng-click="modalclose('app.medication')"><span class="icon ion-plus-circled"></span> Medication</div> 
-					</div>
-					
-					
-				</div>
-							
-				<div class="row cbtn3 ">
-				<div class="col">
-				<div class="Cstmbutn button-small" ng-click="modalclose('app.procedure')"><span class="icon ion-plus-circled"></span> Procedure</div> </div>
-						
-						<div class="col">
-									<div class="Cstmbutn button-small" ng-click="modalclose('app.investigations')"> <span class="icon ion-plus-circled"></span> Diet Plan</div> 
-								</div>
-					
-				</div>
-							
-							
-							
-							<div class="row cbtn3">
-								
-								<div class="col">
-									<div class="Cstmbutn button-small" ng-click="modalclose('app.medication')"><span class="icon ion-plus-circled"></span> Lifestyle</div> 
-								</div>
-								
-								<div class="col">
-									<div class="Cstmbutn button-small" ng-click="modalclose('app.procedure')"><span class="icon ion-plus-circled"></span> Referral</div> 
-								</div>
-							</div>
-							
-
-        </ion-content>
-		<div class="fixedbar">
-						<div class="button btn-delete" nav-clear ng-click="modal.hide()" ><i class="ion-close"></i> Cancel</div>
-				
-				</div>
-        </ion-modal-view>
-	</script>

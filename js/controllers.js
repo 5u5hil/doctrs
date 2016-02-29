@@ -9,10 +9,11 @@ angular.module('your_app_name.controllers', [])
                 $rootScope.userLogged = 1;
                 $rootScope.username = window.localStorage.getItem('fname');
                 $rootScope.userimage = window.localStorage.getItem('image');
-            } else {
-                if ($rootScope.userLogged == 0)
-                    $state.go('auth.login');
-            }
+            } 
+			// else {
+                // if ($rootScope.userLogged == 0)
+                    // $state.go('auth.login');
+            // }
         })
 
 // APP
@@ -22,10 +23,11 @@ angular.module('your_app_name.controllers', [])
                 $rootScope.userLogged = 1;
                 $rootScope.username = window.localStorage.getItem('fname');
                 $rootScope.userimage = window.localStorage.getItem('image');
-            } else {
-                if ($rootScope.userLogged == 0)
-                    $state.go('auth.login');
-            }
+            } 
+			// else {
+                // if ($rootScope.userLogged == 0)
+                    // $state.go('auth.login');
+            // }
             $scope.logout = function () {
                 $ionicLoading.show({template: 'Logging out....'});
                  $http({
@@ -303,6 +305,55 @@ angular.module('your_app_name.controllers', [])
                 $scope.modal.hide();
             };
         })
+		
+		
+		  .controller('noteType', function ($scope, $ionicModal, $state) {
+            $ionicModal.fromTemplateUrl('notetype', {
+                scope: $scope
+				}).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+			
+			$scope.modalclose = function(ulink){
+				 $state.go(ulink);
+				 $scope.modal.hide();
+				}
+		  })
+		
+		
+		
+				  .controller('treaTmentp', function ($scope, $ionicModal, $state) {
+            $ionicModal.fromTemplateUrl('treatmentp', {
+                scope: $scope
+				}).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+			
+			$scope.modalclose = function(ulink){
+				 $state.go(ulink);
+				 $scope.modal.hide();
+				}
+		  })
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
         .controller('SnowmedtCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('snomed', {
@@ -375,9 +426,15 @@ angular.module('your_app_name.controllers', [])
             };
         })
 
-        .controller('ConsultationsNoteCtrl', function ($scope, $http, $stateParams) {
+        .controller('ConsultationsNoteCtrl', function ($scope, $http, $stateParams,$state, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
+			
+			$scope.gotopage = function(glink){
+				 $state.go(glink);
+			}
+			
+			
 		}) 
 		
 

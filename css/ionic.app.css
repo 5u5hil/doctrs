@@ -9040,6 +9040,25 @@ span.count-t{    display: inline-block;
              padding: 8px 0 8px 0px !important;
              /* font-weight:bold; */
 }
+
+.flexcont{
+	display: -webkit-flex; /* Safari */
+    display: flex; /* Safari */
+	    border-bottom: 1px #eee solid;
+}
+.flexcont div.innerdiv{}
+.brdright{border-right:1px #eee solid;}
+.p10{padding:10px;}
+.Cstmbutn{    width: 100%;
+  /*   margin-bottom: 15px; */
+    background: #fff;
+    border: 1px #28a54c solid;
+    color: #28a54c;
+    padding: 5px 0; text-align:center;
+	}
+	.Cstmbutn span{color: #28a54c; padding:0 2px;}
+.mb15{ margin-bottom: 15px;}
+
 	
 	
 	/* endcss */
