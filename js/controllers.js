@@ -9,10 +9,10 @@ angular.module('your_app_name.controllers', [])
                 $rootScope.userLogged = 1;
                 $rootScope.username = window.localStorage.getItem('fname');
                 $rootScope.userimage = window.localStorage.getItem('image');
-            } 
-			// else {
-                // if ($rootScope.userLogged == 0)
-                    // $state.go('auth.login');
+            }
+            // else {
+            // if ($rootScope.userLogged == 0)
+            // $state.go('auth.login');
             // }
         })
 
@@ -23,81 +23,88 @@ angular.module('your_app_name.controllers', [])
                 $rootScope.userLogged = 1;
                 $rootScope.username = window.localStorage.getItem('fname');
                 $rootScope.userimage = window.localStorage.getItem('image');
-            } 
-			// else {
-                // if ($rootScope.userLogged == 0)
-                    // $state.go('auth.login');
+            }
+            // else {
+            // if ($rootScope.userLogged == 0)
+            // $state.go('auth.login');
             // }
             $scope.logout = function () {
                 $ionicLoading.show({template: 'Logging out....'});
-                 $http({
-                method: 'GET',
-                url: domain + 'doctors/doctor-logout',
-                params: {docId: window.localStorage.getItem('id')}
-            }).then(function successCallback(response) {
-                
-                window.localStorage.clear();
-                $rootScope.userLogged = 0;
-                $rootScope.$digest;
-                $timeout(function () {
-                    $ionicLoading.hide();
-                    $ionicHistory.clearCache();
-                    $ionicHistory.clearHistory();
-                    $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
-                    $state.go('auth.walkthrough', {}, {reload: true});
-                }, 30);
-                
-           }, function errorCallback(e) {
-                console.log(e);
-            });
-                
-               
+                $http({
+                    method: 'GET',
+                    url: domain + 'doctors/doctor-logout',
+                    params: {docId: window.localStorage.getItem('id')}
+                }).then(function successCallback(response) {
+
+                    window.localStorage.clear();
+                    $rootScope.userLogged = 0;
+                    $rootScope.$digest;
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                        $ionicHistory.clearCache();
+                        $ionicHistory.clearHistory();
+                        $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
+                        $state.go('auth.walkthrough', {}, {reload: true});
+                    }, 30);
+
+                }, function errorCallback(e) {
+                    console.log(e);
+                });
             };
         })
 
-        .controller('EvaluationCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
+        //LOGIN
+        .controller('LoginCtrl', function ($scope, $state, $templateCache, $q, $rootScope, $ionicLoading, $timeout) {
+            $scope.doLogIn = function () {
+                $ionicLoading.show({template: 'Loading...'});
+                var data = new FormData(jQuery("#loginuser")[0]);
 
-        })
-        .controller('PatientChatCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-
-        })
-
-        .controller('MyCtrl', function ($scope, $ionicTabsDelegate) {
-            $scope.selectTabWithIndex = function (index) {
-                $ionicTabsDelegate.select(index);
-            }
-        })
-
-
-        .controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-
-        })
-        .controller('PatientListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-
-        })
-        .controller('PatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-
-        })
-
-        .controller('PatientRecordCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-
+                $.ajax({
+                    type: 'POST',
+                    url: domain + "chk-dr-user",
+                    data: data,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (response) {
+                        //  console.log("@@@@"+response.fname);
+                        if (angular.isObject(response)) {
+                            $scope.loginError = '';
+                            $scope.loginError.digest;
+                            store(response);
+                            $rootScope.userLogged = 1;
+                            $rootScope.username = response.fname;
+                            $rootScope.userimage = response.image;
+                            $ionicLoading.hide();
+                            $state.go('app.homepage');
+                        } else {
+                            $rootScope.userLogged = 0;
+                            $scope.loginError = response;
+                            $scope.loginError.digest;
+                            $ionicLoading.hide();
+                            $timeout(function () {
+                                $scope.loginError = response;
+                                $scope.loginError.digest;
+                            })
+                        }
+                        $rootScope.$digest;
+                    },
+                    error: function (e) {
+                        console.log(e.responseText);
+                    }
+                });
+            };
+            $scope.user = {};
+            $scope.user.email = "";
+            $scope.user.pin = "";
+            // We need this for the form validation
+            $scope.selected_tab = "";
+            $scope.$on('my-tabs-changed', function (event, data) {
+                $scope.selected_tab = data.title;
+            });
         })
 
         .controller('DoctorSettingsCtrl', function ($scope, $http, $stateParams, $ionicModal, $ionicLoading, $state) {
-
-
             $http({
                 method: 'GET',
                 url: domain + 'doctors/get-doctor-setting',
@@ -158,7 +165,7 @@ angular.module('your_app_name.controllers', [])
                     {text: "22:00", value: '22:00:00'},
                     {text: "23:00", value: '23:00:00'}];
                 // $scope.settingsList = [ { text: "Wireless", checked: true }];
-                
+
             }, function errorCallback(e) {
                 console.log(e);
             });
@@ -170,7 +177,6 @@ angular.module('your_app_name.controllers', [])
                 }
             }
             $scope.submitInstantPermission = function () {
-
                 var data = new FormData(jQuery("#instantpermission")[0]);
                 $.ajax({
                     type: 'POST',
@@ -207,14 +213,52 @@ angular.module('your_app_name.controllers', [])
                     cache: false,
                     success: function (response) {
                         alert('Your status has been changed');
-                         $state.go('app.doctor-settings');
+                        $state.go('app.doctor-settings');
                     }
                 });
             }
 
         })
 
+        .controller('EvaluationCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
 
+        })
+        .controller('PatientChatCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+        })
+
+        .controller('MyCtrl', function ($scope, $ionicTabsDelegate) {
+            $scope.selectTabWithIndex = function (index) {
+                $ionicTabsDelegate.select(index);
+            }
+        })
+
+
+        .controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+        })
+        .controller('PatientListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+        })
+        .controller('PatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+        })
+
+        .controller('PatientRecordCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+        })
 
 
         .controller('PatientConsultCtrl', function ($scope, $http, $stateParams, $ionicModal) {
@@ -305,55 +349,43 @@ angular.module('your_app_name.controllers', [])
                 $scope.modal.hide();
             };
         })
-		
-		
-		  .controller('noteType', function ($scope, $ionicModal, $state) {
+
+
+        .controller('noteType', function ($scope, $ionicModal, $state) {
             $ionicModal.fromTemplateUrl('notetype', {
                 scope: $scope
-				}).then(function (modal) {
+            }).then(function (modal) {
                 $scope.modal = modal;
             });
 
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
-			
-			$scope.modalclose = function(ulink){
-				 $state.go(ulink);
-				 $scope.modal.hide();
-				}
-		  })
-		
-		
-		
-				  .controller('treaTmentp', function ($scope, $ionicModal, $state) {
+
+            $scope.modalclose = function (ulink) {
+                $state.go(ulink);
+                $scope.modal.hide();
+            }
+        })
+
+
+
+        .controller('treaTmentp', function ($scope, $ionicModal, $state) {
             $ionicModal.fromTemplateUrl('treatmentp', {
                 scope: $scope
-				}).then(function (modal) {
+            }).then(function (modal) {
                 $scope.modal = modal;
             });
 
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
-			
-			$scope.modalclose = function(ulink){
-				 $state.go(ulink);
-				 $scope.modal.hide();
-				}
-		  })
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+            $scope.modalclose = function (ulink) {
+                $state.go(ulink);
+                $scope.modal.hide();
+            }
+        })
 
         .controller('SnowmedtCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('snomed', {
@@ -426,89 +458,225 @@ angular.module('your_app_name.controllers', [])
             };
         })
 
-        .controller('ConsultationsNoteCtrl', function ($scope, $http, $stateParams,$state, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-			
-			$scope.gotopage = function(glink){
-				 $state.go(glink);
-			}
-			
-			
-		}) 
-		
+        .controller('ConsultationsNoteCtrl', function ($scope, $http, $stateParams, $state, $ionicModal, $timeout, $filter, $cordovaCamera, $ionicLoading) {
+            $scope.patientId = '282';
+            $scope.catId = '';
+            $scope.userId = window.localStorage.getItem('id');
+            $scope.images = [];
+            $scope.image = [];
+            $scope.tempImgs = [];
+            $scope.curTime = new Date();
+            $scope.curTimeo = $filter('date')(new Date(), 'hh:mm');
+            $http({
+                method: 'GET',
+                url: domain + 'doctrsrecords/get-fields',
+                params: {patient: $scope.patientId, userId: $scope.userId, catId: $scope.catId}
+            }).then(function successCallback(response) {
+                console.log(response.data);
+                $scope.record = response.data.record;
+                $scope.fields = response.data.fields;
+                $scope.problems = response.data.problems;
+                $scope.doctrs = response.data.doctrs;
+                $scope.patients = response.data.patients;
+                $scope.cases = response.data.cases;
+            }, function errorCallback(response) {
+                console.log(response);
+            });
 
-		
-		
-//LOGIN
-        .controller('LoginCtrl', function ($scope, $state, $templateCache, $q, $rootScope, $ionicLoading, $timeout) {
-            $scope.doLogIn = function () {
-                $ionicLoading.show({template: 'Loading...'});
-                var data = new FormData(jQuery("#loginuser")[0]);
-
-                $.ajax({
-                    type: 'POST',
-                    url: domain + "chk-dr-user",
-                    data: data,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (response) {
-                        //  console.log("@@@@"+response.fname);
-                        if (angular.isObject(response)) {
-                            $scope.loginError = '';
-                            $scope.loginError.digest;
-                            store(response);
-                            $rootScope.userLogged = 1;
-                            $rootScope.username = response.fname;
-                            $rootScope.userimage = response.image;
-                            $ionicLoading.hide();
-                            $state.go('app.homepage');
-                        } else {
-                            $rootScope.userLogged = 0;
-                            $scope.loginError = response;
-                            $scope.loginError.digest;
-                            $ionicLoading.hide();
-                            $timeout(function () {
-                                $scope.loginError = response;
-                                $scope.loginError.digest;
-                            })
+            $scope.gotopage = function (glink) {
+                $state.go(glink);
+            };
+            //Save FormData
+            $scope.submit = function () {
+                $ionicLoading.show({template: 'Adding...'});
+                //alert($scope.tempImgs.length);
+                if ($scope.tempImgs.length > 0) {
+                    angular.forEach($scope.tempImgs, function (value, key) {
+                        $scope.picData = getImgUrl(value);
+                        var imgName = value.substr(value.lastIndexOf('/') + 1);
+                        $scope.ftLoad = true;
+                        $scope.uploadPicture();
+                        $scope.image.push(imgName);
+                        console.log($scope.image);
+                    });
+                    jQuery('#camfilee').val($scope.image);
+                    console.log($scope.images);
+                    var data = new FormData(jQuery("#addRecordForm")[0]);
+                    callAjax("POST", domain + "doctrsrecords/save-consultation", data, function (response) {
+                        console.log(response);
+                        $ionicLoading.hide();
+                        if (angular.isObject(response.records)) {
+                            $scope.image = [];
+                            alert("Consultation Note added successfully!");
+//                            $timeout(function () {
+//                                $state.go('app.records-view', {'id': $scope.categoryId}, {}, {reload: true});
+//                            }, 1000);
+                        } else if (response.err != '') {
+                            alert('Please fill mandatory fields');
                         }
-                        $rootScope.$digest;
-                    },
-                    error: function (e) {
-                        console.log(e.responseText);
+                    });
+                } else {
+                    var data = new FormData(jQuery("#addRecordForm")[0]);
+                    callAjax("POST", domain + "doctrsrecords/save-consultation", data, function (response) {
+                        console.log(response);
+                        $ionicLoading.hide();
+                        if (angular.isObject(response.records)) {
+                            alert("Consultation Note added successfully!");
+//                            $timeout(function () {
+//                                $state.go('app.records-view', {'id': $scope.categoryId}, {}, {reload: true});
+//                            }, 1000);
+                        } else if (response.err != '') {
+                            alert('Please fill mandatory fields');
+                        }
+                    });
+                }
+
+                function getImgUrl(imageName) {
+                    var name = imageName.substr(imageName.lastIndexOf('/') + 1);
+                    var trueOrigin = cordova.file.dataDirectory + name;
+                    return trueOrigin;
+                }
+            };
+
+            $scope.getCase = function (type) {
+                console.log(type);
+                if (type == 1) {
+                    jQuery("#precase").addClass('hide');
+                    jQuery("#newcase").removeClass('hide');
+                } else if (type == 0) {
+                    jQuery("#precase").removeClass('hide');
+                    jQuery("#newcase").addClass('hide');
+                }
+            };
+            //Take images with camera
+            $scope.takePict = function (name) {
+                //console.log(name);
+                var camimg_holder = $("#camera-status");
+                camimg_holder.empty();
+                // 2
+                var options = {
+                    destinationType: Camera.DestinationType.FILE_URI,
+                    sourceType: Camera.PictureSourceType.CAMERA, // Camera.PictureSourceType.PHOTOLIBRARY
+                    allowEdit: false,
+                    encodingType: Camera.EncodingType.JPEG,
+                };
+                // 3
+                $cordovaCamera.getPicture(options).then(function (imageData) {
+                    //alert(imageData);
+                    onImageSuccess(imageData);
+                    function onImageSuccess(fileURI) {
+                        createFileEntry(fileURI);
                     }
+                    function createFileEntry(fileURI) {
+                        window.resolveLocalFileSystemURL(fileURI, copyFile, fail);
+                    }
+                    // 5
+                    function copyFile(fileEntry) {
+                        var name = fileEntry.fullPath.substr(fileEntry.fullPath.lastIndexOf('/') + 1);
+                        var newName = makeid() + name;
+                        window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (fileSystem2) {
+                            fileEntry.copyTo(
+                                    fileSystem2,
+                                    newName,
+                                    onCopySuccess,
+                                    fail
+                                    );
+                        },
+                                fail);
+                    }
+                    // 6
+                    function onCopySuccess(entry) {
+                        var imageName = entry.nativeURL;
+                        $scope.$apply(function () {
+                            $scope.tempImgs.push(imageName);
+                        });
+                        $scope.picData = getImgUrl(imageName);
+                        //alert($scope.picData);
+                        $scope.ftLoad = true;
+                        camimg_holder.append('<button class="button button-positive remove" onclick="removeCamFile()">Remove Files</button><br/>');
+                        $('<span class="upattach"><i class="ion-paperclip"></i></span>').appendTo(camimg_holder);
+                    }
+                    function fail(error) {
+                        console.log("fail: " + error.code);
+                    }
+                    function makeid() {
+                        var text = "";
+                        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                        for (var i = 0; i < 5; i++) {
+                            text += possible.charAt(Math.floor(Math.random() * possible.length));
+                        }
+                        return text;
+                    }
+                    function getImgUrl(imageName) {
+                        var name = imageName.substr(imageName.lastIndexOf('/') + 1);
+                        var trueOrigin = cordova.file.dataDirectory + name;
+                        return trueOrigin;
+                    }
+                }, function (err) {
+                    console.log(err);
                 });
             };
-            $scope.user = {};
-            $scope.user.email = "";
-            $scope.user.pin = "";
-            // We need this for the form validation
-            $scope.selected_tab = "";
-            $scope.$on('my-tabs-changed', function (event, data) {
-                $scope.selected_tab = data.title;
-            });
-        })
-
-        .controller('LogoutCtrl', function ($scope, $state, $ionicLoading, $ionicHistory, $timeout, $q, $rootScope) {
-//            window.localStorage.clear();
-//            $rootScope.userLogged = 0;
-//            $rootScope.$digest;
-//            $state.go('auth.login', {}, {reload: true});
 
 
-            $ionicLoading.show({template: 'Logging out....'});
-            window.localStorage.clear();
-            $rootScope.userLogged = 0;
-            $rootScope.$digest;
-            $timeout(function () {
-                $ionicLoading.hide();
-                $ionicHistory.clearCache();
-                $ionicHistory.clearHistory();
-                $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
-                $state.go('auth.walkthrough', {}, {reload: true});
-            }, 30);
+            $scope.uploadPicture = function () {
+                //$ionicLoading.show({template: 'Uploading..'});
+                var fileURL = $scope.picData;
+                var name = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+                var options = new FileUploadOptions();
+                options.fileKey = "file";
+                options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
+                options.mimeType = "image/jpeg";
+                options.chunkedMode = true;
+                var params = {};
+//                params.value1 = "someparams";
+//                params.value2 = "otherparams";
+//                options.params = params;
+                var uploadSuccess = function (response) {
+                    alert('Success  ====== ');
+                    console.log("Code = " + r.responseCode);
+                    console.log("Response = " + r.response);
+                    console.log("Sent = " + r.bytesSent);
+                    //$scope.image.push(name);
+                    //$ionicLoading.hide();
+                }
+                var ft = new FileTransfer();
+                ft.upload(fileURL, encodeURI(domain + 'doctrsrecords/upload-attachment'), uploadSuccess, function (error) {
+                    //$ionicLoading.show({template: 'Error in connecting...'});
+                    //$ionicLoading.hide();
+                }, options);
+            };
+            $scope.setFile = function (element) {
+                $scope.currentFile = element.files[0];
+                console.log('length = ' + element.files.length);
+                var image_holder = $("#image-holder");
+                image_holder.empty();
+                if (element.files.length > 0) {
+                    jQuery('#convalid').removeClass('hide');
+                    jQuery('#coninprec').removeClass('hide');
+                    //jQuery('#valid-till').attr('required', true);
+                    image_holder.append('<button class="button button-positive remove" onclick="removeFile()">Remove Files</button><br/>');
+                } else {
+                    jQuery('#convalid').addClass('hide');
+                    jQuery('#coninprec').addClass('hide');
+                    //jQuery('#valid-till').attr('required', false);
+                }
+
+                if (typeof (FileReader) != "undefined") {
+                    //loop for each file selected for uploaded.
+                    for (var i = 0; i < element.files.length; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+//                            $("<img />", {
+//                                "src": e.target.result,
+//                                "class": "thumb-image"
+//                            }).appendTo(image_holder);
+                            $('<span class="upattach"><i class="ion-paperclip"></i></span>').appendTo(image_holder);
+                        }
+                        image_holder.show();
+                        reader.readAsDataURL(element.files[0]);
+                    }
+                }
+            };
         })
 
         .controller('DoctorConsultationsCtrl', function ($scope, $http, $stateParams, $filter, $ionicPopup, $timeout, $ionicHistory, $filter, $state) {
@@ -843,7 +1011,6 @@ angular.module('your_app_name.controllers', [])
         })
 
         .controller('DoctorJoinCtrl', function ($ionicLoading, $scope, $http, $stateParams, $ionicHistory, $state, $window) {
-
             if (!get('loadedOnce')) {
                 store({'loadedOnce': 'true'});
                 $window.location.reload(true);
@@ -1089,26 +1256,26 @@ angular.module('your_app_name.controllers', [])
                 });
                 $scope.send = function () {
                     session.signal({data: jQuery("[name='msg']").val()},
-                    function (error) {
-                        if (error) {
-                            console.log("signal error ("
-                                    + error.code
-                                    + "): " + error.message);
-                        } else {
-                            var msg = jQuery("[name='msg']").val();
-                            $http({
-                                method: 'GET',
-                                url: domain + 'chat/add-patient-chat',
-                                params: {from: $scope.userId, to: $scope.user[0].id, msg: msg}
-                            }).then(function sucessCallback(response) {
-                                console.log(response);
-                                jQuery("[name='msg']").val('');
-                            }, function errorCallback(e) {
-                                console.log(e.responseText);
-                            });
-                            console.log("signal sent.");
-                        }
-                    }
+                            function (error) {
+                                if (error) {
+                                    console.log("signal error ("
+                                            + error.code
+                                            + "): " + error.message);
+                                } else {
+                                    var msg = jQuery("[name='msg']").val();
+                                    $http({
+                                        method: 'GET',
+                                        url: domain + 'chat/add-patient-chat',
+                                        params: {from: $scope.userId, to: $scope.user[0].id, msg: msg}
+                                    }).then(function sucessCallback(response) {
+                                        console.log(response);
+                                        jQuery("[name='msg']").val('');
+                                    }, function errorCallback(e) {
+                                        console.log(e.responseText);
+                                    });
+                                    console.log("signal sent.");
+                                }
+                            }
                     );
                 };
             }, function errorCallback(e) {

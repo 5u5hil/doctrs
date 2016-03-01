@@ -134,38 +134,8 @@ angular.module('your_app_name', [
                         controller: 'AppCtrl'
                     })
 
-                    .state('app.image-picker', {
-                        url: "/miscellaneous/image-picker",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/miscellaneous/image-picker.html",
-                                controller: 'ImagePickerCtrl'
-                            }
-                        }
-                    })
-
-                    .state('app.slider', {
-                        url: "/layouts/slider",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/layouts/slider.html"
-                            }
-                        }
-                    })
-
-                    //FEEDS
-                    .state('app.feeds-categories', {
-                        url: "/feeds-categories",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/feeds/feeds-categories.html",
-                                controller: 'FeedsCategoriesCtrl'
-                            }
-                        }
-                    })
-
-					 .state('app.doctor-settings', {
-						 cache: false,
+                    .state('app.doctor-settings', {
+                        cache: false,
                         url: "/doctor-settings",
                         views: {
                             'menuContent': {
@@ -174,7 +144,7 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
+
                     .state('app.doctor-consultations', {
                         cache: false,
                         url: "/doctor-consultations",
@@ -185,8 +155,8 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-				 .state('app.consultation-past', {
+
+                    .state('app.consultation-past', {
                         url: "/consultations/past",
                         views: {
                             'menuContent': {
@@ -195,8 +165,7 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					
+
                     .state('app.chat-appointments', {
                         cache: false,
                         url: "/chat-appointments",
@@ -218,8 +187,8 @@ angular.module('your_app_name', [
                         }
                     })
 
-			
-					.state('app.about', {
+
+                    .state('app.about', {
                         url: "/consultation-note/about",
                         views: {
                             'menuContent': {
@@ -228,8 +197,8 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-			
-					.state('app.patient-history', {
+
+                    .state('app.patient-history', {
                         url: "/consultation-note/patient-history",
                         views: {
                             'menuContent': {
@@ -238,8 +207,8 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-						.state('app.family-history', {
+
+                    .state('app.family-history', {
                         url: "/consultation-note/family-history",
                         views: {
                             'menuContent': {
@@ -248,8 +217,8 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					.state('app.measurement', {
+
+                    .state('app.measurement', {
                         url: "/consultation-note/measurement",
                         views: {
                             'menuContent': {
@@ -258,7 +227,7 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					.state('app.observation', {
+                    .state('app.observation', {
                         url: "/consultation-note/observation",
                         views: {
                             'menuContent': {
@@ -267,8 +236,8 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					.state('app.testresult', {
+
+                    .state('app.testresult', {
                         url: "/consultation-note/testresult",
                         views: {
                             'menuContent': {
@@ -277,7 +246,7 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					.state('app.investigations', {
+                    .state('app.investigations', {
                         url: "/consultation-note/investigations",
                         views: {
                             'menuContent': {
@@ -286,8 +255,8 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					.state('app.medication', {
+
+                    .state('app.medication', {
                         url: "/consultation-note/medication",
                         views: {
                             'menuContent': {
@@ -295,9 +264,9 @@ angular.module('your_app_name', [
                                 controller: 'ConsultationsNoteCtrl'
                             }
                         }
-                    })	
-					
-					.state('app.procedure', {
+                    })
+
+                    .state('app.procedure', {
                         url: "/consultation-note/procedure",
                         views: {
                             'menuContent': {
@@ -306,16 +275,16 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+
+
+
+
+
+
+
+
+
+
                     .state('app.evaluation', {
                         url: "/evaluation",
                         views: {
