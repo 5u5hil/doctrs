@@ -9114,6 +9114,17 @@ span.count-t{    display: inline-block;
             border: 1px #ccc solid;
             margin: 2px;
 }	
+
+.imgincard{margin-top:10px;}
+.imgincard img{max-width:100%;}
+h1.post-title{font-size:26px;}
+.iframevideo{position:absolute; width:100%!important; height:auto !important;}
+.framecontainer{position:relative; position: relative;
+    float: left;
+    width: 100%;
+    min-height: 151px;}
+.knowcondition{min-height:50px;}
+
 /* endcss */
 
 

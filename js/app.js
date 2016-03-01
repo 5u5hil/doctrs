@@ -441,6 +441,54 @@ angular.module('your_app_name', [
                         }
                     })
 
+					
+					
+					
+					 .state('app.content-library', {
+                        //  cache: false,
+                        url: "/content-library",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/content-library/content-library.html",
+                                controller: 'ContentLibraryCtrl'
+                            }
+							}
+                    })
+
+					
+					.state('app.content-library-list', {
+                        //  cache: false,
+                        url: "/content-library-list",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/content-library/content-library-list.html",
+                                controller: 'ContentLibraryListCtrl'
+                            }
+							}
+                    })
+					
+					 .state('app.content-library-details', {
+                        //  cache: false,
+                        url: "/content-library-details.html",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/content-library/content-library-details.html",
+                                controller: 'ContentLibraryDetailsCtrl'
+                            }
+							}
+                    })
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
                     .state('app.patient-record', {
                         url: "/patient-record",
                         views: {

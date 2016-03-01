@@ -5,6 +5,36 @@
 
   <ion-content>
   <div class="">
+  
+  <div class="item item-divider">Contact Information</div>
+					<label class="item item-input">
+						<span class="input-label">Mobile</span>
+						<input type="tel">
+						</label>
+  
+						<label class="item item-input">
+						<span class="input-label">Email</span>
+						<input type="email">
+						</label>
+					
+			  <div class="item item-divider">Basic Information</div>		
+					
+						<label class="item item-input">
+						<span class="input-label">Birth Date</span>
+						<input type="date">
+						</label>	
+					
+					
+						
+						<ion-list>
+							<div class="row">
+							<div class="col"><span class="input-label"style="padding: 7px 10px 7px 7px;">Gender</span></div>
+							
+							<div class="col cradio"><ion-radio ng-model="choiceb" ng-value="'A'" checked>Male</ion-radio></div>
+							<div class="col cradio"> <ion-radio ng-model="choiceb" ng-value="'B'">Female</ion-radio></div>
+							</div>
+							</ion-list>
+					
 					
 						<label class="item item-input item-select">
 							<div class="input-label">
@@ -18,77 +48,42 @@
 							
 							</select>
 							</label>
-					
-					
-                       <label class="item item-input">
-						<span class="input-label">Present History</span>
-						<input type="text">
-						</label>
-					  
-						  <label class="item item-input">
-							<span class="input-label">Past History</span>
-							<input type="text">
-							</label>
-						  <label class="item item-input">
-							<span class="input-label">Personal History</span>
-							<input type="text">
-							</label>
-						  <label class="item item-input">
-							  <span class="input-label">Family History</span>
-							<input type="text">
-							</label>
 							
-							  <label class="item item-input">
-							<span class="input-label">Menstrual & Obstretic History</span>
-							<input type="text">
-							</label>
-							  <label class="item item-input">
-							<span class="input-label">Socio-economic status</span>
-							<input type="text">
-							</label>
-						
-							<label class="item item-input item-select">
-							<div class="input-label">
-							Immunization History
+							<div class="item item-divider">Known Conditions
+								
+								<button class="Cstmbutn button-small mb15 col-25" style="float:right; padding:0;" ng-controller="treaTmentp" ng-click="modal.show()"><span class="icon ion-plus-circled"></span> Add </button>
+							</div>	
+							 	
+							<div class="knowcondition"> </div>
+							
+							
+							
+							   <div class="flexcont">
+								<div class="innerdiv col-50 brdright">
+									<div class="item item-divider">Allergies</div>
+									<div class="p10">
+										<button  class="Cstmbutn button-small mb15" ng-controller="noteType" ng-click="modal.show()"><span class="icon ion-plus-circled"></span> Add</button>
+										<!-- <div class="custombtn" ng-click="gotopage('app.patient-history')">Patient</div>  -->
+									</div>
+								</div>
+								<div class="innerdiv col-50">
+									<div class="item item-divider">Vaccinations</div>
+									<div class="p10">
+										<button class="Cstmbutn button-small mb15" ng-controller="treaTmentp" ng-click="modal.show()"><span class="icon ion-plus-circled"></span> Add </button>	
+									</div>
+								</div>
 							</div>
-						 	<select>
-							<option selected>option1</option>
-							  <option >Option2</option>
-							  <option>Option3</option>
-							  <option>Option4</option>
 							
-							</select>
-							</label>
-						
-						
-						
-						
-						
-							<div class="item item-divider">Allergy Status</div>
-							<ion-list>
-							<div class="row">
-							<div class="col cradio"><ion-radio ng-model="choice" ng-value="'A'" checked>Option</ion-radio></div>
-							<div class="col cradio"> <ion-radio ng-model="choice" ng-value="'B'">Option</ion-radio></div>
-							</div>
-							</ion-list>
-						
-						
-						<label class="item item-input">
-						<span class="input-label">Allergy History</span>
-						<input type="text">
-						</label>
 							
-					  
+							
+							
+							
+							
+							
+							
+							
 					
-					  
-					  	<div class="item item-divider mt10">Other Informations
-						<div class="ion-plus-circled icon-addbtn"></div>
-						</div>
-						<label class="item item-input">
-						<input type="text" placeholder="Enter Text">
-						</label>
-					  
-					  
+					
 					  
                     </div>
                   

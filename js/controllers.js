@@ -147,20 +147,52 @@ angular.module('your_app_name.controllers', [])
         .controller('PatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
+		})
+		
+		
+	.controller('ContentLibraryListCtrl',function($scope,$http,$stateParams){
+			$scope.category_sources = [];
+			$scope.categoryId = $stateParams.categoryId;
+		})
 
-            $ionicModal.fromTemplateUrl('patient-add', {
+		.controller('ContentLibraryCtrl',function($scope,$http,$stateParams){
+			$scope.category_sources = [];
+			$scope.categoryId = $stateParams.categoryId;
+		})
+
+		.controller('ContentLibraryDetailsCtrl',function($scope,$http,$stateParams){
+			$scope.category_sources = [];
+			$scope.categoryId = $stateParams.categoryId;
+		})	
+				
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		.controller('PatientAddCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+			$ionicModal.fromTemplateUrl('patient-add', {
                 scope: $scope
             }).then(function (modal) {
                 $scope.modal = modal;
-            });
+            })
 
             $scope.submitmodal = function () {
                 $scope.modal.hide();
-            };
-
-
-        })
-
+            }
+			
+			})
+		
+		
+		
+		
         .controller('PatientRecordCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
