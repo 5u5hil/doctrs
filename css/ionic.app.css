@@ -8565,7 +8565,7 @@ a.posts-list{text-decoration:none;}
 select.selectheader{ width:80%; padding:3px; border:0; text-indent:35%;}
 .consultview .post-footer,.consultview .post-footer .row{padding:0;}
 
-.card-content{    padding: 15px 15px 5px 15px; text-align:justify; position:relative; display:block; text-decoration:none;}
+.card-content{    padding: 10px 10px 5px 10px; text-align:justify; position:relative; display:block; text-decoration:none;}
 .user-image-circle{width:55px; height:55px; border-radius:50%; border:1px #ccc solid; margin:0 15px 0px 0; float:left; display:inline-block;}
 .cbtn{ text-align:center; padding:3px 0; margin:1px; background:#eee; display:block; text-decoration:none;}
 .p0{padding:0;}
@@ -8744,7 +8744,7 @@ iframe.videochat{position:absolute; width:100%; height: 100%;}
 .m10{margin:10px 0;}
 .cardheading{
     font-size: 15px;
-    margin: 0px 0 20px 0;
+    margin: 0px 0 10px 0;
     font-weight: bold;
     border-bottom: 1px #eee solid;
     padding: 0px 0 8px 0; position:relative;
@@ -9044,7 +9044,7 @@ span.count-t{    display: inline-block;
 .flexcont{
 	display: -webkit-flex; /* Safari */
     display: flex; /* Safari */
-	    border-bottom: 1px #eee solid;
+	    border-bottom: 1px #eee solid; width:100%;
 }
 .flexcont div.innerdiv{}
 .brdright{border-right:1px #eee solid;}
@@ -9054,12 +9054,39 @@ span.count-t{    display: inline-block;
     background: #fff;
     border: 1px #28a54c solid;
     color: #28a54c;
-    padding: 5px 0; text-align:center;
+    padding: 5px 0; text-align:center; display:block; text-decoration:none;
 	}
 	.Cstmbutn span{color: #28a54c; padding:0 2px;}
-.mb15{ margin-bottom: 15px;}
-
+.mb15{ margin-bottom: 15px !important;}
+.coltitle{    vertical-align: middle;
+    font-weight: bold;
+    line-height: 35px;}
+	.brdtb{   
+    border-bottom: 1px #eee solid;}
+	.sbox{ border:1px #387EF5 solid; display:block;  text-align:center; position:relative; height:116px;}
+	.bxtitle{ 
+    width: 100%;
+ line-height: 25px;
+    text-align: center; font-size:18px; color:#387EF5;     margin-top: 35px;}
+	.sboxcontent{    line-height: 22px;
+    text-align: center;
+    font-size: 18px;
+    padding: 10px 0;
+    color: #387EF5;}
+	.bxspan{color: #387EF5; font-weight:bold; padding-top:5px;}
+	.mb0{margin-bottom:0;}
+	.count2{    
+	    float: right;
+    font-weight: bold;
+    font-size: 16px;
+    display: block;
+    width: 100%;
 	
+	}
+	.twocolumn{width: 105%;
+    float: left;}
+	.twocolumn a.item{width:50%; float:left; text-align:center;}
+	.txt-right{text-align:right;}
 	
 	/* endcss */
 
