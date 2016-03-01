@@ -58,7 +58,6 @@ angular.module('your_app_name.controllers', [])
             $scope.doLogIn = function () {
                 $ionicLoading.show({template: 'Loading...'});
                 var data = new FormData(jQuery("#loginuser")[0]);
-
                 $.ajax({
                     type: 'POST',
                     url: domain + "chk-dr-user",
@@ -103,7 +102,65 @@ angular.module('your_app_name.controllers', [])
                 $scope.selected_tab = data.title;
             });
         })
+        .controller('EvaluationCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
 
+        })
+        .controller('PatientChatCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+        })
+
+        .controller('MyCtrl', function ($scope, $ionicTabsDelegate) {
+            $scope.selectTabWithIndex = function (index) {
+                $ionicTabsDelegate.select(index);
+            }
+        })
+
+
+        .controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+        })
+        .controller('PatientListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+        })
+
+        .controller('CreatedbyuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+        })
+
+
+
+        .controller('PatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+            $ionicModal.fromTemplateUrl('patient-add', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+
+
+        })
+
+        .controller('PatientRecordCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+        
         .controller('DoctorSettingsCtrl', function ($scope, $http, $stateParams, $ionicModal, $ionicLoading, $state) {
             $http({
                 method: 'GET',

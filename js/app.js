@@ -314,7 +314,21 @@ angular.module('your_app_name', [
                                 controller: 'TreatmentPlanCtrl'
                             }
                         }
+                    })  
+					
+					.state('app.createdbyu', {
+                        url: "/createdbyu",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/createdbyu.html",
+                                controller: 'CreatedbyuCtrl'
+                            }
+                        }
                     })
+					
+					
+					
+					
 
                     .state('app.treatment-plan-list', {
                         url: "/treatmentplan-list",
