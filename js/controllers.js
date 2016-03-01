@@ -160,7 +160,7 @@ angular.module('your_app_name.controllers', [])
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
-        
+
         .controller('DoctorSettingsCtrl', function ($scope, $http, $stateParams, $ionicModal, $ionicLoading, $state) {
             $http({
                 method: 'GET',
@@ -273,8 +273,30 @@ angular.module('your_app_name.controllers', [])
                         $state.go('app.doctor-settings');
                     }
                 });
-            }
+            };
+        })
 
+        .controller('PatientListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.userId = window.localStorage.getItem('id');
+            $http({
+                method: 'GET',
+                url: domain + 'doctorsapp/get-all-patients',
+                params: {userId: $scope.userId}
+            }).then(function successCallback(response) {
+                console.log(response.data);
+                $scope.users = response.data;
+                var tmp = {};
+                for (i = 0; i < $scope.users.length; i++) {
+                    var letter = $scope.users[i].lname.charAt(0);
+                    if (tmp[ letter] == undefined) {
+                        tmp[ letter] = []
+                    }
+                    tmp[ letter].push($scope.users[i]);
+                }
+                $scope.repeaterHeader = tmp;
+            }, function errorCallback(e) {
+                console.log(e);
+            });
         })
 
         .controller('EvaluationCtrl', function ($scope, $http, $stateParams, $ionicModal) {
@@ -300,11 +322,7 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
 
         })
-        .controller('PatientListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
 
-        })
         .controller('PatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
