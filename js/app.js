@@ -326,7 +326,15 @@ angular.module('your_app_name', [
                         }
                     })
 					
-					
+						.state('app.sharedwithu', {
+                        url: "/sharedwithu",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/sharedwithu.html",
+                                controller: 'SharedwithuCtrl'
+                            }
+                        }
+                    })
 					
 					
 

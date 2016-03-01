@@ -1,25 +1,17 @@
 <ion-view class="category-detail-view">
     <ion-nav-title>
-        <span>Created by you</span>
+        <span>Bhavana</span>
     </ion-nav-title>
     <ion-content>
-        <!-- for select list long pressing  - on-hold='selectMe($event)' | orderBy:'-count' -->
+   
 
-		<div class="row tabnav" style="margin-top:44px;">
-		<div class="col"><a nav-clear menu-close ui-sref="#" class="active" >Created by you</a></div>
-		<div class="col"><a nav-clear menu-close ui-sref="#">Shared with you</a></div>
+		<div class="row tabnav">
+		<div class="col"><a  ui-sref="app.createdbyu" class="active" >Created by you</a></div>
+		<div class="col"><a  ui-sref="app.sharedwithu">Shared with you</a></div>
 	 </div>	
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		
 		
         <div class="list cdetail-list">
@@ -71,40 +63,17 @@ overflow: auto;">
 	
 	
     <div class="footerbar">
-        <a class="button btn-delete" ui-sref="#" ng-click="data.showDelete = !data.showDelete; data.showReorder = false"><i class="icon ion-trash-b"></i> Delete</a>
+        <a class="button btn-delete" ui-sref="#"><i class="icon ion-trash-b"></i> Delete</a>
 		
-        <a class="button btn-share" ui-sref="app.share"  ng-controller="ShareCtrl" ng-click="modal.show()"><i class="icon ion-android-share-alt" ></i> Share</a>
+        <a class="button btn-share" ui-sref="app.share"><i class="icon ion-android-share-alt" ></i> Share</a>
 		
         <!-- <a class="button" ng-controller="AdsCtrl" ng-click="manageAdMob()" ><i class="icon ion-android-add-circle"></i> Add</a> -->
 		
-		 <a class="button btn-add" ng-controller="AdsCtrl" ng-click="modal.show()" ><i class="icon ion-android-add-circle"></i> Add</a>
+		 <a class="button btn-add" ><i class="icon ion-android-add-circle"></i> Add</a>
 	</div>
 
 </ion-view>
 
 
- <script id="share" type="text/ng-template">
-        <ion-modal-view>
-        <ion-header-bar class="bar app-top-bar">
-        <h1 class="title">Share</h1>	 
-       
-        </ion-header-bar>
-        <ion-content>
-			<ion-list class="sharelist">
-
-			  <ion-checkbox >Dr.Deepam Shah <br/><span class="f13">Dermatologist, cosmetologist</span></ion-checkbox>
-			  <ion-checkbox >Hitakshi Joshi<br/><span class="f13">Counselling, Psychologist</span></ion-checkbox>
-			  <ion-checkbox >Dr.Deepam Shah <br/><span class="f13">Dermatologist, cosmetologist</span></ion-checkbox>
-			  <ion-checkbox >Hitakshi Joshi<br/><span class="f13">Counselling, Psychologist</span></ion-checkbox>
-			 
-
-			</ion-list>
-        </ion-content>
-		<div class="fixedbar">
-			<div class="button btn-delete" ng-click="modal.hide()"><i class="icon ion-close"></i> Cancel</div>
-			<div class="button btn-share" ><i class="icon ion-android-share-alt" ></i> Share</div>
-		</div>
-        </ion-modal-view>
-</script>
 
 

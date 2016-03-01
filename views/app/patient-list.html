@@ -2,88 +2,140 @@
     <ion-nav-title>
         <span>Patients list</span>
     </ion-nav-title>
+
     <div class="bar bar-subheader cbar divider-2" style="position:relative;">
-        <div class="row">
-            <div class="col-50"><a  ui-sref="app.settings"><h4 class="subhead"><i class="icon ion-funnel"></i> Filter</h4></a></div>
-            <div class="col-50"><h4 class="subhead">Sort <i class="icon ion-ios-arrow-thin-down"></i></h4> </div>
+
+        <!-- 	<div class="bar bar-subheader cbar divider-2" style="position:relative;">
+        >>>>>>> origin/master
+                <div class="row">
+                    <div class="col-50"><a  ui-sref="app.settings"><h4 class="subhead"><i class="icon ion-funnel"></i> Filter</h4></a></div>
+                    <div class="col-50"><h4 class="subhead">Sort <i class="icon ion-ios-arrow-thin-down"></i></h4> </div>
+                </div>
+            </div> -->
+        <ion-content>
+
+            <div class="list list-inset mt60">
+                <label class="item item-input">
+                    <i class="icon ion-search placeholder-icon"></i>
+                    <input type="text" placeholder="Search">
+                </label>
+            </div>
+            <div class="list" ng-repeat="user in users| orderBy:'fname'">
+                <a class="item" ui-sref="app.patient">
+                    <h2>{{user.fname}} {{user.lname}}</h2>
+                    <p>{{user.email}}, &nbsp;   +91 {{user.phone}}</p>
+                </a>
+            </div>
+            <div class="list">
+                <div class="item item-divider">A</div>
+                <a class="item" ui-sref="app.patient">
+                    <h2>Amar</h2>
+                    <p>amar@infiniteit.biz, &nbsp;   +91 7666163366</p>
+                </a>
+                <div class="item item-divider">B</div>
+                <a class="item" ui-sref="app.patient">
+                    <h2>Bhavana</h2>
+                    <p>bhavana@infiniteit.biz  &nbsp; +91 7666163366</p>
+                </a>
+
+                <a class="item" ui-sref="#">
+                    <h2>Binny</h2>
+                    <p>binny@infiniteit.biz, &nbsp;  +91 7666163366</p>
+                </a>
+
+                <a class="item" ui-sref="#">
+                    <h2>Bhavesh</h2>
+                    <p>bhavesh@infiniteit.biz, &nbsp;  +91 7666163366</p>
+                </a>
+                <a class="item" ui-sref="#">
+                    <h2>Bhavana</h2>
+                    <p>Bhavana@infiniteit.biz, &nbsp;  +91 7666163366</p>
+                </a>
+
+
+                <div class="item item-divider">J</div>
+                <a class="item" ui-sref="#">
+                    <h2>Jigar</h2>
+                    <p> jigar@infiniteit.biz, &nbsp; +91 7666163366</p>
+                </a>
+                <a class="item" ui-sref="#">
+                    <h2>Jainam</h2>
+                    <p>jainam@infiniteit.biz, &nbsp; +91 7666163366</p>
+                </a>
+
+
+                <div class="item item-divider">L</div>
+                <a class="item" ui-sref="#">
+                    <h2>Leena</h2>
+                    <p>leena@infiniteit.biz &nbsp; +91 7666163366</p>
+                </a>
+
+                <div class="item item-divider">N</div>
+                <a class="item" href="#">
+                    <h2>Naresh</h2>
+                    <p>naresh@infiniteit.biz, &nbsp; +91 7666163366</p>
+                </a>
+
+
+
+
+                <div class="item item-divider">S</div>
+                <a class="item" href="#">
+                    <h2>Naresh</h2>
+                    <p>sushil@infiniteit.biz, &nbsp;  +91 7666163366</p>
+                </a>
+            </div>
+        </ion-content>
+        <div class="bar bar-footer bar-positive">
+            <div class="title"><i class="ion-plus-circled fwhite"></i> Add</div>
         </div>
-    </div>
-    <ion-content>
-        <div class="list list-inset mt60">
-            <label class="item item-input">
-                <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" placeholder="Search">
-            </label>
-        </div>
-        <div class="list" ng-repeat="user in users| orderBy:'fname'">
-            <a class="item" ui-sref="app.patient">
-                <h2>{{user.fname}} {{user.lname}}</h2>
-                <p>{{user.email}}, &nbsp;   +91 {{user.phone}}</p>
-            </a>
-        </div>
-        <div class="list">
-            <div class="item item-divider">A</div>
-            <a class="item" ui-sref="app.patient">
-                <h2>Amar</h2>
-                <p>amar@infiniteit.biz, &nbsp;   +91 7666163366</p>
-            </a>
-            <div class="item item-divider">B</div>
-            <a class="item" ui-sref="app.patient">
-                <h2>Bhavana</h2>
-                <p>bhavana@infiniteit.biz  &nbsp; +91 7666163366</p>
-            </a>
-
-            <a class="item" ui-sref="#">
-                <h2>Binny</h2>
-                <p>binny@infiniteit.biz, &nbsp;  +91 7666163366</p>
-            </a>
-
-            <a class="item" ui-sref="#">
-                <h2>Bhavesh</h2>
-                <p>bhavesh@infiniteit.biz, &nbsp;  +91 7666163366</p>
-            </a>
-            <a class="item" ui-sref="#">
-                <h2>Bhavana</h2>
-                <p>Bhavana@infiniteit.biz, &nbsp;  +91 7666163366</p>
-            </a>
-
-
-            <div class="item item-divider">J</div>
-            <a class="item" ui-sref="#">
-                <h2>Jigar</h2>
-                <p> jigar@infiniteit.biz, &nbsp; +91 7666163366</p>
-            </a>
-            <a class="item" ui-sref="#">
-                <h2>Jainam</h2>
-                <p>jainam@infiniteit.biz, &nbsp; +91 7666163366</p>
-            </a>
-
-
-            <div class="item item-divider">L</div>
-            <a class="item" ui-sref="#">
-                <h2>Leena</h2>
-                <p>leena@infiniteit.biz &nbsp; +91 7666163366</p>
-            </a>
-
-            <div class="item item-divider">N</div>
-            <a class="item" href="#">
-                <h2>Naresh</h2>
-                <p>naresh@infiniteit.biz, &nbsp; +91 7666163366</p>
-            </a>
-
-
-
-
-            <div class="item item-divider">S</div>
-            <a class="item" href="#">
-                <h2>Naresh</h2>
-                <p>sushil@infiniteit.biz, &nbsp;  +91 7666163366</p>
-            </a>
-        </div>
-    </ion-content>
-    <div class="bar bar-footer bar-positive">
-        <div class="title"><i class="ion-plus-circled fwhite"></i> Add</div>
-    </div>
 
 </ion-view>
+
+
+<script id="addp" type="text/ng-template">
+    <ion-modal-view>
+    <ion-header-bar class="bar app-top-bar">
+    <h1 class="title">Actions</h1>	 
+    <div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-close"></span></div>
+    </ion-header-bar>
+    <ion-content>
+
+
+    <label class="item item-input item-floating-label">
+    <span class="input-label" >Name</span>
+    <input type="text" placeholder="Name">
+    </label>
+
+
+
+    <label class="item item-input item-floating-label">
+    <span class="input-label">Email</span>
+    <input type="email"  placeholder="Email">
+    </label>
+
+    <label class="item item-input item-floating-label">
+    <span class="input-label">Mobile</span>
+    <input type="tel" placeholder="Mobile">
+    </label>
+
+
+
+    <label class="item item-input item-floating-label">
+    <span class="input-label">Password</span>
+    <input type="tel" placeholder="Your Password">
+    </label>
+
+
+
+
+
+
+    </ion-content>
+    <div class="fixedbar">
+    <div class="button btn-add" nav-clear ng-click="modal.hide()" ><i class="ion-check"></i> Submit</div>
+    </div>
+    </ion-modal-view>
+</script>
+
 

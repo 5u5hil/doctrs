@@ -46,7 +46,6 @@ angular.module('your_app_name.controllers', [])
                         $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
                         $state.go('auth.walkthrough', {}, {reload: true});
                     }, 30);
-
                 }, function errorCallback(e) {
                     console.log(e);
                 });
@@ -105,12 +104,10 @@ angular.module('your_app_name.controllers', [])
         .controller('EvaluationCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-
         })
         .controller('PatientChatCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-
         })
 
         .controller('MyCtrl', function ($scope, $ionicTabsDelegate) {
@@ -123,37 +120,34 @@ angular.module('your_app_name.controllers', [])
         .controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-
         })
         .controller('PatientListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-
         })
 
         .controller('CreatedbyuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-
         })
 
+        .controller('SharedwithuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
 
 
         .controller('PatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-
             $ionicModal.fromTemplateUrl('patient-add', {
                 scope: $scope
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
-
-
         })
 
         .controller('PatientRecordCtrl', function ($scope, $http, $stateParams, $ionicModal) {
@@ -252,7 +246,6 @@ angular.module('your_app_name.controllers', [])
                             alert('End day cannot be earlier than start day');
                         }
                         $state.go('app.doctor-settings', {}, {reload: true});
-
                     },
                     error: function (e) {
                         //  console.log(e.responseText);
@@ -297,17 +290,23 @@ angular.module('your_app_name.controllers', [])
             }, function errorCallback(e) {
                 console.log(e);
             });
+            $ionicModal.fromTemplateUrl('addp', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
         })
 
         .controller('EvaluationCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-
         })
         .controller('PatientChatCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-
         })
 
         .controller('MyCtrl', function ($scope, $ionicTabsDelegate) {
@@ -320,26 +319,22 @@ angular.module('your_app_name.controllers', [])
         .controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-
         })
 
         .controller('PatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-
         })
 
         .controller('PatientRecordCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-
         })
 
 
         .controller('PatientConsultCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-
         })
 
         .controller('PlaintestCtrl', function ($scope, $ionicModal) {
@@ -348,7 +343,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
@@ -360,7 +354,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
@@ -373,7 +366,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
@@ -385,7 +377,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
@@ -396,7 +387,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
@@ -408,7 +398,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
@@ -419,7 +408,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
@@ -432,11 +420,9 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
-
             $scope.modalclose = function (ulink) {
                 $state.go(ulink);
                 $scope.modal.hide();
@@ -451,11 +437,9 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
-
             $scope.modalclose = function (ulink) {
                 $state.go(ulink);
                 $scope.modal.hide();
@@ -468,7 +452,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
@@ -479,7 +462,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
@@ -491,7 +473,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
@@ -503,7 +484,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
@@ -515,7 +495,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
@@ -527,7 +506,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
@@ -557,7 +535,6 @@ angular.module('your_app_name.controllers', [])
             }, function errorCallback(response) {
                 console.log(response);
             });
-
             $scope.gotopage = function (glink) {
                 $state.go(glink);
             };
@@ -612,7 +589,6 @@ angular.module('your_app_name.controllers', [])
                     return trueOrigin;
                 }
             };
-
             $scope.getCase = function (type) {
                 console.log(type);
                 if (type == 1) {
@@ -691,8 +667,6 @@ angular.module('your_app_name.controllers', [])
                     console.log(err);
                 });
             };
-
-
             $scope.uploadPicture = function () {
                 //$ionicLoading.show({template: 'Uploading..'});
                 var fileURL = $scope.picData;
@@ -874,7 +848,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.canceldctr = modal;
             });
-
             $scope.submitmodal = function () {
                 console.log($scope.can.opt);
                 if ($scope.can.opt != '') {
@@ -901,7 +874,6 @@ angular.module('your_app_name.controllers', [])
             }).then(function (modal) {
                 $scope.canceldr = modal;
             });
-
             $scope.submitmodal = function () {
                 console.log($scope.can.opt);
                 if ($scope.can.opt != '') {
@@ -991,7 +963,6 @@ angular.module('your_app_name.controllers', [])
                 $scope.products = response.data.products;
                 $scope.time = response.data.time;
                 $scope.endTime = response.data.end_time;
-
             }, function errorCallback(e) {
                 console.log(e);
             });
@@ -1094,7 +1065,6 @@ angular.module('your_app_name.controllers', [])
             } else {
                 // set the flag and reload the page
                 window.localStorage.removeItem('loadedOnce');
-
             }
             //$ionicHistory.clearCache();
             $scope.appId = $stateParams.id;
@@ -1111,7 +1081,6 @@ angular.module('your_app_name.controllers', [])
                 var apiKey = '45121182';
                 var sessionId = response.data.app[0].appointments.opentok_session_id;
                 var token = response.data.oToken;
-
                 if (OT.checkSystemRequirements() == 1) {
                     session = OT.initSession(apiKey, sessionId);
                     $ionicLoading.hide();
@@ -1123,13 +1092,11 @@ angular.module('your_app_name.controllers', [])
                 session.on({
                     streamDestroyed: function (event) {
                         event.preventDefault();
-
                         jQuery("#subscribersDiv").html("Patient Left the Consultation");
                     },
                     streamCreated: function (event) {
 
                         subscriber = session.subscribe(event.stream, 'subscribersDiv', {subscribeToAudio: true, insertMode: "replace", width: "100%", height: "100%"});
-
                     },
                     sessionDisconnected: function (event) {
                         if (event.reason === 'networkDisconnected') {
@@ -1144,7 +1111,6 @@ angular.module('your_app_name.controllers', [])
                     } else {
                         publisher = OT.initPublisher('myPublisherDiv', {width: "30%", height: "30%"});
                         session.publish(publisher);
-
                         var mic = 1;
                         var mute = 1;
                         jQuery(".muteMic").click(function () {
@@ -1176,7 +1142,6 @@ angular.module('your_app_name.controllers', [])
                     subscriber.destroy();
                     session.unsubscribe();
                     session.disconnect();
-
                     $ionicHistory.nextViewOptions({
                         historyRoot: true
                     })
@@ -1254,7 +1219,6 @@ angular.module('your_app_name.controllers', [])
                             console.log(response.data);
                             if (response.data == 'success') {
                                 alert('Your appointment is cancelled successfully.');
-
                             } else {
                                 alert('Sorry your appointment is not cancelled.');
                             }
@@ -1268,13 +1232,11 @@ angular.module('your_app_name.controllers', [])
                     }
                 }
             };
-
             $scope.showAlert = function () {
                 var alertPopup = $ionicPopup.alert({
                     title: 'Alert Box',
                     template: '<ion-checkbox ng-model="filter.snomed1">Snomed1</ion-checkbox><ion-checkbox ng-model="filter.snomed2">Snomed2</ion-checkbox><ion-checkbox ng-model="filter.snomed3">Snomed3</ion-checkbox>'
                 });
-
                 alertPopup.then(function (res) {
                     console.log('Thank you for not eating my delicious ice cream cone');
                 });
@@ -1293,7 +1255,6 @@ angular.module('your_app_name.controllers', [])
                 $scope.user = response.data.userData;
                 $scope.products = response.data.products;
                 $scope.time = response.data.time;
-
             }, function errorCallback(e) {
                 console.log(e);
             });
