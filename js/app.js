@@ -165,6 +165,28 @@ angular.module('your_app_name', [
                             }
                         }
                     })
+					
+					
+					  .state('app.test', {
+						  url: "/test",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/test.html",
+                                controller: 'TestCtrl'
+                            }
+                        }
+                    })
+					
+					.state('app.chatlist', {
+						  url: "/chatlist",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/chatlist.html",
+                                controller: 'ChatListCtrl'
+                            }
+                        }
+                    })
+					
 
                     .state('app.chat-appointments', {
                         cache: false,

@@ -1118,6 +1118,15 @@ angular.module('your_app_name.controllers', [])
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
+		
+		.controller('ChatListCtrl', function ($scope, $http, $stateParams) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+		
+		
+		
+		
 
         .controller('DoctorJoinCtrl', function ($ionicLoading, $scope, $http, $stateParams, $ionicHistory, $state, $window) {
             if (!get('loadedOnce')) {
@@ -1322,6 +1331,92 @@ angular.module('your_app_name.controllers', [])
                 console.log(e);
             });
         })
+		
+		
+		.controller('TestCtrl',function($scope, $http, $stateParams){
+			$scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+			
+			$scope.returnjs=function(){
+				jQuery(function(){
+					var wh=jQuery('window').height();
+						jQuery('#chat').css('height',wh);
+					//	console.log(wh);
+					
+					})
+				
+				}
+			
+			$scope.returnjs();
+			
+			$scope.iframeHeight = $(window).height()-44;
+			console.log($scope.iframeHeight);
+			$('#chat').css('height',$scope.iframeHeight);
+			
+			
+			
+		var sessionId = '2_MX40NTEyMTE4Mn5-MTQ1NjkwMTY3Mzc3Nn5oRVBFRjlMZ3RYeE1yRHJkOHpWTDJRZHh-UH4';
+	
+      var tokenAlice = 'T1==cGFydG5lcl9pZD00NTEyMTE4MiZzaWc9NWE3NzFlYWNkNmQxMzUyNDZhZGUxNjFiMmQ4MjU5YzM5ODllODBkZTpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5URXlNVEU0TW41LU1UUTFOamt3TVRZM016YzNObjVvUlZCRlJqbE1aM1JZZUUxeVJISmtPSHBXVERKUlpIaC1VSDQmY3JlYXRlX3RpbWU9MTQ1NjkwMTgwMCZub25jZT0wLjI2NDE0MDczNzM5MzkxNjQmZXhwaXJlX3RpbWU9MTQ1Njk4ODA2NSZjb25uZWN0aW9uX2RhdGE9';
+	  
+	  $scope.tokenAlice=tokenAlice;
+      var tokenBob = 'T1==cGFydG5lcl9pZD00NTEyMTE4MiZzaWc9NDljODBiZTQ1NjQzZTVhYzQ4NTY0ZjZmMThmZmQwZWQwNWUwZjg0ODpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5URXlNVEU0TW41LU1UUTFOamt3TVRZM016YzNObjVvUlZCRlJqbE1aM1JZZUUxeVJISmtPSHBXVERKUlpIaC1VSDQmY3JlYXRlX3RpbWU9MTQ1NjkwMTgyOCZub25jZT0wLjM2MDU0MjkzODY3NjQ2NjkmZXhwaXJlX3RpbWU9MTQ1Njk4ODA2NSZjb25uZWN0aW9uX2RhdGE9';
+	 $scope.tokenBob=tokenBob;
+      // Add here your API key
+      var apiKey = '45121182';
+		 var session = OT.initSession(apiKey, sessionId);
+		  var chatWidget = new OTSolution.TextChat.ChatWidget({
+			session: session,
+			container: '#chat'
+		  });
+		
+	 $scope.connect=function(token) {
+        disableButtons();
+        session.connect(token, function (err) {
+          if (!err) {
+            showConnection();
+			}
+          else {
+            console.error(err);
+            enableButtons();
+          }
+        });
+      }	
+		
+	$scope.showConnection=function() {
+        var connectedAs = document.getElementById('connected-as');
+        connectedAs.textContent = 'Connected as ' + session.connection.data;
+      }
+		
+		
+	    $scope.disableButtons =  function() {
+        setButtons(false);
+      }
+
+      $scope.enableButtons=function() {
+        setButtons(true);
+      }
+
+      $scope.setButtons=function(isEnabled) {
+		  var connectedAs = document.getElementById('connected-as');
+        var buttons = connectedAs.querySelectorAll('button');
+        buttons = Array.prototype.slice.call(buttons);
+        buttons.forEach(function (button) { button.disabled = !isEnabled; });
+      }	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			
+			})
+		
+		
+		
         .controller('JoinChatCtrl', function ($scope, $http, $stateParams, $sce, $filter) {
             $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
             $scope.appId = $stateParams.id;

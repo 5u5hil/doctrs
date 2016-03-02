@@ -9124,7 +9124,14 @@ h1.post-title{font-size:26px;}
     width: 100%;
     min-height: 151px;}
 .knowcondition{min-height:50px;}
-
+.chatlist{}
+.chatlist .item  .title{ font-weight:bold; font-size:15px;}
+.chatlist .item  .description{ text-indent:3px; font-size:13px;}
+.chatlist .listright { float: right;
+    position: absolute;
+    right: 15px;
+    top: 37%;
+    font-size: 12px; }
 /* endcss */
 
 
