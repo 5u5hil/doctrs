@@ -210,4 +210,6 @@ section.ot-bubble.mine{text-align:left;     margin-left: 0.5em;}
 .ot-bubble.mine .ot-message-timestamp{float: right;}
 
 .ot-textchat .ot-message-timestamp, .ot-bubble .ot-message-content{color:#fff;}
-.ot-bubble.mine .ot-textchat .ot-message-timestamp, .ot-bubble.mine .ot-message-content{color:#000;}
+.ot-bubble.mine   .ot-message-timestamp, .ot-bubble.mine .ot-message-content{color:#000 !important;}
+
+
