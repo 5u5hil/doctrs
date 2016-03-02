@@ -469,7 +469,7 @@ angular.module('your_app_name.controllers', [])
 
 
 
-        .controller('treaTmentp', function ($scope, $ionicModal, $state) {
+        .controller('treaTmentpCtrl', function ($scope, $ionicModal, $state) {
             $ionicModal.fromTemplateUrl('treatmentp', {
                 scope: $scope
             }).then(function (modal) {
@@ -482,8 +482,30 @@ angular.module('your_app_name.controllers', [])
                 $state.go(ulink);
                 $scope.modal.hide();
             }
-        })
+        })    
+		
+	
 
+		
+		
+	 .controller('knowConditionCtrl', function ($scope, $ionicModal, $state) {
+           	   $ionicModal.fromTemplateUrl('knowcondition', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+        }) 
+		
+		
+		
+		
+		
+		
+		
+		
         .controller('SnowmedtCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('snomed', {
                 scope: $scope
@@ -550,6 +572,9 @@ angular.module('your_app_name.controllers', [])
         })
 
         .controller('ConsultationsNoteCtrl', function ($scope, $http, $stateParams, $state, $ionicModal, $timeout, $filter, $cordovaCamera, $ionicLoading) {
+			$scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+		
             $scope.patientId = '282';
             $scope.catId = '';
             $scope.userId = window.localStorage.getItem('id');
