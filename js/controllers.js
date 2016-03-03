@@ -1422,6 +1422,17 @@ angular.module('your_app_name.controllers', [])
         })
 		
 		
+		.controller('PeersCtrl',function($scope,$http,$stateParams){
+			$scope.category_sources=[];
+			$scope.categoryId = $stateParams.categoryId;
+		})
+		
+	.controller('PeersDetailCtrl',function($scope,$http,$stateParams){
+			$scope.category_sources=[];
+			$scope.categoryId = $stateParams.categoryId;
+		})
+		
+		
 		.controller('ChatCtrl',function($scope, $http, $stateParams){
 			$scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;

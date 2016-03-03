@@ -9137,6 +9137,11 @@ h1.post-title{font-size:26px;}
     font-size: 12px; }
 	#chat{position:absolute; width:100%; top:45px;}
 	.bgwhite{background:#fff;}
+	.item-mob{float:right;}
+	.profilelist{ display:block; text-decoration:none;}
+	.profilelist p{    padding: 10px 15px;
+    line-height: 22px;}
+	.profilelist:last-child{border-bottom:1px #eee solid;}
 	
 /* endcss */
 

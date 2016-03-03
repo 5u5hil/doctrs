@@ -187,6 +187,28 @@ angular.module('your_app_name', [
                         }
                     })
 					
+					
+					.state('app.peers', {
+						  url: "/peers",
+						  views: {
+                            'menuContent': {
+                                templateUrl: "views/app/peers.html",
+                                controller: 'PeersCtrl'
+                            }
+                        }
+                    })
+					
+					.state('app.peers-detail', {
+						  url: "/peers-detail",
+						  views: {
+                            'menuContent': {
+                                templateUrl: "views/app/peers-detail.html",
+                                controller: 'PeersDetailCtrl'
+                            }
+                        }
+                    })
+					
+					
 
                     .state('app.chat-appointments', {
                         cache: false,
