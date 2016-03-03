@@ -167,12 +167,12 @@ angular.module('your_app_name', [
                     })
 					
 					
-					  .state('app.test', {
-						  url: "/test",
+					  .state('app.chat', {
+						  url: "/chat",
                         views: {
                             'menuContent': {
-                                templateUrl: "views/app/test.html",
-                                controller: 'TestCtrl'
+                                templateUrl: "views/app/chat.html",
+                                controller: 'ChatCtrl'
                             }
                         }
                     })

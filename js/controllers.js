@@ -1422,7 +1422,7 @@ angular.module('your_app_name.controllers', [])
         })
 		
 		
-		.controller('TestCtrl',function($scope, $http, $stateParams){
+		.controller('ChatCtrl',function($scope, $http, $stateParams){
 			$scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
 			
@@ -1438,7 +1438,7 @@ angular.module('your_app_name.controllers', [])
 			
 			$scope.returnjs();
 			
-			$scope.iframeHeight = $(window).height()-44;
+			$scope.iframeHeight = $(window).height()-88;
 			console.log($scope.iframeHeight);
 			$('#chat').css('height',$scope.iframeHeight);
 			
