@@ -141,38 +141,28 @@ angular.module('your_app_name.controllers', [])
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
 
-		})
-		
-		
-	.controller('ContentLibraryListCtrl',function($scope,$http,$stateParams){
-			$scope.category_sources = [];
-			$scope.categoryId = $stateParams.categoryId;
-		})
+        })
 
-		.controller('ContentLibraryCtrl',function($scope,$http,$stateParams){
-			$scope.category_sources = [];
-			$scope.categoryId = $stateParams.categoryId;
-		})
 
-		.controller('ContentLibraryDetailsCtrl',function($scope,$http,$stateParams){
-			$scope.category_sources = [];
-			$scope.categoryId = $stateParams.categoryId;
-		})	
-				
-		
-		
-		
-		
-		
-		
-		
-		
-
-		
-		.controller('PatientAddCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+        .controller('ContentLibraryListCtrl', function ($scope, $http, $stateParams) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-			$ionicModal.fromTemplateUrl('patient-add', {
+        })
+
+        .controller('ContentLibraryCtrl', function ($scope, $http, $stateParams) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+
+        .controller('ContentLibraryDetailsCtrl', function ($scope, $http, $stateParams) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+
+        .controller('PatientAddCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+            $ionicModal.fromTemplateUrl('patient-add', {
                 scope: $scope
             }).then(function (modal) {
                 $scope.modal = modal;
@@ -181,12 +171,8 @@ angular.module('your_app_name.controllers', [])
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             }
-			
-			})
-		
-		
-		
-		
+
+        })
 
         .controller('PatientRecordCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
@@ -482,14 +468,10 @@ angular.module('your_app_name.controllers', [])
                 $state.go(ulink);
                 $scope.modal.hide();
             }
-        })    
-		
-	
+        })
 
-		
-		
-	 .controller('knowConditionCtrl', function ($scope, $ionicModal, $state) {
-           	   $ionicModal.fromTemplateUrl('knowcondition', {
+        .controller('knowConditionCtrl', function ($scope, $ionicModal, $state) {
+            $ionicModal.fromTemplateUrl('knowcondition', {
                 scope: $scope
             }).then(function (modal) {
                 $scope.modal = modal;
@@ -497,15 +479,8 @@ angular.module('your_app_name.controllers', [])
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
-        }) 
-		
-		
-		
-		
-		
-		
-		
-		
+        })
+
         .controller('SnowmedtCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('snomed', {
                 scope: $scope
@@ -571,13 +546,15 @@ angular.module('your_app_name.controllers', [])
             };
         })
 
-        .controller('ConsultationsNoteCtrl', function ($scope, $http, $stateParams, $state, $ionicModal, $timeout, $filter, $cordovaCamera, $ionicLoading) {
-			$scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-		
+        .controller('ConsultationsNoteCtrl', function ($scope, $http, $stateParams, $rootScope, $state, $ionicModal, $timeout, $filter, $cordovaCamera, $ionicLoading) {
             $scope.patientId = '282';
+            $scope.doctorId = window.localStorage.getItem('id');
+            $rootScope.patientId = '282';
+            $rootScope.doctorId = window.localStorage.getItem('id');
             $scope.catId = '';
             $scope.userId = window.localStorage.getItem('id');
+            window.localStorage.setItem('patientId', '282');
+            window.localStorage.setItem('doctorId', $scope.doctorId);
             $scope.images = [];
             $scope.image = [];
             $scope.tempImgs = [];
@@ -600,6 +577,18 @@ angular.module('your_app_name.controllers', [])
             });
             $scope.gotopage = function (glink) {
                 $state.go(glink);
+            };
+            $scope.getPatientId = function (pid) {
+                console.log(pid);
+                $scope.patientId = pid;
+                $rootScope.patientId = pid;
+                window.localStorage.setItem('patientId', pid);
+            };
+            $scope.getDrId = function (did) {
+                console.log(did);
+                $scope.doctorId = did;
+                $rootScope.doctorId = did;
+                window.localStorage.setItem('doctorId', did);
             };
             //Save FormData
             $scope.submit = function () {
@@ -788,6 +777,106 @@ angular.module('your_app_name.controllers', [])
                         reader.readAsDataURL(element.files[0]);
                     }
                 }
+            };
+        })
+
+        .controller('PatientHistoryCtrl', function ($scope, $http, $stateParams, $state, $rootScope, $ionicModal, $timeout, $filter, $cordovaCamera, $ionicLoading) {
+            $scope.patientId = window.localStorage.getItem('patientId');
+            $scope.catId = 'Patient History';
+            $scope.conId = [];
+            $scope.conIds = [];
+            $scope.selConditions = [];
+            $scope.userId = window.localStorage.getItem('id');
+            $scope.doctorId = window.localStorage.getItem('doctorId'); //$stateParams.drId
+            $scope.curTime = new Date();
+            $scope.curTimeo = $filter('date')(new Date(), 'hh:mm');
+            console.log($rootScope.doctorId);
+            $http({
+                method: 'GET',
+                url: domain + 'doctrsrecords/get-about-fields',
+                params: {patient: $scope.patientId, userId: $scope.userId, doctorId: $scope.doctorId, catId: $scope.catId}
+            }).then(function successCallback(response) {
+                console.log(response.data);
+                $scope.record = response.data.record;
+                $scope.fields = response.data.fields;
+                $scope.problems = response.data.problems;
+                $scope.doctrs = response.data.doctrs;
+                $scope.patients = response.data.patients;
+                $scope.cases = response.data.cases;
+                $scope.abt = response.data.abt;
+                $scope.dob = new Date(response.data.dob);
+                //$scope.dob = $filter('date')(response.data.dob, 'MM dd yyyy');
+                if ($scope.abt.length > 0) {
+                    angular.forEach($scope.abt, function (val, key) {
+                        console.log(val.fields.field+"=="+val.value );
+                        var field = val.fields.field;
+                        console.log(field);
+                        if (field.toString() == 'Gender') {
+                            $scope.gender = val.value;
+                        } else{
+                            $scope.gender = val.value;
+                        }
+                    });
+                }
+                console.log($scope.gender);
+                $scope.selCondition = response.data.knConditions;
+                if ($scope.selCondition.length > 0) {
+                    angular.forEach($scope.selCondition, function (val, key) {
+                        $scope.conIds.push(val.id);
+                        $scope.selConditions.push({'condition': val.condition});
+                    });
+                }
+                $scope.conditions = response.data.conditions;
+                console.log($scope.conIds);
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+            $scope.gotopage = function (glink) {
+                $state.go(glink);
+            };
+            $scope.getCondition = function (id, con) {
+                console.log(id+"=="+con);
+                var con = con.toString();
+                if ($scope.conId[id]) {
+                    $scope.conIds.push(id);
+                    $scope.selConditions.push({'condition': con});
+                } else {
+                    var index = $scope.conIds.indexOf(id);
+                    $scope.conIds.splice(index, 1);
+                    for (var i = $scope.selConditions.length - 1; i >= 0; i--) {
+                        if ($scope.selConditions[i].condition == con) {
+                            $scope.selConditions.splice(i, 1);
+                        }
+                    }
+                }
+                jQuery("#selcon").val($scope.conIds);
+                console.log($scope.selConditions);
+            };
+            $scope.getPreCon = function(conId){
+                if($scope.conIds.indexOf(conId)!= -1)
+                        return 1;
+                    else return 0;
+//                for (var i = $scope.selConditions.length - 1; i >= 0; i--) {
+//                    if($scope.conIds.indexOf(conId)!= -1)
+//                        return 1;
+//                    else return 0;
+//                }
+            };
+            //Save Patient History
+            $scope.savePatientHistory = function () {
+                var data = new FormData(jQuery("#addRecordForm")[0]);
+                callAjax("POST", domain + "doctrsrecords/save-patient-history", data, function (response) {
+                    console.log(response);
+                    $ionicLoading.hide();
+                    if (angular.isObject(response.records)) {
+                        alert("Patient History saved successfully!");
+//                            $timeout(function () {
+//                                $state.go('app.records-view', {'id': $scope.categoryId}, {}, {reload: true});
+//                            }, 1000);
+                    } else if (response.err != '') {
+                        //alert('Please fill mandatory fields');
+                    }
+                });
             };
         })
 
