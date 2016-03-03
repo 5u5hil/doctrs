@@ -103,7 +103,7 @@
                                         <div class="row" ng-init="radioData = (field.field_values).split(',')" ng-model="radioData"> 
                                             <div class="col"><span class="input-label" style="padding: 7px 10px 7px 7px;">{{field.field}}</span></div>
                                             <div class="col cradio" ng-repeat="rad in radioData">
-                                                <ion-radio ng-model="gender"  name="{{field.name}}" value="{{rad}}" ng-checked="ab.value == rad" >{{rad}}</ion-radio>
+                                                <ion-radio ng-model="gen[rad]"  name="{{field.name}}" value="{{rad}}" ng-checked="rad == ab.value" ng-value="{{rad}}" >{{rad}} </ion-radio>
                                             </div>
                                         </div>
                                     </ion-list>
@@ -204,7 +204,7 @@
 <ion-content>
 
 <ion-list>
-<ion-checkbox ng-repeat="con in conditions track by $index" ng-model="conId[con.id]" ng-click="getCondition('{{con.id}}','{{con.condition}}')" ng-checked="getPreCon({{con.id}})">{{con.condition}}</ion-checkbox>
+<ion-checkbox ng-repeat="con in conditions track by $index" ng-model="conId[con.id]" ng-click="getCondition({{con.id}},'{{con.condition}}')" ng-checked="getPreCon({{con.id}})" >{{con.condition}}</ion-checkbox>
 </ion-list>
 
 

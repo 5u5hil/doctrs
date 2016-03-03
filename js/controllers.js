@@ -121,10 +121,7 @@ angular.module('your_app_name.controllers', [])
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
-        .controller('PatientListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
+
 
         .controller('CreatedbyuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
@@ -134,13 +131,6 @@ angular.module('your_app_name.controllers', [])
         .controller('SharedwithuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-        })
-
-
-        .controller('PatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-
         })
 
 
@@ -301,16 +291,20 @@ angular.module('your_app_name.controllers', [])
                 params: {userId: $scope.userId}
             }).then(function successCallback(response) {
                 console.log(response.data);
-                $scope.users = response.data;
-                var tmp = {};
-                for (i = 0; i < $scope.users.length; i++) {
-                    var letter = $scope.users[i].lname.charAt(0);
-                    if (tmp[ letter] == undefined) {
-                        tmp[ letter] = []
-                    }
-                    tmp[ letter].push($scope.users[i]);
-                }
-                $scope.repeaterHeader = tmp;
+                var data = response.data;
+                $scope.users = _.reduce(
+                        data,
+                        function (output, fname) {
+                            var lCase = fname.fname.toUpperCase();
+                            if (output[lCase[0]]) //if lCase is a key
+                                output[lCase[0]].push(fname); //Add name to its list
+                            else
+                                output[lCase[0]] = [fname]; // Else add a key
+                            console.log(output);
+                            return output;
+                        },
+                        {}
+                );
             }, function errorCallback(e) {
                 console.log(e);
             });
@@ -322,6 +316,11 @@ angular.module('your_app_name.controllers', [])
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
+        })
+
+        .controller('PatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.patientId = $stateParams.id;
+            console.log($scope.patientId);
         })
 
         .controller('EvaluationCtrl', function ($scope, $http, $stateParams, $ionicModal) {
@@ -341,11 +340,6 @@ angular.module('your_app_name.controllers', [])
 
 
         .controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-
-        .controller('PatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
@@ -452,8 +446,6 @@ angular.module('your_app_name.controllers', [])
                 $scope.modal.hide();
             }
         })
-
-
 
         .controller('treaTmentpCtrl', function ($scope, $ionicModal, $state) {
             $ionicModal.fromTemplateUrl('treatmentp', {
@@ -808,12 +800,10 @@ angular.module('your_app_name.controllers', [])
                 //$scope.dob = $filter('date')(response.data.dob, 'MM dd yyyy');
                 if ($scope.abt.length > 0) {
                     angular.forEach($scope.abt, function (val, key) {
-                        console.log(val.fields.field+"=="+val.value );
+                        console.log(val.fields.field + "==" + val.value);
                         var field = val.fields.field;
-                        console.log(field);
                         if (field.toString() == 'Gender') {
-                            $scope.gender = val.value;
-                        } else{
+                            console.log(field);
                             $scope.gender = val.value;
                         }
                     });
@@ -835,7 +825,7 @@ angular.module('your_app_name.controllers', [])
                 $state.go(glink);
             };
             $scope.getCondition = function (id, con) {
-                console.log(id+"=="+con);
+                console.log(id + "==" + con);
                 var con = con.toString();
                 if ($scope.conId[id]) {
                     $scope.conIds.push(id);
@@ -852,10 +842,14 @@ angular.module('your_app_name.controllers', [])
                 jQuery("#selcon").val($scope.conIds);
                 console.log($scope.selConditions);
             };
-            $scope.getPreCon = function(conId){
-                if($scope.conIds.indexOf(conId)!= -1)
-                        return 1;
-                    else return 0;
+            $scope.getCheck = function (gen) {
+                console.log(gen);
+            };
+            $scope.getPreCon = function (conId) {
+                if ($scope.conIds.indexOf(conId) != -1)
+                    return 1;
+                else
+                    return 0;
 //                for (var i = $scope.selConditions.length - 1; i >= 0; i--) {
 //                    if($scope.conIds.indexOf(conId)!= -1)
 //                        return 1;
@@ -1207,15 +1201,15 @@ angular.module('your_app_name.controllers', [])
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
-		
-		.controller('ChatListCtrl', function ($scope, $http, $stateParams) {
+
+        .controller('ChatListCtrl', function ($scope, $http, $stateParams) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
-		
-		
-		
-		
+
+
+
+
 
         .controller('DoctorJoinCtrl', function ($ionicLoading, $scope, $http, $stateParams, $ionicHistory, $state, $window) {
             if (!get('loadedOnce')) {
@@ -1420,92 +1414,93 @@ angular.module('your_app_name.controllers', [])
                 console.log(e);
             });
         })
-		
-		
-		.controller('TestCtrl',function($scope, $http, $stateParams){
-			$scope.category_sources = [];
+
+
+        .controller('TestCtrl', function ($scope, $http, $stateParams) {
+            $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-			
-			$scope.returnjs=function(){
-				jQuery(function(){
-					var wh=jQuery('window').height();
-						jQuery('#chat').css('height',wh);
-					//	console.log(wh);
-					
-					})
-				
-				}
-			
-			$scope.returnjs();
-			
-			$scope.iframeHeight = $(window).height()-44;
-			console.log($scope.iframeHeight);
-			$('#chat').css('height',$scope.iframeHeight);
-			
-			
-			
-		var sessionId = '2_MX40NTEyMTE4Mn5-MTQ1NjkwMTY3Mzc3Nn5oRVBFRjlMZ3RYeE1yRHJkOHpWTDJRZHh-UH4';
-	
-      var tokenAlice = 'T1==cGFydG5lcl9pZD00NTEyMTE4MiZzaWc9NWE3NzFlYWNkNmQxMzUyNDZhZGUxNjFiMmQ4MjU5YzM5ODllODBkZTpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5URXlNVEU0TW41LU1UUTFOamt3TVRZM016YzNObjVvUlZCRlJqbE1aM1JZZUUxeVJISmtPSHBXVERKUlpIaC1VSDQmY3JlYXRlX3RpbWU9MTQ1NjkwMTgwMCZub25jZT0wLjI2NDE0MDczNzM5MzkxNjQmZXhwaXJlX3RpbWU9MTQ1Njk4ODA2NSZjb25uZWN0aW9uX2RhdGE9';
-	  
-	  $scope.tokenAlice=tokenAlice;
-      var tokenBob = 'T1==cGFydG5lcl9pZD00NTEyMTE4MiZzaWc9NDljODBiZTQ1NjQzZTVhYzQ4NTY0ZjZmMThmZmQwZWQwNWUwZjg0ODpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5URXlNVEU0TW41LU1UUTFOamt3TVRZM016YzNObjVvUlZCRlJqbE1aM1JZZUUxeVJISmtPSHBXVERKUlpIaC1VSDQmY3JlYXRlX3RpbWU9MTQ1NjkwMTgyOCZub25jZT0wLjM2MDU0MjkzODY3NjQ2NjkmZXhwaXJlX3RpbWU9MTQ1Njk4ODA2NSZjb25uZWN0aW9uX2RhdGE9';
-	 $scope.tokenBob=tokenBob;
-      // Add here your API key
-      var apiKey = '45121182';
-		 var session = OT.initSession(apiKey, sessionId);
-		  var chatWidget = new OTSolution.TextChat.ChatWidget({
-			session: session,
-			container: '#chat'
-		  });
-		
-	 $scope.connect=function(token) {
-        disableButtons();
-        session.connect(token, function (err) {
-          if (!err) {
-            showConnection();
-			}
-          else {
-            console.error(err);
-            enableButtons();
-          }
-        });
-      }	
-		
-	$scope.showConnection=function() {
-        var connectedAs = document.getElementById('connected-as');
-        connectedAs.textContent = 'Connected as ' + session.connection.data;
-      }
-		
-		
-	    $scope.disableButtons =  function() {
-        setButtons(false);
-      }
 
-      $scope.enableButtons=function() {
-        setButtons(true);
-      }
+            $scope.returnjs = function () {
+                jQuery(function () {
+                    var wh = jQuery('window').height();
+                    jQuery('#chat').css('height', wh);
+                    //	console.log(wh);
 
-      $scope.setButtons=function(isEnabled) {
-		  var connectedAs = document.getElementById('connected-as');
-        var buttons = connectedAs.querySelectorAll('button');
-        buttons = Array.prototype.slice.call(buttons);
-        buttons.forEach(function (button) { button.disabled = !isEnabled; });
-      }	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-			
-			})
-		
-		
-		
+                })
+
+            }
+
+            $scope.returnjs();
+
+            $scope.iframeHeight = $(window).height() - 44;
+            console.log($scope.iframeHeight);
+            $('#chat').css('height', $scope.iframeHeight);
+
+
+
+            var sessionId = '2_MX40NTEyMTE4Mn5-MTQ1NjkwMTY3Mzc3Nn5oRVBFRjlMZ3RYeE1yRHJkOHpWTDJRZHh-UH4';
+
+            var tokenAlice = 'T1==cGFydG5lcl9pZD00NTEyMTE4MiZzaWc9NWE3NzFlYWNkNmQxMzUyNDZhZGUxNjFiMmQ4MjU5YzM5ODllODBkZTpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5URXlNVEU0TW41LU1UUTFOamt3TVRZM016YzNObjVvUlZCRlJqbE1aM1JZZUUxeVJISmtPSHBXVERKUlpIaC1VSDQmY3JlYXRlX3RpbWU9MTQ1NjkwMTgwMCZub25jZT0wLjI2NDE0MDczNzM5MzkxNjQmZXhwaXJlX3RpbWU9MTQ1Njk4ODA2NSZjb25uZWN0aW9uX2RhdGE9';
+
+            $scope.tokenAlice = tokenAlice;
+            var tokenBob = 'T1==cGFydG5lcl9pZD00NTEyMTE4MiZzaWc9NDljODBiZTQ1NjQzZTVhYzQ4NTY0ZjZmMThmZmQwZWQwNWUwZjg0ODpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5URXlNVEU0TW41LU1UUTFOamt3TVRZM016YzNObjVvUlZCRlJqbE1aM1JZZUUxeVJISmtPSHBXVERKUlpIaC1VSDQmY3JlYXRlX3RpbWU9MTQ1NjkwMTgyOCZub25jZT0wLjM2MDU0MjkzODY3NjQ2NjkmZXhwaXJlX3RpbWU9MTQ1Njk4ODA2NSZjb25uZWN0aW9uX2RhdGE9';
+            $scope.tokenBob = tokenBob;
+            // Add here your API key
+            var apiKey = '45121182';
+            var session = OT.initSession(apiKey, sessionId);
+            var chatWidget = new OTSolution.TextChat.ChatWidget({
+                session: session,
+                container: '#chat'
+            });
+
+            $scope.connect = function (token) {
+                disableButtons();
+                session.connect(token, function (err) {
+                    if (!err) {
+                        showConnection();
+                    } else {
+                        console.error(err);
+                        enableButtons();
+                    }
+                });
+            }
+
+            $scope.showConnection = function () {
+                var connectedAs = document.getElementById('connected-as');
+                connectedAs.textContent = 'Connected as ' + session.connection.data;
+            }
+
+
+            $scope.disableButtons = function () {
+                setButtons(false);
+            }
+
+            $scope.enableButtons = function () {
+                setButtons(true);
+            }
+
+            $scope.setButtons = function (isEnabled) {
+                var connectedAs = document.getElementById('connected-as');
+                var buttons = connectedAs.querySelectorAll('button');
+                buttons = Array.prototype.slice.call(buttons);
+                buttons.forEach(function (button) {
+                    button.disabled = !isEnabled;
+                });
+            }
+
+
+
+
+
+
+
+
+
+
+        })
+
+
+
         .controller('JoinChatCtrl', function ($scope, $http, $stateParams, $sce, $filter) {
             $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
             $scope.appId = $stateParams.id;
