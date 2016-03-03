@@ -8598,6 +8598,12 @@ select.selectheader{ width:80%; padding:3px; border:0; text-indent:35%;}
               z-index: 9;
               margin-top: 45px; box-shadow:0 0 3px rgba(0,0,0,0.5);
 }
+
+.dr-profile-head{background:#eee; padding:5px 0; width:100%;
+              z-index: 9;
+            box-shadow:0 0 3px rgba(0,0,0,0.5);
+}
+
 .profile-card{margin-top: 110px;}
 .profile-card .item-body p{margin-top:5px;}
 .profile-card .item-body{padding:5px;}
@@ -8678,6 +8684,8 @@ input.custominput{width: 100%;
 .cardbtn-small .cbtn{padding:8px 0;}
 .mt0{margin-top:0;}
 .paraspacing p{padding-bottom:15px;}
+.parat0 p{margin-top:0;}
+
 .viewchats{margin-top:20px;}
 .mediascreen{position:relative;     height: 85vh;}
 .media-sview{    position: absolute;
@@ -9142,6 +9150,15 @@ h1.post-title{font-size:26px;}
 	.profilelist p{    padding: 10px 15px;
     line-height: 22px;}
 	.profilelist:last-child{border-bottom:1px #eee solid;}
+	.searchclose{   position: absolute;
+    z-index: 99999;
+    background: #EEE;
+    right: 5px;
+    top: 11px;
+    padding: 1px 5px;
+    border-radius: 5px;
+    font-weight: bold;}
+	
 	
 /* endcss */
 

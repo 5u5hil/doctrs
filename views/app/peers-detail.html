@@ -4,28 +4,71 @@
     </ion-nav-title>
     <ion-content>
    
+        <div class="dr-profile-head">
+            <div class="card-content">
+               <div class="card-left"><img class="user-image-circle" ng-if="doc.image != ''" ng-src="{{imgpath}}{{doc.image}}"><img class="user-image-circle" ng-if="doc.image == ''" ng-src="img/default-user.jpg"></div>
+                <div class="card-detail txt-left">
+                    <p><strong> Dr.Abc</strong><br/>
+                        <span >
+                           Dermatologist, Cosmetologist
+                        </span></p>
+                  
+                </div>
+                <div class="clr"></div>
+				<div class="row">
+				<div class="col">+91 1234567892</div>
+				<div class="col txt-right">drabc@gmail.com</div>
+				</div>
+				
+            </div>
+			
+        </div>
+   
+   
+   
+   
+   <div class="list" >
+           <div class="item item-body parat0">
+			<div class="row txt-left">
+			<div class="col"><p><strong>Experience</strong><br/>5 yrs</p></div>	
+        <div class="col"><p><strong>Qualification</strong><br/>
+        <span>M.B.B.S, M.D</span>
+        </p></div>	
+        </div>
+        <div class="row txt-left">
+        <div class="col"><p><strong>Languages</strong><br/>
+        <span>English Hindi Marathi</span></p></div>	
+        <div class="col"><p><strong>Focus Area</strong><br/>
+        <span>xyz</span></p></div>	
+        </div>
+        </div>
+   </div>
+   
+   
+   
+   
+   
+   
 
-			<div class="list mb0" >
+	<!-- 		<div class="list mb0" >
             
             	<div class="posts-list">
 					<div  class="list card post-item mb15">
 						<div class="post-content item item-text-wrap p0">
 							<div  class="card-content paraspacing">
-								<div class="cardheading txtcenter">Bhavana  <button style="float:right;"><i class="icon ion-android-create"></i></button></div>
+								<div class="cardheading txtcenter">Dr.Abc  <button style="float:right;"><i class="icon ion-android-create"></i></button></div>
 								<div class="row">
-								<div class="col txt-left">Female</div>	
-								<div class="col txt-right">+91 123456789</div>	
+								<div class="col txt-left">+91 123456789<br/>Specialization<br/>
+								Focus Area</div>	
+								<div class="col txt-right">drabc@gmail.biz</div>	
 								</div>
 								
-								<div class="row">
-								<div class="col txt-left">27 years</div>	
-								<div class="col txt-right">bhavana@infiniteit.biz</div>	
-								</div>
+								
 							</div>
 						</div>
 					</div>
 				</div>
-        </div>		
+        </div>	 -->	
 		
 		
 		<div class="item item-divider"><i class="icon ion-folder"></i> Records</div>
@@ -38,7 +81,7 @@
 		<div class="item item-divider"><i class="icon ion-chatbubbles"></i> Chat</div>
 			<div class="list">
 			
-				<a class="item" ui-sref="#">
+				<a class="item" ui-sref="app.chat">
 				<h2 class="ctitle txtcenter">Start <i class="icon ion-arrow-right-c"></i></h2>
 				
 				</a>

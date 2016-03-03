@@ -1414,7 +1414,7 @@ angular.module('your_app_name.controllers', [])
                 console.log(e);
             });
         })
-<<<<<<< HEAD
+
 		
 		
 		.controller('PeersCtrl',function($scope,$http,$stateParams){
