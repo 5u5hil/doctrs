@@ -9050,6 +9050,9 @@ span.count-t{    display: inline-block;
 }
 .flexcont div.innerdiv{}
 .brdright{border-right:1px #eee solid;}
+.brdrht{border-right:1px #ccc solid;}
+
+
 .p10{padding:10px;}
 .Cstmbutn{    width: 100%;
               /*   margin-bottom: 15px; */
@@ -9132,6 +9135,9 @@ h1.post-title{font-size:26px;}
     right: 15px;
     top: 37%;
     font-size: 12px; }
+	#chat{position:absolute; width:100%; top:45px;}
+	.bgwhite{background:#fff;}
+	
 /* endcss */
 
 
