@@ -9145,6 +9145,7 @@ h1.post-title{font-size:26px;}
     font-size: 12px; }
 	#chat{position:absolute; width:100%; top:45px;}
 	.bgwhite{background:#fff;}
+	
 	.item-mob{float:right;}
 	.profilelist{ display:block; text-decoration:none;}
 	.profilelist p{    padding: 10px 15px;
@@ -9158,7 +9159,9 @@ h1.post-title{font-size:26px;}
     padding: 1px 5px;
     border-radius: 5px;
     font-weight: bold;}
-	
+	.p15{padding:15px;}
+	.mt15{margin-top:15px;}
+	.ptr10{padding-left:10px; padding-right:10px;}
 	
 /* endcss */
 

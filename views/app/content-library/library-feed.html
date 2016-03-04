@@ -5,8 +5,8 @@
   <ion-content class="bgwhite">
    
 <div class="row tabnav">
-<div class="col"><a  ui-sref="app.content-library"  class="active" >Created by you</a></div>
-<div class="col"><a  ui-sref="app.library-feed" >Feed</a></div>
+<div class="col"><a  ui-sref="app.content-library"  >Created by you</a></div>
+<div class="col"><a  ui-sref="app.library-feed" class="active">Feed</a></div>
 </div>	
    
    
@@ -98,32 +98,12 @@
       </div>
 	 </div>
   </ion-content>
-     <div class="bar bar-footer bar-positive">
-        <div class="title" ng-click="modal.show()"><i class="ion-plus-circled fwhite"></i> Create</div>
-    </div>
+   
 </ion-view>
 
 
 
-<script id="create-library" type="text/ng-template">
-    <ion-modal-view>
-    <ion-header-bar class="bar app-top-bar">
-    <h1 class="title">Actions</h1>	 
-    <div class="button button-clear" ng-click="modal.hide()"><span class="icon ion-close"></span></div>
-    </ion-header-bar>
-    <ion-content>
 
-		<div class="row">
-		<div class="col"><div class="custombtn" ng-controller="CloseModalCtrl" ng-click="modalclose('app.newarticle')" >Text Article</div></div>
-		</div>
-			<div class="row">
-		<div class="col"><a class="custombtn">Video</a></div>
-		</div>
-	
-</ion-content>
-   
-    </ion-modal-view>
-</script>
 
 
 

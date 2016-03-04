@@ -299,6 +299,16 @@ angular.module('your_app_name', [
                             }
                         }
                     })
+					
+					.state('app.newarticle', {
+                        url: "/newarticle",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/newarticle.html",
+                                controller: 'NewarticleCtrl'
+                            }
+                        }
+                    })
 
                     .state('app.medication', {
                         url: "/consultation-note/medication",
@@ -499,6 +509,21 @@ angular.module('your_app_name', [
 							}
                     })
 
+					
+					 .state('app.library-feed', {
+                        //  cache: false,
+                        url: "/library-feed",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/content-library/library-feed.html",
+                                controller: 'LibraryFeedCtrl'
+                            }
+							}
+                    })
+					
+					
+					
+					
 					
 					.state('app.content-library-list', {
                         //  cache: false,

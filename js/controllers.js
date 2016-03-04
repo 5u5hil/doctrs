@@ -137,11 +137,19 @@ angular.module('your_app_name.controllers', [])
         .controller('ContentLibraryListCtrl', function ($scope, $http, $stateParams) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-        })
+		  })
 
-        .controller('ContentLibraryCtrl', function ($scope, $http, $stateParams) {
+        .controller('ContentLibraryCtrl', function ($scope, $http, $stateParams,$ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
+				 $ionicModal.fromTemplateUrl('create-library', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
         })
 
         .controller('ContentLibraryDetailsCtrl', function ($scope, $http, $stateParams) {
@@ -353,6 +361,15 @@ angular.module('your_app_name.controllers', [])
         .controller('PatientConsultCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
+        })   
+		
+		.controller('NewarticleCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+	.controller('LibraryFeedCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
         })
 
         .controller('PlaintestCtrl', function ($scope, $ionicModal) {
@@ -399,6 +416,8 @@ angular.module('your_app_name.controllers', [])
                 $scope.modal.hide();
             };
         })
+		
+		
         .controller('IcdCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('icd', {
                 scope: $scope
@@ -462,6 +481,16 @@ angular.module('your_app_name.controllers', [])
             }
         })
 
+		.controller('CloseModalCtrl', function ($scope, $ionicModal, $state) {
+           
+            $scope.modalclose = function (ulink) {
+                $state.go(ulink);
+                $scope.modal.hide();
+            }
+        })
+		
+		
+		
         .controller('knowConditionCtrl', function ($scope, $ionicModal, $state) {
             $ionicModal.fromTemplateUrl('knowcondition', {
                 scope: $scope
