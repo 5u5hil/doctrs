@@ -119,9 +119,34 @@ angular.module('your_app_name.controllers', [])
         .controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
+        }) 
+		
+		
+		.controller('DietplanCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+		
+		.controller('DietplanListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+			
+		 $ionicModal.fromTemplateUrl('add-diet', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+			
         })
 
 
+		
+		
+		
+		
         .controller('CreatedbyuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;

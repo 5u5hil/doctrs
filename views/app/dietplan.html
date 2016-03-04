@@ -1,0 +1,50 @@
+<ion-view class="category-list-view">
+  <ion-nav-title>
+    <span>Diet Plan</span>
+</ion-nav-title>
+
+  <ion-content>
+  <div class="tabcon2">
+       
+	  <div class="item item-divider">Basic Information</div>  
+	   
+  <label class="item item-input item-stacked-label blabel"><span class='input-label'>Start Date</span>
+<input type="date"  placeholder="" value="03-03-2016"  name="currdate" />                            
+</label>
+                                    
+  <label class="item item-input item-stacked-label blabel"><span class='input-label'>End Date</span>
+<input type="date"  placeholder="" value="03-03-2016"  name="currdate" />                            
+</label>
+
+ <div class="item item-divider">Attachments</div> 
+
+         <div class="row mt15">
+		<div class="col col-50 pl0"> 
+			<div class="filelabel">
+				<input type="file" placeholder="" name="df" onchange="" id="presciption" ng-model="prescription" />
+				<label for="attachfile">File Selector</label>
+			</div><br/>
+			<div id="image-holder"></div>
+		</div>
+		<div class="col col-50">
+			<div class="btncamera" ng-click=""><i class="ion-android-camera"></i> Camera</div>
+			
+		</div>
+		<div id="camera-status"></div>
+	</div>
+ 
+ 
+ 
+
+   </div>
+                              
+	  
+	  
+ 
+  </ion-content>
+  
+  <div class="fixedbar">
+<a class="button btn-add" ui-sref="app.dietplan-list" ><i class="ion-checkmark"></i> Save & Continue</a>
+	</div>
+  
+</ion-view>

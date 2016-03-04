@@ -549,7 +549,27 @@ angular.module('your_app_name', [
 					
 					
 					
+				 .state('app.dietplan', {
+                        //  cache: false,
+                        url: "/dietplan",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/dietplan.html",
+                                controller: 'DietplanCtrl'
+                            }
+							}
+                    })
 					
+					.state('app.dietplan-list', {
+                        //  cache: false,
+                        url: "/dietplan-list",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/dietplan-list.html",
+                                controller: 'DietplanListCtrl'
+                            }
+							}
+                    })	
 					
 					
 					
