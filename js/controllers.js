@@ -5,7 +5,6 @@ angular.module('your_app_name.controllers', [])
 
         .controller('AuthCtrl', function ($scope, $state, $ionicConfig, $rootScope) {
             if (window.localStorage.getItem('id') != null) {
-
                 $rootScope.userLogged = 1;
                 $rootScope.username = window.localStorage.getItem('fname');
                 $rootScope.userimage = window.localStorage.getItem('image');
@@ -291,7 +290,7 @@ angular.module('your_app_name.controllers', [])
             };
         })
 
-        .controller('PatientListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+        .controller('PatientListCtrl', function ($scope, $http, $stateParams, $ionicModal, $ionicLoading) {
             $scope.userId = window.localStorage.getItem('id');
             $http({
                 method: 'GET',
@@ -323,6 +322,19 @@ angular.module('your_app_name.controllers', [])
             });
             $scope.submitmodal = function () {
                 $scope.modal.hide();
+            };
+            $scope.savePatient = function(){
+                console.log('submit');
+                $ionicLoading.show({template: 'Adding...'});
+                var data = new FormData(jQuery("#addPatientForm")[0]);
+                    callAjax("POST", domain + "doctorsapp/save-patient", data, function (response) {
+                        console.log(response);
+                        $ionicLoading.hide();
+                        $scope.modal.hide();
+                        alert("Patient added successfully!");
+                        window.location.reload();
+                    });
+                    
             };
         })
 
@@ -1236,10 +1248,6 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 
-
-
-
-
         .controller('DoctorJoinCtrl', function ($ionicLoading, $scope, $http, $stateParams, $ionicHistory, $state, $window) {
             if (!get('loadedOnce')) {
                 store({'loadedOnce': 'true'});
@@ -1426,6 +1434,7 @@ angular.module('your_app_name.controllers', [])
                 });
             };
         })
+        
         .controller('CurrentChatCtrl', function ($scope, $http, $stateParams, $filter) {
             $scope.appId = $stateParams.id;
             $scope.drId = get('id');
