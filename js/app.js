@@ -185,6 +185,26 @@ angular.module('your_app_name', [
                                 controller: 'ChatListCtrl'
                             }
                         }
+                    })     
+
+					.state('app.assistants', {
+                        url: "/assistants",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/assistants/assistants.html",
+                                controller: 'AssistantsCtrl'
+                            }
+                        }
+                    })
+					
+					.state('app.doctrslist', {
+                        url: "/doctrslist",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/assistants/doctrslist.html",
+                                controller: 'DoctrslistsCtrl'
+                            }
+                        }
                     })
 
 

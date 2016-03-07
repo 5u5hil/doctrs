@@ -151,6 +151,23 @@ angular.module('your_app_name.controllers', [])
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
+		
+		.controller('AssistantsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+		
+		.controller('DoctrslistsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+			
+			$ionicModal.fromTemplateUrl('doctrschedule', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+			
+        })
 
         .controller('SharedwithuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
