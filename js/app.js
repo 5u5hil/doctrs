@@ -209,8 +209,7 @@ angular.module('your_app_name', [
                         }
                     })
 					
-					
-						.state('app.ass-patient-list', {
+					.state('app.ass-patient-list', {
                         url: "/ass-patient-list",
                         views: {
                             'menuContent': {
@@ -220,6 +219,16 @@ angular.module('your_app_name', [
                         }
                     })
 					
+					
+					.state('app.ass-patient', {
+                        url: "/ass-patient",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/assistants/ass-patient.html",
+                                controller: 'AssPatientCtrl'
+                            }
+                        }
+                    })
 					
 
 			/* end of assistants */

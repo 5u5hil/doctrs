@@ -147,7 +147,9 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 		
-.controller('AssistantsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+		/* Assistants */
+		
+		.controller('AssistantsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
@@ -210,10 +212,13 @@ angular.module('your_app_name.controllers', [])
 			
         })
 
+			.controller('AssPatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
 		
 		
-		
-		
+		/* end of assistants */
 		
 		
 		
