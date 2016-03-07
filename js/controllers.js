@@ -147,7 +147,7 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 		
-		.controller('AssistantsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+.controller('AssistantsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
@@ -155,15 +155,73 @@ angular.module('your_app_name.controllers', [])
 		.controller('DoctrslistsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-			
-			$ionicModal.fromTemplateUrl('doctrschedule', {
+        })
+
+		.controller('AssPatientListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+           
+		   $scope.userId = window.localStorage.getItem('id');
+            $http({
+                method: 'GET',
+                url: domain + 'doctorsapp/get-all-patients',
+                params: {userId: $scope.userId}
+            }).then(function successCallback(response) {
+                console.log(response.data);
+                var data = response.data;
+                $scope.users = _.reduce(
+                        data,
+                        function (output, fname) {
+                            var lCase = fname.fname.toUpperCase();
+                            if (output[lCase[0]]) //if lCase is a key
+                                output[lCase[0]].push(fname); //Add name to its list
+                            else
+                                output[lCase[0]] = [fname]; // Else add a key
+                            console.log(output);
+                            return output;
+                        },
+                        {}
+                );
+            }, function errorCallback(e) {
+                console.log(e);
+            });
+            $ionicModal.fromTemplateUrl('addp', {
                 scope: $scope
             }).then(function (modal) {
                 $scope.modal = modal;
             });
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+            $scope.savePatient = function () {
+                console.log('submit');
+                $ionicLoading.show({template: 'Adding...'});
+                var data = new FormData(jQuery("#addPatientForm")[0]);
+                callAjax("POST", domain + "doctorsapp/save-patient", data, function (response) {
+                    console.log(response);
+                    $ionicLoading.hide();
+                    $scope.modal.hide();
+                    alert("Patient added successfully!");
+                    window.location.reload();
+                });
+
+            };
+			
+			
 			
         })
 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
         .controller('SharedwithuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;

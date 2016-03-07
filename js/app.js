@@ -187,6 +187,8 @@ angular.module('your_app_name', [
                         }
                     })     
 
+					/* assistants */
+
 					.state('app.assistants', {
                         url: "/assistants",
                         views: {
@@ -206,8 +208,30 @@ angular.module('your_app_name', [
                             }
                         }
                     })
+					
+					
+						.state('app.ass-patient-list', {
+                        url: "/ass-patient-list",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/assistants/ass-patient-list.html",
+                                controller: 'AssPatientListCtrl'
+                            }
+                        }
+                    })
+					
+					
 
+			/* end of assistants */
+			
 
+					
+					
+					
+					
+					
+					
+					
                     .state('app.peers', {
                         url: "/peers",
                         views: {
