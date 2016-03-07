@@ -142,11 +142,6 @@ angular.module('your_app_name.controllers', [])
 
         })
 
-
-
-
-
-
         .controller('CreatedbyuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
@@ -538,8 +533,6 @@ angular.module('your_app_name.controllers', [])
                 $scope.modal.hide();
             }
         })
-
-
 
         .controller('knowConditionCtrl', function ($scope, $ionicModal, $state) {
             $ionicModal.fromTemplateUrl('knowcondition', {
