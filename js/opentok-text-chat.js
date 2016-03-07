@@ -44,9 +44,11 @@ ChatMessage = function () {
        * @type Date
        * @readOnly
        */
+      
       dateTime: { value: new Date() }
     });
   }
+  
   return ChatMessage;
 }();
 ChatUI = function (ChatMessage) {
@@ -385,6 +387,11 @@ Chat = function () {
     send: function (text, callback) {
       var signal = this._getMessageSignal(text);
       this._session.signal(signal, callback);
+      console.log(text);
+      ajaxCall("GET", domain + "doctorsapp/add-chat-msg", {chat_id: window.localStorage.getItem('chatId'), from: window.localStorage.getItem('id'), to: window.localStorage.getItem('Toid'), msg: text},
+      function(response){
+          //console.log(response);
+      });
     },
     /**
      * Called when receiving a new message from the chat.

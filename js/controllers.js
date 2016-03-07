@@ -119,19 +119,19 @@ angular.module('your_app_name.controllers', [])
         .controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-        }) 
-		
-		
-		.controller('DietplanCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+        })
+
+
+        .controller('DietplanCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
-		
-		.controller('DietplanListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+
+        .controller('DietplanListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-			
-		 $ionicModal.fromTemplateUrl('add-diet', {
+
+            $ionicModal.fromTemplateUrl('add-diet', {
                 scope: $scope
             }).then(function (modal) {
                 $scope.modal = modal;
@@ -139,14 +139,14 @@ angular.module('your_app_name.controllers', [])
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
-			
+
         })
 
 
-		
-		
-		
-		
+
+
+
+
         .controller('CreatedbyuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
@@ -1511,7 +1511,10 @@ angular.module('your_app_name.controllers', [])
 
         .controller('ChatCtrl', function ($scope, $http, $stateParams) {
             $scope.chatId = $stateParams.id;
-            $scope.partId = window.localStorage.getItem('id');
+            window.localStorage.setItem('chatId', $stateParams.id);
+            $scope.partId = window.localStorage.getItem('id');            
+            $scope.msg = '';
+            var apiKey = '45121182';
             //console.log($scope.chatId);
             $http({
                 method: 'GET',
@@ -1520,24 +1523,17 @@ angular.module('your_app_name.controllers', [])
             }).then(function sucessCallback(response) {
                 console.log(response.data);
                 $scope.user = response.data.user;
+                $scope.otherUser = response.data.otherUser;
+                $scope.chatMsgs = response.data.chatMsgs;
                 $scope.token = response.data.token;
                 $scope.otherToken = response.data.otherToken;
                 $scope.sessionId = response.data.chatSession;
+                window.localStorage.setItem('Toid', $scope.otherToken.participant_id);
                 //$scope.connect("'" + $scope.token + "'");
-
-            }, function errorCallback(e) {
-                console.log(e);
-            });
-
-            //Generate session
-            $scope.connect = function (token) {
-                var apiKey = '45121182';
                 $scope.apiKey = apiKey;
-                console.log('hello api');
-                var session = OT.initSession(apiKey, $scope.sessionId);
+                var session = OT.initSession($scope.apiKey, $scope.sessionId);
                 $scope.session = session;
-                console.log($scope.session);
-                var chatWidget = new OTSolution.TextChat.ChatWidget({session: session, container: '#chat'});
+                var chatWidget = new OTSolution.TextChat.ChatWidget({session: $scope.session, container: '#chat'});
                 console.log(chatWidget);
                 session.connect($scope.token, function (err) {
                     if (!err) {
@@ -1546,16 +1542,11 @@ angular.module('your_app_name.controllers', [])
                         console.error(err);
                     }
                 });
-                session.on("signal", function (event) {
-                    console.log("Signal sent from connection " + event.from.id);
-                    console.log("Signal sent from connection " + event.data);
-                    //$('#subscribersDiv').append(event.data);
-                });
-            };
-            
-            $scope.send = function(){
-                console.log(jQuery('#msg').val());
-            };
+
+            }, function errorCallback(e) {
+                console.log(e);
+            });
+
             $scope.returnjs = function () {
                 jQuery(function () {
                     var wh = jQuery('window').height();

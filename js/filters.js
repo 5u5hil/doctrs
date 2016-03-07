@@ -102,6 +102,20 @@ angular.module('your_app_name.filters', [])
 
             };
         })
+        .filter('time1', function ($filter)
+        {
+            return function (input)
+            {
+                if (input == null) {
+                    return "";
+                }
+
+                var _date = $filter('date')(new Date(input), 'hh:mm a');
+
+                return _date.toUpperCase();
+
+            };
+        })
         .filter('datetime', function ($filter)
         {
             return function (input)
