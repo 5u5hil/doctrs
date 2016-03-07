@@ -136,12 +136,12 @@ angular.module('your_app_name.controllers', [])
         .controller('ContentLibraryListCtrl', function ($scope, $http, $stateParams) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-		  })
+        })
 
-        .controller('ContentLibraryCtrl', function ($scope, $http, $stateParams,$ionicModal) {
+        .controller('ContentLibraryCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-				 $ionicModal.fromTemplateUrl('create-library', {
+            $ionicModal.fromTemplateUrl('create-library', {
                 scope: $scope
             }).then(function (modal) {
                 $scope.modal = modal;
@@ -323,18 +323,18 @@ angular.module('your_app_name.controllers', [])
             $scope.submitmodal = function () {
                 $scope.modal.hide();
             };
-            $scope.savePatient = function(){
+            $scope.savePatient = function () {
                 console.log('submit');
                 $ionicLoading.show({template: 'Adding...'});
                 var data = new FormData(jQuery("#addPatientForm")[0]);
-                    callAjax("POST", domain + "doctorsapp/save-patient", data, function (response) {
-                        console.log(response);
-                        $ionicLoading.hide();
-                        $scope.modal.hide();
-                        alert("Patient added successfully!");
-                        window.location.reload();
-                    });
-                    
+                callAjax("POST", domain + "doctorsapp/save-patient", data, function (response) {
+                    console.log(response);
+                    $ionicLoading.hide();
+                    $scope.modal.hide();
+                    alert("Patient added successfully!");
+                    window.location.reload();
+                });
+
             };
         })
 
@@ -344,10 +344,6 @@ angular.module('your_app_name.controllers', [])
         })
 
         .controller('EvaluationCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-        .controller('PatientChatCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
@@ -373,13 +369,13 @@ angular.module('your_app_name.controllers', [])
         .controller('PatientConsultCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-        })   
-		
-		.controller('NewarticleCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+        })
+
+        .controller('NewarticleCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
-	.controller('LibraryFeedCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+        .controller('LibraryFeedCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
@@ -428,8 +424,8 @@ angular.module('your_app_name.controllers', [])
                 $scope.modal.hide();
             };
         })
-		
-		
+
+
         .controller('IcdCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('icd', {
                 scope: $scope
@@ -493,16 +489,16 @@ angular.module('your_app_name.controllers', [])
             }
         })
 
-		.controller('CloseModalCtrl', function ($scope, $ionicModal, $state) {
-           
+        .controller('CloseModalCtrl', function ($scope, $ionicModal, $state) {
+
             $scope.modalclose = function (ulink) {
                 $state.go(ulink);
                 $scope.modal.hide();
             }
         })
-		
-		
-		
+
+
+
         .controller('knowConditionCtrl', function ($scope, $ionicModal, $state) {
             $ionicModal.fromTemplateUrl('knowcondition', {
                 scope: $scope
@@ -1243,9 +1239,34 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 
-        .controller('ChatListCtrl', function ($scope, $http, $stateParams) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
+        .controller('ChatListCtrl', function ($scope, $http, $stateParams, $rootScope) {
+            $scope.doctorId = window.localStorage.getItem('id');
+            $scope.participant = [];
+            $scope.msg = [];
+            $http({
+                method: 'GET',
+                url: domain + 'doctorsapp/get-chats',
+                params: {drid: $scope.doctorId}
+            }).then(function sucessCallback(response) {
+                console.log(response.data);
+                $scope.chatParticipants = response.data;
+                angular.forEach($scope.chatParticipants, function (value, key) {
+                    $http({
+                        method: 'GET',
+                        url: domain + 'doctorsapp/get-chat-msg',
+                        params: {partId: value.participant_id, chatId: value.chat_id}
+                    }).then(function successCallback(responseData) {
+                        console.log(responseData);
+                        $scope.participant[key] = responseData.data.user;
+                        $scope.msg[key] = responseData.data.msg;
+                        $rootScope.$digest;
+                    }, function errorCallback(response) {
+                        console.log(response.responseText);
+                    });
+                });
+            }, function errorCallback(e) {
+                console.log(e);
+            });
         })
 
         .controller('DoctorJoinCtrl', function ($ionicLoading, $scope, $http, $stateParams, $ionicHistory, $state, $window) {
@@ -1434,7 +1455,7 @@ angular.module('your_app_name.controllers', [])
                 });
             };
         })
-        
+
         .controller('CurrentChatCtrl', function ($scope, $http, $stateParams, $filter) {
             $scope.appId = $stateParams.id;
             $scope.drId = get('id');
@@ -1453,26 +1474,63 @@ angular.module('your_app_name.controllers', [])
             });
         })
 
-		
-		
-		.controller('PeersCtrl',function($scope,$http,$stateParams){
-			$scope.category_sources=[];
-			$scope.categoryId = $stateParams.categoryId;
-		})
-		
-	.controller('PeersDetailCtrl',function($scope,$http,$stateParams){
-			$scope.category_sources=[];
-			$scope.categoryId = $stateParams.categoryId;
-		})
-		
-		
+        .controller('PeersCtrl', function ($scope, $http, $stateParams) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
 
+        .controller('PeersDetailCtrl', function ($scope, $http, $stateParams) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
 
         .controller('ChatCtrl', function ($scope, $http, $stateParams) {
-            $scope.category_sources = [];
+            $scope.chatId = $stateParams.id;
+            $scope.partId = window.localStorage.getItem('id');
+            //console.log($scope.chatId);
+            $http({
+                method: 'GET',
+                url: domain + 'doctorsapp/get-chat-token',
+                params: {chatId: $scope.chatId, userId: $scope.partId}
+            }).then(function sucessCallback(response) {
+                console.log(response.data);
+                $scope.user = response.data.user;
+                $scope.token = response.data.token;
+                $scope.otherToken = response.data.otherToken;
+                $scope.sessionId = response.data.chatSession;
+                //$scope.connect("'" + $scope.token + "'");
 
-            $scope.categoryId = $stateParams.categoryId;
+            }, function errorCallback(e) {
+                console.log(e);
+            });
 
+            //Generate session
+            $scope.connect = function (token) {
+                var apiKey = '45121182';
+                $scope.apiKey = apiKey;
+                console.log('hello api');
+                var session = OT.initSession(apiKey, $scope.sessionId);
+                $scope.session = session;
+                console.log($scope.session);
+                var chatWidget = new OTSolution.TextChat.ChatWidget({session: session, container: '#chat'});
+                console.log(chatWidget);
+                session.connect($scope.token, function (err) {
+                    if (!err) {
+                        console.log("Connection success");
+                    } else {
+                        console.error(err);
+                    }
+                });
+                session.on("signal", function (event) {
+                    console.log("Signal sent from connection " + event.from.id);
+                    console.log("Signal sent from connection " + event.data);
+                    //$('#subscribersDiv').append(event.data);
+                });
+            };
+            
+            $scope.send = function(){
+                console.log(jQuery('#msg').val());
+            };
             $scope.returnjs = function () {
                 jQuery(function () {
                     var wh = jQuery('window').height();
@@ -1483,117 +1541,68 @@ angular.module('your_app_name.controllers', [])
             };
             $scope.returnjs();
             $scope.iframeHeight = $(window).height() - 88;
-            console.log($scope.iframeHeight);
             $('#chat').css('height', $scope.iframeHeight);
-
-            var sessionId = '2_MX40NTEyMTE4Mn5-MTQ1NjkwMTY3Mzc3Nn5oRVBFRjlMZ3RYeE1yRHJkOHpWTDJRZHh-UH4';
-            var tokenAlice = 'T1==cGFydG5lcl9pZD00NTEyMTE4MiZzaWc9NWE3NzFlYWNkNmQxMzUyNDZhZGUxNjFiMmQ4MjU5YzM5ODllODBkZTpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5URXlNVEU0TW41LU1UUTFOamt3TVRZM016YzNObjVvUlZCRlJqbE1aM1JZZUUxeVJISmtPSHBXVERKUlpIaC1VSDQmY3JlYXRlX3RpbWU9MTQ1NjkwMTgwMCZub25jZT0wLjI2NDE0MDczNzM5MzkxNjQmZXhwaXJlX3RpbWU9MTQ1Njk4ODA2NSZjb25uZWN0aW9uX2RhdGE9';
-            $scope.tokenAlice = tokenAlice;
-            var tokenBob = 'T1==cGFydG5lcl9pZD00NTEyMTE4MiZzaWc9NDljODBiZTQ1NjQzZTVhYzQ4NTY0ZjZmMThmZmQwZWQwNWUwZjg0ODpyb2xlPXB1Ymxpc2hlciZzZXNzaW9uX2lkPTJfTVg0ME5URXlNVEU0TW41LU1UUTFOamt3TVRZM016YzNObjVvUlZCRlJqbE1aM1JZZUUxeVJISmtPSHBXVERKUlpIaC1VSDQmY3JlYXRlX3RpbWU9MTQ1NjkwMTgyOCZub25jZT0wLjM2MDU0MjkzODY3NjQ2NjkmZXhwaXJlX3RpbWU9MTQ1Njk4ODA2NSZjb25uZWN0aW9uX2RhdGE9';
-            $scope.tokenBob = tokenBob;
-            // Add here your API key
-            var apiKey = '45121182';
-            var session = OT.initSession(apiKey, sessionId);
-            var chatWidget = new OTSolution.TextChat.ChatWidget({
-                session: session,
-                container: '#chat'
-            });
-
-            $scope.connect = function (token) {
-                disableButtons();
-                session.connect(token, function (err) {
-                    if (!err) {
-                        showConnection();
-                    } else {
-                        console.error(err);
-                        enableButtons();
-                    }
-                });
-            };
-
-            $scope.showConnection = function () {
-                var connectedAs = document.getElementById('connected-as');
-                connectedAs.textContent = 'Connected as ' + session.connection.data;
-            };
-
-
-            $scope.disableButtons = function () {
-                setButtons(false);
-            };
-
-            $scope.enableButtons = function () {
-                setButtons(true);
-            }
-
-            $scope.setButtons = function (isEnabled) {
-                var connectedAs = document.getElementById('connected-as');
-                var buttons = connectedAs.querySelectorAll('button');
-                buttons = Array.prototype.slice.call(buttons);
-                buttons.forEach(function (button) {
-                    button.disabled = !isEnabled;
-                });
-            };
         })
 
-        .controller('JoinChatCtrl', function ($scope, $http, $stateParams, $sce, $filter) {
-            $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
-            $scope.appId = $stateParams.id;
-            $scope.mode = $stateParams.mode;
-            $scope.userId = get('id');
-            $scope.msgs = {};
-            $http({
-                method: 'GET',
-                url: domain + 'chat/doctor-join-chat',
-                params: {id: $scope.appId, userId: $scope.userId, mode: $scope.mode}
-            }).then(function sucessCallback(response) {
-                console.log(response.data);
-                $scope.user = response.data.user;
-                $scope.app = response.data.app;
-                $scope.msgs = response.data.chat;
-                //$scope.oToken = "https://test.doctrs.in/opentok/opentok?session=" + response.data.app[0].appointments.opentok_session_id;
-                var apiKey = '45121182';
-                var sessionId = response.data.app[0].appointments.opentok_session_id;
-                var token = response.data.oToken;
-                var session = OT.initSession(apiKey, sessionId);
-                session.connect(token, function (error) {
-                    if (error) {
-                        console.log("Error connecting: ", error.code, error.message);
-                    } else {
-                        console.log("Connected to the session.");
-                    }
-                });
-                session.on("signal", function (event) {
-                    console.log("Signal sent from connection " + event.from.id);
-                    $('#subscribersDiv').append(event.data);
-                });
-                $scope.send = function () {
-                    session.signal({data: jQuery("[name='msg']").val()},
-                            function (error) {
-                                if (error) {
-                                    console.log("signal error ("
-                                            + error.code
-                                            + "): " + error.message);
-                                } else {
-                                    var msg = jQuery("[name='msg']").val();
-                                    $http({
-                                        method: 'GET',
-                                        url: domain + 'chat/add-patient-chat',
-                                        params: {from: $scope.userId, to: $scope.user[0].id, msg: msg}
-                                    }).then(function sucessCallback(response) {
-                                        console.log(response);
-                                        jQuery("[name='msg']").val('');
-                                    }, function errorCallback(e) {
-                                        console.log(e.responseText);
-                                    });
-                                    console.log("signal sent.");
-                                }
-                            }
-                    );
-                };
-            }, function errorCallback(e) {
-                console.log(e.responseText);
-            });
-        })
+//        .controller('JoinChatCtrl', function ($scope, $http, $stateParams, $sce, $filter) {
+//            $scope.curTime = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
+//            $scope.appId = $stateParams.id;
+//            $scope.mode = $stateParams.mode;
+//            $scope.userId = get('id');
+//            $scope.msgs = {};
+//            $http({
+//                method: 'GET',
+//                url: domain + 'chat/doctor-join-chat',
+//                params: {id: $scope.appId, userId: $scope.userId, mode: $scope.mode}
+//            }).then(function sucessCallback(response) {
+//                console.log(response.data);
+//                $scope.user = response.data.user;
+//                $scope.app = response.data.app;
+//                $scope.msgs = response.data.chat;
+//                //$scope.oToken = "https://test.doctrs.in/opentok/opentok?session=" + response.data.app[0].appointments.opentok_session_id;
+//                var apiKey = '45121182';
+//                var sessionId = response.data.app[0].appointments.opentok_session_id;
+//                var token = response.data.oToken;
+//                var session = OT.initSession(apiKey, sessionId);
+//                session.connect(token, function (error) {
+//                    if (error) {
+//                        console.log("Error connecting: ", error.code, error.message);
+//                    } else {
+//                        console.log("Connected to the session.");
+//                    }
+//                });
+//                session.on("signal", function (event) {
+//                    console.log("Signal sent from connection " + event.from.id);
+//                    $('#subscribersDiv').append(event.data);
+//                });
+//                $scope.send = function () {
+//                    session.signal({data: jQuery("[name='msg']").val()},
+//                            function (error) {
+//                                if (error) {
+//                                    console.log("signal error ("
+//                                            + error.code
+//                                            + "): " + error.message);
+//                                } else {
+//                                    var msg = jQuery("[name='msg']").val();
+//                                    $http({
+//                                        method: 'GET',
+//                                        url: domain + 'chat/add-patient-chat',
+//                                        params: {from: $scope.userId, to: $scope.user[0].id, msg: msg}
+//                                    }).then(function sucessCallback(response) {
+//                                        console.log(response);
+//                                        jQuery("[name='msg']").val('');
+//                                    }, function errorCallback(e) {
+//                                        console.log(e.responseText);
+//                                    });
+//                                    console.log("signal sent.");
+//                                }
+//                            }
+//                    );
+//                };
+//            }, function errorCallback(e) {
+//                console.log(e.responseText);
+//            });
+//        })
 
         .controller('ImagePickerCtrl', function ($scope, $rootScope, $cordovaCamera) {
             $scope.images = [];

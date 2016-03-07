@@ -165,10 +165,10 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					
-					  .state('app.chat', {
-						  url: "/chat",
+
+
+                    .state('app.chat', {
+                        url: "/chat/{id:int}",
                         views: {
                             'menuContent': {
                                 templateUrl: "views/app/chat.html",
@@ -176,9 +176,9 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					.state('app.chatlist', {
-						  url: "/chatlist",
+
+                    .state('app.chatlist', {
+                        url: "/chatlist",
                         views: {
                             'menuContent': {
                                 templateUrl: "views/app/chatlist.html",
@@ -186,29 +186,29 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					
-					.state('app.peers', {
-						  url: "/peers",
-						  views: {
+
+
+                    .state('app.peers', {
+                        url: "/peers",
+                        views: {
                             'menuContent': {
                                 templateUrl: "views/app/peers.html",
                                 controller: 'PeersCtrl'
                             }
                         }
                     })
-					
-					.state('app.peers-detail', {
-						  url: "/peers-detail",
-						  views: {
+
+                    .state('app.peers-detail', {
+                        url: "/peers-detail",
+                        views: {
                             'menuContent': {
                                 templateUrl: "views/app/peers-detail.html",
                                 controller: 'PeersDetailCtrl'
                             }
                         }
                     })
-					
-					
+
+
 
                     .state('app.chat-appointments', {
                         cache: false,
@@ -299,8 +299,8 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					.state('app.newarticle', {
+
+                    .state('app.newarticle', {
                         url: "/newarticle",
                         views: {
                             'menuContent': {
@@ -330,15 +330,6 @@ angular.module('your_app_name', [
                         }
                     })
 
-
-
-
-
-
-
-
-
-
                     .state('app.evaluation', {
                         url: "/evaluation",
                         views: {
@@ -358,8 +349,7 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-
-
+                    
                     .state('app.treatment-plan', {
                         url: "/treatmentplan",
                         views: {
@@ -368,9 +358,9 @@ angular.module('your_app_name', [
                                 controller: 'TreatmentPlanCtrl'
                             }
                         }
-                    })  
-					
-					.state('app.createdbyu', {
+                    })
+
+                    .state('app.createdbyu', {
                         url: "/createdbyu",
                         views: {
                             'menuContent': {
@@ -379,8 +369,8 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-						.state('app.sharedwithu', {
+
+                    .state('app.sharedwithu', {
                         url: "/sharedwithu",
                         views: {
                             'menuContent': {
@@ -389,8 +379,6 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					
 
                     .state('app.treatment-plan-list', {
                         url: "/treatmentplan-list",
@@ -453,7 +441,6 @@ angular.module('your_app_name', [
                     })
 
 
-
                     .state('app.feed-entries', {
                         url: "/feed-entries/:categoryId/:sourceId",
                         views: {
@@ -495,10 +482,7 @@ angular.module('your_app_name', [
                         }
                     })
 
-					
-					
-					
-					 .state('app.content-library', {
+                    .state('app.content-library', {
                         //  cache: false,
                         url: "/content-library",
                         views: {
@@ -506,11 +490,10 @@ angular.module('your_app_name', [
                                 templateUrl: "views/app/content-library/content-library.html",
                                 controller: 'ContentLibraryCtrl'
                             }
-							}
+                        }
                     })
 
-					
-					 .state('app.library-feed', {
+                    .state('app.library-feed', {
                         //  cache: false,
                         url: "/library-feed",
                         views: {
@@ -518,14 +501,10 @@ angular.module('your_app_name', [
                                 templateUrl: "views/app/content-library/library-feed.html",
                                 controller: 'LibraryFeedCtrl'
                             }
-							}
+                        }
                     })
-					
-					
-					
-					
-					
-					.state('app.content-library-list', {
+
+                    .state('app.content-library-list', {
                         //  cache: false,
                         url: "/content-library-list",
                         views: {
@@ -533,10 +512,10 @@ angular.module('your_app_name', [
                                 templateUrl: "views/app/content-library/content-library-list.html",
                                 controller: 'ContentLibraryListCtrl'
                             }
-							}
+                        }
                     })
-					
-					 .state('app.content-library-details', {
+
+                    .state('app.content-library-details', {
                         //  cache: false,
                         url: "/content-library-details.html",
                         views: {
@@ -544,20 +523,9 @@ angular.module('your_app_name', [
                                 templateUrl: "views/app/content-library/content-library-details.html",
                                 controller: 'ContentLibraryDetailsCtrl'
                             }
-							}
+                        }
                     })
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+
                     .state('app.patient-record', {
                         url: "/patient-record",
                         views: {
@@ -577,9 +545,6 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-
-
-
 
                     .state('app.logout', {
                         url: "/logout",
