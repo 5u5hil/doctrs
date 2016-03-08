@@ -188,56 +188,56 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 
-		.controller('InventoryCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+        .controller('InventoryCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
-		.controller('DisbursementCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-
-	.controller('SearchMedicineCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+        .controller('DisbursementCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
 
-	.controller('AddDisbursementCtrl', function ($scope, $http, $stateParams, $ionicPopup,$ionicModal) {
+        .controller('SearchMedicineCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+
+        .controller('AddDisbursementCtrl', function ($scope, $http, $stateParams, $ionicPopup, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
 
-			$scope.showPopup = function() {
-			
-			  $scope.data = {};
+            $scope.showPopup = function () {
 
-			  // An elaborate, custom popup
-			  var myPopup = $ionicPopup.show({
-				template: '<div class="row"><div class="col col-33"><input type="number" ng-model="data.wifi"></div><div class="col col-67"><select class="selectpopup"><option>Bottle</option></select></div></div>',
-				title: 'Quantity',
-				scope: $scope,
-				buttons: [
-				  { text: 'Cancel' },
-				  {
-					text: '<b>Ok</b>',
-					type: 'button-positive',
-					onTap: function(e) {
-					  if (!$scope.data.wifi) {
-						//don't allow the user to close unless he enters wifi password
-						e.preventDefault();
-					  } else {
-						return $scope.data.wifi;
-					  }
-					}
-				  }
-				]
-			  });
+                $scope.data = {};
 
-			  myPopup.then(function(res) {
-				console.log('Tapped!', res);
-			  });
-				};
+                // An elaborate, custom popup
+                var myPopup = $ionicPopup.show({
+                    template: '<div class="row"><div class="col col-33"><input type="number" ng-model="data.wifi"></div><div class="col col-67"><select class="selectpopup"><option>Bottle</option></select></div></div>',
+                    title: 'Quantity',
+                    scope: $scope,
+                    buttons: [
+                        {text: 'Cancel'},
+                        {
+                            text: '<b>Ok</b>',
+                            type: 'button-positive',
+                            onTap: function (e) {
+                                if (!$scope.data.wifi) {
+                                    //don't allow the user to close unless he enters wifi password
+                                    e.preventDefault();
+                                } else {
+                                    return $scope.data.wifi;
+                                }
+                            }
+                        }
+                    ]
+                });
 
-		 $ionicModal.fromTemplateUrl('infomedicine', {
+                myPopup.then(function (res) {
+                    console.log('Tapped!', res);
+                });
+            };
+
+            $ionicModal.fromTemplateUrl('infomedicine', {
                 scope: $scope
             }).then(function (modal) {
                 $scope.modal = modal;
@@ -249,9 +249,9 @@ angular.module('your_app_name.controllers', [])
 
 
         })
-		
-		
-		
+
+
+
 
         /* end of assistants */
 
@@ -1397,7 +1397,7 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 
-        .controller('ChatListCtrl', function ($scope, $http, $stateParams, $rootScope) {
+        .controller('ChatListCtrl', function ($scope, $http, $stateParams, $rootScope, $filter) {
             $scope.doctorId = window.localStorage.getItem('id');
             $scope.participant = [];
             $scope.msg = [];
@@ -1428,7 +1428,38 @@ angular.module('your_app_name.controllers', [])
                 console.log(e);
             });
         })
-        .controller('ChatCtrl', function ($scope, $http, $stateParams,$timeout) {
+
+        .controller('PastChatListCtrl', function ($scope, $http, $stateParams, $rootScope, $filter) {
+            $scope.doctorId = window.localStorage.getItem('id');
+            $scope.participant = [];
+            $scope.msg = [];
+            $http({
+                method: 'GET',
+                url: domain + 'doctorsapp/get-past-chats',
+                params: {drid: $scope.doctorId}
+            }).then(function sucessCallback(response) {
+                console.log(response.data);
+                $scope.chatParticipants = response.data;
+                angular.forEach($scope.chatParticipants, function (value, key) {
+                    $http({
+                        method: 'GET',
+                        url: domain + 'doctorsapp/get-chat-msg',
+                        params: {partId: value[0].participant_id, chatId: value[0].chat_id}
+                    }).then(function successCallback(responseData) {
+                        console.log(responseData);
+                        $scope.participant[key] = responseData.data.user;
+                        $scope.msg[key] = responseData.data.msg;
+                        $rootScope.$digest;
+                    }, function errorCallback(response) {
+                        console.log(response.responseText);
+                    });
+                });
+            }, function errorCallback(e) {
+                console.log(e);
+            });
+        })
+
+        .controller('ChatCtrl', function ($scope, $http, $stateParams, $timeout, $filter) {
             $scope.chatId = $stateParams.id;
             window.localStorage.setItem('chatId', $stateParams.id);
             $scope.partId = window.localStorage.getItem('id');
@@ -1444,7 +1475,7 @@ angular.module('your_app_name.controllers', [])
                 $scope.user = response.data.user;
                 $scope.otherUser = response.data.otherUser;
                 $scope.chatMsgs = response.data.chatMsgs;
-				console.log($scope.chatMsgs);
+                console.log($scope.chatMsgs);
                 $scope.token = response.data.token;
                 $scope.otherToken = response.data.otherToken;
                 $scope.sessionId = response.data.chatSession;
@@ -1478,23 +1509,25 @@ angular.module('your_app_name.controllers', [])
             $scope.returnjs();
             $scope.iframeHeight = $(window).height() - 88;
             $('#chat').css('height', $scope.iframeHeight);
-			
-			
-			$scope.appendprevious=function(){
-				$(function(){
-					
-				$('#chat .ot-textchat .ot-bubbles').append('<section class="ot-bubble mine" data-sender-id=""><div><header class="ot-bubble-header"><p class="ot-message-sender"></p><time class="ot-message-timestamp">12:55 PM</time></header><div class="ot-message-content">das</div></div></section>');
-				
-				$('#chat .ot-textchat .ot-bubbles').append('<section class="ot-bubble" data-sender-id=""><div><header class="ot-bubble-header"><p class="ot-message-sender"></p><time class="ot-message-timestamp">12:55 PM</time></header><div class="ot-message-content">das</div></div></section>');
-				
-				})
-				
-			}
-			$timeout(function () {
-                             $scope.appendprevious();
-                           }, 1000);
-				})
-        
+//Previous Chat 
+            $scope.appendprevious = function () {
+                $(function () {
+                    angular.forEach($scope.chatMsgs, function (value, key) {
+                        //console.log(value);
+                        var msgTime = $filter('date')(new Date(value.tstamp), 'hh:mm a');
+                        if (value.sender_id == $scope.partId) {
+                            $('#chat .ot-textchat .ot-bubbles').append('<section class="ot-bubble mine" data-sender-id=""><div><header class="ot-bubble-header"><p class="ot-message-sender"></p><time class="ot-message-timestamp">' + msgTime + '</time></header><div class="ot-message-content">' + value.message + '</div></div></section>');
+                        } else {
+                            $('#chat .ot-textchat .ot-bubbles').append('<section class="ot-bubble" data-sender-id=""><div><header class="ot-bubble-header"><p class="ot-message-sender"></p><time class="ot-message-timestamp">' + msgTime + '</time></header><div class="ot-message-content">' + value.message + '</div></div></section>');
+                        }
+                    });
+                })
+            };
+            $timeout(function () {
+                $scope.appendprevious();
+            }, 1000);
+        })
+
         .controller('DoctorJoinCtrl', function ($ionicLoading, $scope, $http, $stateParams, $ionicHistory, $state, $window) {
             if (!get('loadedOnce')) {
                 store({'loadedOnce': 'true'});
