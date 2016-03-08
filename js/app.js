@@ -185,11 +185,11 @@ angular.module('your_app_name', [
                                 controller: 'ChatListCtrl'
                             }
                         }
-                    })     
+                    })
 
-					/* assistants */
+                    /* assistants */
 
-					.state('app.assistants', {
+                    .state('app.assistants', {
                         url: "/assistants",
                         views: {
                             'menuContent': {
@@ -198,8 +198,8 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					.state('app.doctrslist', {
+
+                    .state('app.doctrslist', {
                         url: "/doctrslist",
                         views: {
                             'menuContent': {
@@ -208,8 +208,8 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					.state('app.ass-patient-list', {
+
+                    .state('app.ass-patient-list', {
                         url: "/ass-patient-list",
                         views: {
                             'menuContent': {
@@ -218,9 +218,9 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					
-					.state('app.ass-patient', {
+
+
+                    .state('app.ass-patient', {
                         url: "/ass-patient",
                         views: {
                             'menuContent': {
@@ -229,18 +229,18 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
 
-			/* end of assistants */
-			
 
-					
-					
-					
-					
-					
-					
-					
+                    /* end of assistants */
+
+
+
+
+
+
+
+
+
                     .state('app.peers', {
                         url: "/peers",
                         views: {

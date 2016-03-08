@@ -1352,12 +1352,14 @@ angular.module('your_app_name.controllers', [])
                 params: {drid: $scope.doctorId}
             }).then(function sucessCallback(response) {
                 console.log(response.data);
+                //$scope.chatParticipants = response.data;
                 $scope.chatParticipants = response.data;
                 angular.forEach($scope.chatParticipants, function (value, key) {
+                    console.log(value[0].chat_id);
                     $http({
                         method: 'GET',
                         url: domain + 'doctorsapp/get-chat-msg',
-                        params: {partId: value.participant_id, chatId: value.chat_id}
+                        params: {partId: value[0].participant_id, chatId: value[0].chat_id}
                     }).then(function successCallback(responseData) {
                         console.log(responseData);
                         $scope.participant[key] = responseData.data.user;
@@ -1371,7 +1373,57 @@ angular.module('your_app_name.controllers', [])
                 console.log(e);
             });
         })
+        .controller('ChatCtrl', function ($scope, $http, $stateParams) {
+            $scope.chatId = $stateParams.id;
+            window.localStorage.setItem('chatId', $stateParams.id);
+            $scope.partId = window.localStorage.getItem('id');
+            $scope.msg = '';
+            var apiKey = '45121182';
+            //console.log($scope.chatId);
+            $http({
+                method: 'GET',
+                url: domain + 'doctorsapp/get-chat-token',
+                params: {chatId: $scope.chatId, userId: $scope.partId}
+            }).then(function sucessCallback(response) {
+                console.log(response.data);
+                $scope.user = response.data.user;
+                $scope.otherUser = response.data.otherUser;
+                $scope.chatMsgs = response.data.chatMsgs;
+                $scope.token = response.data.token;
+                $scope.otherToken = response.data.otherToken;
+                $scope.sessionId = response.data.chatSession;
+                window.localStorage.setItem('Toid', $scope.otherToken.participant_id);
+                //$scope.connect("'" + $scope.token + "'");
+                $scope.apiKey = apiKey;
+                var session = OT.initSession($scope.apiKey, $scope.sessionId);
+                $scope.session = session;
+                var chatWidget = new OTSolution.TextChat.ChatWidget({session: $scope.session, container: '#chat'});
+                console.log(chatWidget);
+                session.connect($scope.token, function (err) {
+                    if (!err) {
+                        console.log("Connection success");
+                    } else {
+                        console.error(err);
+                    }
+                });
 
+            }, function errorCallback(e) {
+                console.log(e);
+            });
+
+            $scope.returnjs = function () {
+                jQuery(function () {
+                    var wh = jQuery('window').height();
+                    jQuery('#chat').css('height', wh);
+                    //	console.log(wh);
+
+                })
+            };
+            $scope.returnjs();
+            $scope.iframeHeight = $(window).height() - 88;
+            $('#chat').css('height', $scope.iframeHeight);
+        })
+        
         .controller('DoctorJoinCtrl', function ($ionicLoading, $scope, $http, $stateParams, $ionicHistory, $state, $window) {
             if (!get('loadedOnce')) {
                 store({'loadedOnce': 'true'});
@@ -1585,57 +1637,6 @@ angular.module('your_app_name.controllers', [])
         .controller('PeersDetailCtrl', function ($scope, $http, $stateParams) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-        })
-
-        .controller('ChatCtrl', function ($scope, $http, $stateParams) {
-            $scope.chatId = $stateParams.id;
-            window.localStorage.setItem('chatId', $stateParams.id);
-            $scope.partId = window.localStorage.getItem('id');
-            $scope.msg = '';
-            var apiKey = '45121182';
-            //console.log($scope.chatId);
-            $http({
-                method: 'GET',
-                url: domain + 'doctorsapp/get-chat-token',
-                params: {chatId: $scope.chatId, userId: $scope.partId}
-            }).then(function sucessCallback(response) {
-                console.log(response.data);
-                $scope.user = response.data.user;
-                $scope.otherUser = response.data.otherUser;
-                $scope.chatMsgs = response.data.chatMsgs;
-                $scope.token = response.data.token;
-                $scope.otherToken = response.data.otherToken;
-                $scope.sessionId = response.data.chatSession;
-                window.localStorage.setItem('Toid', $scope.otherToken.participant_id);
-                //$scope.connect("'" + $scope.token + "'");
-                $scope.apiKey = apiKey;
-                var session = OT.initSession($scope.apiKey, $scope.sessionId);
-                $scope.session = session;
-                var chatWidget = new OTSolution.TextChat.ChatWidget({session: $scope.session, container: '#chat'});
-                console.log(chatWidget);
-                session.connect($scope.token, function (err) {
-                    if (!err) {
-                        console.log("Connection success");
-                    } else {
-                        console.error(err);
-                    }
-                });
-
-            }, function errorCallback(e) {
-                console.log(e);
-            });
-
-            $scope.returnjs = function () {
-                jQuery(function () {
-                    var wh = jQuery('window').height();
-                    jQuery('#chat').css('height', wh);
-                    //	console.log(wh);
-
-                })
-            };
-            $scope.returnjs();
-            $scope.iframeHeight = $(window).height() - 88;
-            $('#chat').css('height', $scope.iframeHeight);
         })
 
 //        .controller('JoinChatCtrl', function ($scope, $http, $stateParams, $sce, $filter) {
