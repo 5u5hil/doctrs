@@ -121,47 +121,26 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 
-
-        .controller('DietplanCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-
-        .controller('DietplanListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-
-            $ionicModal.fromTemplateUrl('add-diet', {
-                scope: $scope
-            }).then(function (modal) {
-                $scope.modal = modal;
-            });
-            $scope.submitmodal = function () {
-                $scope.modal.hide();
-            };
-
-        })
-
         .controller('CreatedbyuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
-		
-		.controller('AssistantsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+
+        .controller('AssistantsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
-		
-		.controller('DoctrslistsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+
+        .controller('DoctrslistsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
-			
-			$ionicModal.fromTemplateUrl('doctrschedule', {
+
+            $ionicModal.fromTemplateUrl('doctrschedule', {
                 scope: $scope
             }).then(function (modal) {
                 $scope.modal = modal;
             });
-			
+
         })
 
         .controller('SharedwithuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
@@ -854,7 +833,6 @@ angular.module('your_app_name.controllers', [])
             $scope.doctorId = window.localStorage.getItem('doctorId'); //$stateParams.drId
             $scope.curTime = new Date();
             $scope.curTimeo = $filter('date')(new Date(), 'hh:mm');
-            console.log($rootScope.doctorId);
             $http({
                 method: 'GET',
                 url: domain + 'doctrsrecords/get-about-fields',
@@ -944,6 +922,43 @@ angular.module('your_app_name.controllers', [])
                     }
                 });
             };
+        })
+
+        .controller('DietplanCtrl', function ($scope, $http, $stateParams, $ionicModal, $rootScope, $filter) {
+            $scope.patientId = window.localStorage.getItem('patientId');
+            $scope.catId = 'Diet Plan';
+            $scope.userId = window.localStorage.getItem('id');
+            $scope.doctorId = window.localStorage.getItem('doctorId'); //$stateParams.drId
+            $scope.curTime = new Date();
+            $scope.curTimeo = $filter('date')(new Date(), 'hh:mm');
+            $http({
+                method: 'GET',
+                url: domain + 'doctrsrecords/get-about-fields',
+                params: {patient: $scope.patientId, userId: $scope.userId, doctorId: $scope.doctorId, catId: $scope.catId}
+            }).then(function successCallback(response) {
+                console.log(response.data);
+                $scope.record = response.data.record;
+                $scope.fields = response.data.fields;
+                $scope.problems = response.data.problems;
+                $scope.doctrs = response.data.doctrs;
+                $scope.patients = response.data.patients;
+                $scope.cases = response.data.cases;
+            }, function errorCallback(response) {
+                console.log(response);
+            });
+        })
+
+        .controller('DietplanListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+
+            $ionicModal.fromTemplateUrl('add-diet', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+
         })
 
         .controller('DoctorConsultationsCtrl', function ($scope, $http, $stateParams, $filter, $ionicPopup, $timeout, $ionicHistory, $filter, $state) {
@@ -1522,7 +1537,7 @@ angular.module('your_app_name.controllers', [])
         .controller('ChatCtrl', function ($scope, $http, $stateParams) {
             $scope.chatId = $stateParams.id;
             window.localStorage.setItem('chatId', $stateParams.id);
-            $scope.partId = window.localStorage.getItem('id');            
+            $scope.partId = window.localStorage.getItem('id');
             $scope.msg = '';
             var apiKey = '45121182';
             //console.log($scope.chatId);

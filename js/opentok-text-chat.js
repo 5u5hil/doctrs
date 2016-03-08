@@ -507,6 +507,7 @@ ChatWidget = function (Chat, ChatUI, ChatMessage) {
     // After a message is received, simply create a new `ChatMessage` instance
     // and add it to the UI.
     onMessageReceived: function (contents, from) {
+        console.log(from);
       var message = new ChatMessage(from.connectionId, from.data, contents);
       this._chatBox.addMessage(message);
     },
