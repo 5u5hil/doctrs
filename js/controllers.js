@@ -1392,7 +1392,7 @@ angular.module('your_app_name.controllers', [])
                 $scope.token = response.data.token;
                 $scope.otherToken = response.data.otherToken;
                 $scope.sessionId = response.data.chatSession;
-                window.localStorage.setItem('Toid', $scope.otherToken.participant_id);
+                window.localStorage.setItem('Toid', $scope.otherUser.id);
                 //$scope.connect("'" + $scope.token + "'");
                 $scope.apiKey = apiKey;
                 var session = OT.initSession($scope.apiKey, $scope.sessionId);
