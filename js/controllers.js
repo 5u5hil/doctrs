@@ -193,6 +193,70 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 
+		.controller('InventoryCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+		.controller('DisbursementCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+
+	.controller('SearchMedicineCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+
+	.controller('AddDisbursementCtrl', function ($scope, $http, $stateParams, $ionicPopup,$ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+
+			$scope.showPopup = function() {
+			
+			  $scope.data = {};
+
+			  // An elaborate, custom popup
+			  var myPopup = $ionicPopup.show({
+				template: '<div class="row"><div class="col col-33"><input type="number" ng-model="data.wifi"></div><div class="col col-67"><select class="selectpopup"><option>Bottle</option></select></div></div>',
+				title: 'Quantity',
+				scope: $scope,
+				buttons: [
+				  { text: 'Cancel' },
+				  {
+					text: '<b>Ok</b>',
+					type: 'button-positive',
+					onTap: function(e) {
+					  if (!$scope.data.wifi) {
+						//don't allow the user to close unless he enters wifi password
+						e.preventDefault();
+					  } else {
+						return $scope.data.wifi;
+					  }
+					}
+				  }
+				]
+			  });
+
+			  myPopup.then(function(res) {
+				console.log('Tapped!', res);
+			  });
+				};
+
+		 $ionicModal.fromTemplateUrl('infomedicine', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+
+
+
+        })
+		
+		
+		
 
         /* end of assistants */
 
@@ -1373,7 +1437,7 @@ angular.module('your_app_name.controllers', [])
                 console.log(e);
             });
         })
-        .controller('ChatCtrl', function ($scope, $http, $stateParams) {
+        .controller('ChatCtrl', function ($scope, $http, $stateParams,$timeout) {
             $scope.chatId = $stateParams.id;
             window.localStorage.setItem('chatId', $stateParams.id);
             $scope.partId = window.localStorage.getItem('id');
@@ -1389,6 +1453,7 @@ angular.module('your_app_name.controllers', [])
                 $scope.user = response.data.user;
                 $scope.otherUser = response.data.otherUser;
                 $scope.chatMsgs = response.data.chatMsgs;
+				console.log($scope.chatMsgs);
                 $scope.token = response.data.token;
                 $scope.otherToken = response.data.otherToken;
                 $scope.sessionId = response.data.chatSession;
@@ -1422,7 +1487,22 @@ angular.module('your_app_name.controllers', [])
             $scope.returnjs();
             $scope.iframeHeight = $(window).height() - 88;
             $('#chat').css('height', $scope.iframeHeight);
-        })
+			
+			
+			$scope.appendprevious=function(){
+				$(function(){
+					
+				$('#chat .ot-textchat .ot-bubbles').append('<section class="ot-bubble mine" data-sender-id=""><div><header class="ot-bubble-header"><p class="ot-message-sender"></p><time class="ot-message-timestamp">12:55 PM</time></header><div class="ot-message-content">das</div></div></section>');
+				
+				$('#chat .ot-textchat .ot-bubbles').append('<section class="ot-bubble" data-sender-id=""><div><header class="ot-bubble-header"><p class="ot-message-sender"></p><time class="ot-message-timestamp">12:55 PM</time></header><div class="ot-message-content">das</div></div></section>');
+				
+				})
+				
+			}
+			$timeout(function () {
+                             $scope.appendprevious();
+                           }, 1000);
+				})
         
         .controller('DoctorJoinCtrl', function ($ionicLoading, $scope, $http, $stateParams, $ionicHistory, $state, $window) {
             if (!get('loadedOnce')) {

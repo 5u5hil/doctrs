@@ -9205,6 +9205,16 @@ h1.post-title{font-size:26px;}
 			 
 	.tabc2{position:relative !important;  margin-top:2px;  padding:10px;}	
 .brd-0{border:0;}	
+.newlist-item{padding:3px;}
+.newlist-item .hreflink{padding: 10px;
+    display: inline-block;
+    width: 80%;}
+.uinfo{float:right; padding:8px; margin-right:5px; font-size:22px; display:block;}
+.selectpopup{
+padding: 7px;
+    width: 100%;
+    border: 0;
+}
 	
 /* endcss */
 

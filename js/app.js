@@ -198,6 +198,48 @@ angular.module('your_app_name', [
                             }
                         }
                     })
+					
+					
+					 .state('app.inventory', {
+                        url: "/inventory",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/assistants/inventory.html",
+                                controller: 'InventoryCtrl'
+                            }
+                        }
+                    })
+
+
+					.state('app.disbursement', {
+                        url: "/disbursement",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/assistants/disbursement.html",
+                                controller: 'DisbursementCtrl'
+                            }
+                        }
+                    })
+
+					.state('app.add-disbursement', {
+                        url: "/add-disbursement",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/assistants/add-disbursement.html",
+                                controller: 'AddDisbursementCtrl'
+                            }
+                        }
+                    })
+
+					.state('app.search-medicine', {
+                        url: "/search-medicine",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/assistants/search-medicine.html",
+                                controller: 'SearchMedicineCtrl'
+                            }
+                        }
+                    })
 
                     .state('app.doctrslist', {
                         url: "/doctrslist",
