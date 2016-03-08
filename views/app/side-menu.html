@@ -7,14 +7,11 @@
                 <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
                 </button>
             </ion-nav-buttons>
-			<ion-nav-buttons side="right">
-				<a ui-sref="app.doctor-settings"><button class="button button-icon button-clear icon ion-gear-a"></button></a>
-			</ion-nav-buttons>
-			
+            <ion-nav-buttons side="right">
+                <a ui-sref="app.doctor-settings"><button class="button button-icon button-clear icon ion-gear-a"></button></a>
+            </ion-nav-buttons>
         </ion-nav-bar>
-		  
-		
-		
+
         <ion-nav-view name="menuContent"></ion-nav-view>
     </ion-side-menu-content>
 
@@ -31,7 +28,7 @@
                     <h2 class="greeting">Hi {{username}} </h2>
                     <p class="message">Welcome</p>
                 </ion-item>
-				 <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.homepage">
+                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.homepage">
                     <i class="icon ion-home"></i>
                     <h2 class="menu-text">Home</h2>
                 </ion-item>
@@ -39,59 +36,16 @@
                     <i class="icon ion-medkit"></i>
                     <h2 class="menu-text">Consultations</h2>
                 </ion-item> 
-				
-				
-				 <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.dietplan">
+
+                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.dietplan">
                     <i class="icon ion-medkit"></i>
                     <h2 class="menu-text">Diet Plan</h2>
                 </ion-item> 
-				
-				
-				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.assistants">
-                    <i class="icon ion-medkit"></i>
-                    <h2 class="menu-text">Assistant's</h2>
-					</ion-item> 
-				
-				
-				
+
                 <ion-item class="item-icon-left logoutbtn" nav-clear menu-close ng-if="userLogged == 1" ng-click="logout()" >
                     <i class="icon ion-android-unlock"></i>
                     <h2 class="menu-text">Logout</h2>
-                </ion-item> 		
-                <!--	<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.doctor-consultations">
-            <i class="icon ion-gear-a"></i>
-            <h2 class="menu-text">Consultations</h2>
-        </ion-item>
-                        
-                        
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.chat-appointments">
-            <i class="icon ion-gear-a"></i>
-            <h2 class="menu-text">Chat Appointments</h2>
-        </ion-item>
-
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.consultations-note">
-            <i class="icon ion-gear-a"></i>
-            <h2 class="menu-text">Consultaion Note</h2>
-        </ion-item>
-
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.treatment-plan">
-            <i class="icon ion-gear-a"></i>
-            <h2 class="menu-text">Treatment plans</h2>
-        </ion-item>
-                        
-                        
-                        
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="{{ userLogged == 1 ? 'app.logout' : 'auth.login'}}">
-            <i class="icon ion-android-unlock"></i>
-            <h2 class="menu-text">{{ userLogged == 1 ? 'Logout' : 'Login / Register'}}</h2>
-        </ion-item>-->
-
-                <!---<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.category-list">
-                    <i class="icon ion-gear-a"></i>
-                    <h2 class="menu-text">Category List</h2>
-                </ion-item>--->
-
-
+                </ion-item>
 
             </ion-list>
         </ion-content>
