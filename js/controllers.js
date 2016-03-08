@@ -126,11 +126,6 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 
-        .controller('AssistantsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-
         .controller('DoctrslistsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $ionicModal.fromTemplateUrl('addp', {
                 scope: $scope
@@ -487,7 +482,6 @@ angular.module('your_app_name.controllers', [])
             }
         })
 
-
         .controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
@@ -535,7 +529,6 @@ angular.module('your_app_name.controllers', [])
             };
         })
 
-
         .controller('AddtreatmenttCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('add-treatmentplan', {
                 scope: $scope
@@ -557,7 +550,6 @@ angular.module('your_app_name.controllers', [])
                 $scope.modal.hide();
             };
         })
-
 
         .controller('IcdCtrl', function ($scope, $ionicModal) {
             $ionicModal.fromTemplateUrl('icd', {
@@ -590,7 +582,6 @@ angular.module('your_app_name.controllers', [])
                 $scope.modal.hide();
             };
         })
-
 
         .controller('noteType', function ($scope, $ionicModal, $state) {
             $ionicModal.fromTemplateUrl('notetype', {
