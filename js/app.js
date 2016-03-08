@@ -186,6 +186,16 @@ angular.module('your_app_name', [
                             }
                         }
                     })
+                    
+                    .state('app.past-chatlist', {
+                        url: "/past-chatlist",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/past-chatlist.html",
+                                controller: 'PastChatListCtrl'
+                            }
+                        }
+                    })
 
                     /* assistants */
 
@@ -198,9 +208,9 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-					
-					
-					 .state('app.inventory', {
+
+
+                    .state('app.inventory', {
                         url: "/inventory",
                         views: {
                             'menuContent': {
@@ -211,7 +221,7 @@ angular.module('your_app_name', [
                     })
 
 
-					.state('app.disbursement', {
+                    .state('app.disbursement', {
                         url: "/disbursement",
                         views: {
                             'menuContent': {
@@ -221,7 +231,7 @@ angular.module('your_app_name', [
                         }
                     })
 
-					.state('app.add-disbursement', {
+                    .state('app.add-disbursement', {
                         url: "/add-disbursement",
                         views: {
                             'menuContent': {
@@ -231,7 +241,7 @@ angular.module('your_app_name', [
                         }
                     })
 
-					.state('app.search-medicine', {
+                    .state('app.search-medicine', {
                         url: "/search-medicine",
                         views: {
                             'menuContent': {
