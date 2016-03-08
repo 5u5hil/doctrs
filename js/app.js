@@ -241,6 +241,37 @@ angular.module('your_app_name', [
                         }
                     })
 
+					.state('app.medicine-details', {
+                        url: "/medicine-details",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/assistants/medicine-details.html",
+                                controller: 'MedicineDetailsCtrl'
+                            }
+                        }
+                    })
+					.state('app.medicine-history', {
+                        url: "/medicine-history",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/assistants/medicine-history.html",
+                                controller: 'MedicineHistoryCtrl'
+                            }
+                        }
+                    })
+
+					.state('app.medicine-outgo', {
+                        url: "/medicine-outgo",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "views/app/assistants/medicine-outgo.html",
+                                controller: 'MedicineOutgoCtrl'
+                            }
+                        }
+                    })
+
+
+
                     .state('app.doctrslist', {
                         url: "/doctrslist",
                         views: {

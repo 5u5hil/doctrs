@@ -207,6 +207,22 @@ angular.module('your_app_name.controllers', [])
             $scope.categoryId = $stateParams.categoryId;
         })
 
+	.controller('MedicineDetailsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+	.controller('MedicineHistoryCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+
+		.controller('MedicineOutgoCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+
+
+
 	.controller('AddDisbursementCtrl', function ($scope, $http, $stateParams, $ionicPopup,$ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;

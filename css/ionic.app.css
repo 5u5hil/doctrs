@@ -8567,7 +8567,7 @@ select.selectheader{ width:80%; padding:3px; border:0; text-indent:35%;}
 
 .card-content{    padding: 10px 10px 5px 10px; text-align:justify; position:relative; display:block; text-decoration:none;}
 .user-image-circle{width:55px; height:55px; border-radius:50%; border:1px #ccc solid; margin:0 15px 0px 0; float:left; display:inline-block;}
-.cbtn{ text-align:center; padding:3px 0; margin:1px; background:#eee; display:block; text-decoration:none;}
+.cbtn{ text-align:center; padding:5px 0; margin:1px; background:#eee; display:block; text-decoration:none;}
 .p0{padding:0;}
 .f33{font-size:33px;}
 .card-left{width:50px; float:left;}
@@ -8759,7 +8759,7 @@ iframe.videochat{position:absolute; width:100%; height: 100%;}
 .scroll-content{overflow:auto !important;}
 .minh350{height:350px !important;}
 .top50{top:20px !important;}
-.pb50{padding-bottom:50px;}
+.pb50{padding-bottom:50px; /* end bottom*/}
 .m15{margin:15px 0;}
 .text-right{text-align:right;}
 .prelative{position:relative;}
@@ -9215,7 +9215,17 @@ padding: 7px;
     width: 100%;
     border: 0;
 }
-	
+.fbold{font-weight:bold;}
+.msearchlist{padding:0px;}	
+.msearchlist:first-child{margin-top:15px;}
+.msearchlist .list:last-child.card{margin-bottom: 20px;}
+.scont{margin-bottom:30px;}
+.lhref{display:block; text-decoration:none;}
+.infoheader{padding: 10px 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.4);}
+
+
 /* endcss */
 
 
