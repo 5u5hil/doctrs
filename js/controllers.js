@@ -286,9 +286,9 @@ angular.module('your_app_name.controllers', [])
                 url: domain + 'doctorsapp/get-all-patients',
                 params: {userId: $scope.userId}
             }).then(function successCallback(response) {
-                console.log(response.data.users.length);
-                if (response.data.users.length>0) {
-                    var data = response.data.users;
+                console.log(response.data.length);
+                if (response.data.length>0) {
+                    var data = response.data;
                     $scope.users = _.reduce(
                             data,
                             function (output, fname) {
