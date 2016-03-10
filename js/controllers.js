@@ -181,9 +181,25 @@ angular.module('your_app_name.controllers', [])
             }, function errorCallback(e) {
                 console.log(e);
             });
+			
+		 $ionicModal.fromTemplateUrl('assaddp', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+			
+
         })
 
         .controller('AssPatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
+            $scope.category_sources = [];
+            $scope.categoryId = $stateParams.categoryId;
+        })
+		
+		.controller('AssPaymentCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
         })
@@ -1546,7 +1562,9 @@ angular.module('your_app_name.controllers', [])
             }, 1000);
         })
 
-        .controller('DoctorJoinCtrl', function ($ionicLoading, $scope, $http, $stateParams, $ionicHistory, $state, $window) {
+        .controller('DoctorJoinCtrl', function ($ionicLoading, $scope, $http, $stateParams, $ionicHistory, $ionicPopup, $state, $window) {
+			
+
             if (!get('loadedOnce')) {
                 store({'loadedOnce': 'true'});
                 $window.location.reload(true);
@@ -1643,7 +1661,79 @@ angular.module('your_app_name.controllers', [])
                     $state.go('app.doctor-consultations', {}, {reload: true});
                 }
             };
+			
+			$scope.addnote=function(){
+				jQuery('.mediascreen').toggleClass('minscreen');
+				jQuery('.slideupdiv').toggleClass('active');
+				
+			}
+			
+			
         })
+		
+		
+    .controller('docjnPatientCtrl', function($scope, $http, $stateParams, $ionicModal){
+
+         $ionicModal.fromTemplateUrl('docjn-patient', {
+                scope: $scope
+            }).then(function (modal) {
+                $scope.modal = modal;
+            });
+            $scope.submitmodal = function () {
+                $scope.modal.hide();
+            };
+    })
+
+
+
+
+	.controller('docImageoptionCtrl',function($ionicLoading, $scope, $http, $stateParams,  $ionicPopup, $state){
+		
+		$scope.showPopup = function () {
+                $scope.data = {};
+                // An elaborate, custom popup
+                var myPopup = $ionicPopup.show({
+                    template: '<div class="row"><div class="col"><div class="button button-positive btn-add bar">File Attachment</div></div></div><div class="row"><div class="col"><div class="button btn-add bar">Camera</div></div></div>',
+                    title: 'Upload File',
+                    scope: $scope,
+                    buttons: [
+                        {text: 'Cancel'},
+                        {  text: '<b>Ok</b>',
+                            type: 'button-positive ',
+                            onTap: function (e) {
+                                if (!$scope.data.wifi) {
+                                    //don't allow the user to close unless he enters wifi password
+                                    e.preventDefault();
+                                } else {
+                                    return $scope.data.wifi;
+                                }
+                            }
+                        }
+                    ]
+                });
+
+                myPopup.then(function (res) {
+                    console.log('Tapped!', res);
+                });
+            };
+	})	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
         .controller('DoctorChatAppsCtrl', function ($scope, $http, $stateParams, $filter, $ionicPopup, $timeout) {
             $scope.drId = get('id');
