@@ -9234,10 +9234,10 @@ padding: 7px;
     margin-bottom: 25px;
     box-shadow: 0 0 5px rgba(0,0,0,0.4);}
 	.slideupdiv{ position: relative;
-		width:100%; height:50vh; position:absolute; bottom:0; 
+		width:100%; height:50vh; position:absolute; bottom:-50vh; 
 		background: #FFF;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
-	z-index:9; opacity:1;
+	z-index:9; opacity:0;
 		-webkit-transition:all 0.3s ease-out;
 		transition:all 0.3s ease-out;
 		}
@@ -9247,17 +9247,22 @@ padding: 7px;
 		transition:all 0.3s ease-in;
 		height:50vh;
 		opacity:1;
+    bottom: 0;
 	}
 
 
 .ciframecontainer{ position: relative;
     width:100%; height:50vh; position:absolute; bottom:0; 
     background: #eee;
+    bottom: -50vh;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
   z-index:99; opacity:0;
     -webkit-transition:all 0.3s ease-out;
-    transition:all 0.3s ease-out;}
+    transition:all 0.3s ease-out;
+  }
+
 .ciframecontainer.active{
+   bottom: 0;
     -webkit-transition:all 0.3s ease-in;
     transition:all 0.3s ease-in;
     height:50vh;
@@ -9271,15 +9276,15 @@ padding: 7px;
 .custpopup-container{ z-index: 9; 
   background: rgba(0,0,0,0.3); 
   position: absolute; 
-  width: 100%; height: 0;
+  width: 100%; height: 0; bottom: 0;
 opacity: 0;
--webkit-transition:all 0.3s ease-out;
+-webkit-transition:all 0.5s ease-out;
 }
 
 .custpopup-container.active{
   height: 100%;
   opacity: 1;
--webkit-transition:all 0.3s ease-in;
+-webkit-transition:all 0.5s ease-in;
 }
 
 	.custpopup{ 
@@ -9290,8 +9295,13 @@ opacity: 0;
     left: 5%;
     min-height: 200px;
   }
-  .ncbtn{    text-align: right;
-    padding: 5px 8px;}
+  .ncbtn{     text-align: right;
+    padding:6px 8px;
+    /* background: #1D1818; */
+    text-align: right;
+    margin-bottom: 10px;
+    /* float: right; */
+    font-size: 20px;}
 
 .heading3{    margin: 0px 0 0 0;
     padding: 0;
@@ -9299,7 +9309,39 @@ opacity: 0;
     padding: 0px 0 0 10px;}
     .slideupcontent{}
 
+    .closeifrme{position: absolute;
+    left: 3px;
+    padding: 8px 12px;
+   
+    font-weight: bold;
+    z-index: 99;
+    top: 0px;
+    border-radius: 5px;}
 
+.pb30{padding-bottom: 30px;}
+.iframeclose,.iframesubmit{   position: absolute;
+    top: 0;
+    z-index: 99;
+    line-height: 43px !important;
+    border: 0;
+    background: #3467BD !important;
+    color: #FFFFFF;
+  }
+
+.iframeclose i,.iframesubmit i{color: #FFFFFF;}
+
+.iframesubmit{right: 0;}
+.iframeclose{left: 0;}
+.ctitlebar{    padding: 12px 0;
+    background: #387ef5; color: #fff;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .attachcontainer{margin: 10px 10px;}
+  .addnebtn{    padding: 0px 13px 5px 13px;
+    height: 42px;}
 /* endcss */
 
 

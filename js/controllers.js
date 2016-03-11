@@ -367,6 +367,9 @@ angular.module('your_app_name.controllers', [])
             console.log($scope.patientId);
         })
 
+
+
+
         .controller('EvaluationCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
             $scope.categoryId = $stateParams.categoryId;
@@ -1424,8 +1427,37 @@ angular.module('your_app_name.controllers', [])
             }, 1000);
         })
 
-        .controller('DoctorJoinCtrl', function ($ionicLoading, $scope, $http, $stateParams, $ionicHistory, $ionicPopup, $state, $window) {
+
+
+        .controller('DoctorJoinCtrl', function ($ionicLoading, $scope, $http, $timeout, $stateParams, $ionicHistory, $ionicPopup, $state, $window) {
 			
+            $scope.adjquery=function(){
+                     jQuery(function(){
+                    var b= jQuery('iframe').contents().find('body .iframeclose');
+                     console.log(b);
+                        $(b).on("click", function(){
+                     jQuery('.ciframecontainer').removeClass('active');
+                      
+                    })
+                     })
+                }
+                
+                $scope.golink=function(fsrc){
+                    console.log(fsrc);
+                  jQuery('iframe').attr('src',fsrc);
+                  jQuery('.ciframecontainer').addClass('active');
+                 // jQuery('.ciframecontainer').append('<iframe src="'+fsrc+'" id="'+fsrc+'"></iframe>');
+                  jQuery('.custpopup-container').removeClass('active');
+                  $scope.adjquery();
+                }
+
+                $scope.closeiframe=function(){
+                     jQuery('.ciframecontainer').removeClass('active');
+                     }
+                 $timeout(function () {$scope.adjquery();}, 4000);
+                    
+
+
 
             if (!get('loadedOnce')) {
                 store({'loadedOnce': 'true'});
@@ -1527,10 +1559,13 @@ angular.module('your_app_name.controllers', [])
 			$scope.addnote=function(){
 				jQuery('.mediascreen').toggleClass('minscreen');
 				jQuery('.slideupdiv').toggleClass('active');
-				
 			}
 			
-			
+			$scope.removenoteslide=function(){
+                jQuery('.mediascreen').removeClass('minscreen');
+                jQuery('.slideupdiv').removeClass('active');
+            }
+
         })
 		
 		
@@ -1582,12 +1617,14 @@ angular.module('your_app_name.controllers', [])
 		
 		
 		
+	/* doctor join  controllers */	
+		
+		.controller('DjoinpatientCtrl', function ($scope, $http, $stateParams) {
+          
+        })
 		
 		
-		
-		
-		
-		
+	/* end doctor join  controllers */    
 		
 		
 		
