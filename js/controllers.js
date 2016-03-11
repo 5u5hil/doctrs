@@ -116,10 +116,7 @@ angular.module('your_app_name.controllers', [])
         })
 
 
-        .controller('HomepageCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
+  
 
         .controller('CreatedbyuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
@@ -149,145 +146,7 @@ angular.module('your_app_name.controllers', [])
 
             };
         })
-        /* Assistants */
-
-        .controller('AssistantsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-
-        .controller('AssPatientListCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.userId = window.localStorage.getItem('id');
-            $http({
-                method: 'GET',
-                url: domain + 'doctorsapp/get-all-patients',
-                params: {userId: $scope.userId}
-            }).then(function successCallback(response) {
-                console.log(response.data);
-                var data = response.data;
-                $scope.users = _.reduce(
-                        data,
-                        function (output, fname) {
-                            var lCase = fname.fname.toUpperCase();
-                            if (output[lCase[0]]) //if lCase is a key
-                                output[lCase[0]].push(fname); //Add name to its list
-                            else
-                                output[lCase[0]] = [fname]; // Else add a key
-                            console.log(output);
-                            return output;
-                        },
-                        {}
-                );
-            }, function errorCallback(e) {
-                console.log(e);
-            });
-			
-		 $ionicModal.fromTemplateUrl('assaddp', {
-                scope: $scope
-            }).then(function (modal) {
-                $scope.modal = modal;
-            });
-            $scope.submitmodal = function () {
-                $scope.modal.hide();
-            };
-			
-
-        })
-
-        .controller('AssPatientCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-		
-		.controller('AssPaymentCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-
-        .controller('InventoryCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-        .controller('DisbursementCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-
-        .controller('SearchMedicineCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-
-
-	.controller('MedicineDetailsCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-	.controller('MedicineHistoryCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-
-		.controller('MedicineOutgoCtrl', function ($scope, $http, $stateParams, $ionicModal) {
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-        })
-
-
-
-        .controller('AddDisbursementCtrl', function ($scope, $http, $stateParams, $ionicPopup, $ionicModal) {
-
-            $scope.category_sources = [];
-            $scope.categoryId = $stateParams.categoryId;
-
-            $scope.showPopup = function () {
-
-                $scope.data = {};
-
-                // An elaborate, custom popup
-                var myPopup = $ionicPopup.show({
-                    template: '<div class="row"><div class="col col-33"><input type="number" ng-model="data.wifi"></div><div class="col col-67"><select class="selectpopup"><option>Bottle</option></select></div></div>',
-                    title: 'Quantity',
-                    scope: $scope,
-                    buttons: [
-                        {text: 'Cancel'},
-                        {
-                            text: '<b>Ok</b>',
-                            type: 'button-positive',
-                            onTap: function (e) {
-                                if (!$scope.data.wifi) {
-                                    //don't allow the user to close unless he enters wifi password
-                                    e.preventDefault();
-                                } else {
-                                    return $scope.data.wifi;
-                                }
-                            }
-                        }
-                    ]
-                });
-
-                myPopup.then(function (res) {
-                    console.log('Tapped!', res);
-                });
-            };
-
-            $ionicModal.fromTemplateUrl('infomedicine', {
-                scope: $scope
-            }).then(function (modal) {
-                $scope.modal = modal;
-            });
-            $scope.submitmodal = function () {
-                $scope.modal.hide();
-            };
-
-
-
-        })
-
-
-
-
-        /* end of assistants */
+      
 
         .controller('SharedwithuCtrl', function ($scope, $http, $stateParams, $ionicModal) {
             $scope.category_sources = [];
@@ -454,26 +313,29 @@ angular.module('your_app_name.controllers', [])
 
         .controller('PatientListCtrl', function ($scope, $http, $stateParams, $ionicModal, $ionicLoading) {
             $scope.userId = window.localStorage.getItem('id');
+            $scope.users = {};
             $http({
                 method: 'GET',
                 url: domain + 'doctorsapp/get-all-patients',
                 params: {userId: $scope.userId}
             }).then(function successCallback(response) {
-                console.log(response.data);
-                var data = response.data;
-                $scope.users = _.reduce(
-                        data,
-                        function (output, fname) {
-                            var lCase = fname.fname.toUpperCase();
-                            if (output[lCase[0]]) //if lCase is a key
-                                output[lCase[0]].push(fname); //Add name to its list
-                            else
-                                output[lCase[0]] = [fname]; // Else add a key
-                            console.log(output);
-                            return output;
-                        },
-                        {}
-                );
+                console.log(response.data.length);
+                if (response.data.length>0) {
+                    var data = response.data;
+                    $scope.users = _.reduce(
+                            data,
+                            function (output, fname) {
+                                var lCase = fname.fname.toUpperCase();
+                                if (output[lCase[0]]) //if lCase is a key
+                                    output[lCase[0]].push(fname); //Add name to its list
+                                else
+                                    output[lCase[0]] = [fname]; // Else add a key
+                                console.log(output);
+                                return output;
+                            },
+                            {}
+                    );
+                }
             }, function errorCallback(e) {
                 console.log(e);
             });

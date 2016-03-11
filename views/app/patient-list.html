@@ -10,18 +10,17 @@
                 <input type="text" placeholder="Search" ng-model="search">
             </label>
         </div>
-		
-		
 
-		<div class="list mb0" ng-repeat="(header,data) in users | orderBy: ['data.fname', 'data.lname']" >
+        <div class="list mb0" ng-repeat="(header,data) in users" ng-if="users.length != 0">
             <div class="item item-divider">{{header}}</div>
-            <a class="item" ng-repeat="users in data| filter:search" ui-sref="app.patient({'id':users.id})" ui-sref-opts="{reload: true}">
+            <a class="item" ng-repeat="users in data| filter:search| orderBy:['fname', 'lname']" ui-sref="app.patient({'id':users.id})" ui-sref-opts="{reload: true}">
                 <h2>{{users.fname}} {{users.lname}}</h2>
                 <p>{{users.email}}, &nbsp;   +91 {{users.phone}}</p>
             </a>
         </div> 
-		
-		
+        <div class="list mb0" ng-if="users.length == 0">
+            <p>No patients</p>
+        </div>
     </ion-content>
     <div class="bar bar-footer bar-positive">
         <div class="title" ng-click="modal.show()"><i class="ion-plus-circled fwhite"></i> Add</div>
@@ -57,7 +56,7 @@
     <input type="tel" placeholder="Phone" name="phone" ng-model="phone" required ng-minlength="10" />
     <div ng-show="addpatient.phone.$error.minlength" class="serror">Mobile number is too short.</div>
     </label>
-    
+
     </ion-content>
     <div class="fixedbar">
     <button type="submit" class="button btn-add nav-clear" ng-click="savePatient()" ng-disabled="addpatient.$invalid" > <i class="ion-check"></i>  Submit</button>

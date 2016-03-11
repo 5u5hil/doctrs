@@ -186,7 +186,7 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-                    
+
                     .state('app.past-chatlist', {
                         url: "/past-chatlist",
                         views: {
@@ -196,143 +196,6 @@ angular.module('your_app_name', [
                             }
                         }
                     })
-
-                    /* assistants */
-
-                    .state('app.assistants', {
-                        url: "/assistants",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/assistants/assistants.html",
-                                controller: 'AssistantsCtrl'
-                            }
-                        }
-                    })
-
-
-                    .state('app.inventory', {
-                        url: "/inventory",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/assistants/inventory.html",
-                                controller: 'InventoryCtrl'
-                            }
-                        }
-                    })
-
-
-                    .state('app.disbursement', {
-                        url: "/disbursement",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/assistants/disbursement.html",
-                                controller: 'DisbursementCtrl'
-                            }
-                        }
-                    })
-
-                    .state('app.add-disbursement', {
-                        url: "/add-disbursement",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/assistants/add-disbursement.html",
-                                controller: 'AddDisbursementCtrl'
-                            }
-                        }
-                    })
-
-                    .state('app.search-medicine', {
-                        url: "/search-medicine",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/assistants/search-medicine.html",
-                                controller: 'SearchMedicineCtrl'
-                            }
-                        }
-                    })
-
-					.state('app.medicine-details', {
-                        url: "/medicine-details",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/assistants/medicine-details.html",
-                                controller: 'MedicineDetailsCtrl'
-                            }
-                        }
-                    })
-					.state('app.medicine-history', {
-                        url: "/medicine-history",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/assistants/medicine-history.html",
-                                controller: 'MedicineHistoryCtrl'
-                            }
-                        }
-                    })
-
-					.state('app.medicine-outgo', {
-                        url: "/medicine-outgo",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/assistants/medicine-outgo.html",
-                                controller: 'MedicineOutgoCtrl'
-                            }
-                        }
-                    })
-
-
-
-                    .state('app.doctrslist', {
-                        url: "/doctrslist",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/assistants/doctrslist.html",
-                                controller: 'DoctrslistsCtrl'
-                            }
-                        }
-                    })
-
-                    .state('app.ass-patient-list', {
-                        url: "/ass-patient-list",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/assistants/ass-patient-list.html",
-                                controller: 'AssPatientListCtrl'
-                            }
-                        }
-                    })
-
-
-                    .state('app.ass-patient', {
-                        url: "/ass-patient",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/assistants/ass-patient.html",
-                                controller: 'AssPatientCtrl'
-                            }
-                        }
-                    })
-
-					.state('app.ass-payment', {
-                        url: "/ass-payment",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/assistants/ass-payment.html",
-                                controller: 'AssPaymentCtrl'
-                            }
-                        }
-                    })
-					
-					
-					
-                    /* end of assistants */
-
-
-
-
-
-
-
 
 
                     .state('app.peers', {
@@ -583,17 +446,6 @@ angular.module('your_app_name', [
                             'menuContent': {
                                 templateUrl: "views/app/patient-chat.html",
                                 controller: 'PatientChatCtrl'
-                            }
-                        }
-                    })
-
-
-                    .state('app.feed-entries', {
-                        url: "/feed-entries/:categoryId/:sourceId",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "views/app/feeds/feed-entries.html",
-                                controller: 'FeedEntriesCtrl'
                             }
                         }
                     })
