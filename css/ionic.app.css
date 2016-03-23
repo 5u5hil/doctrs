@@ -9360,14 +9360,24 @@ opacity: 0;
 
 .crdview .icon{color:#fff;}
 .p5{padding: 5px;}
+.btview a{text-decoration:none;}
+.selectopt{background: green;
+    float: right;
+    color: #fff;
+    padding: 1px 5px;
+    border-radius: 3px;
+}
+.ditem-content{margin: 10px 15px;}
+.Ditemselect{padding: 10px ! important;}
+
 /* endcss */
  .ion-close, .crdview .ion-closev.iocon{
 
   color:#fff;
 }
 .crdview .ion-close{}{  color:#fff;}
-
-
+.logintab .item-body.p0{padding:10px;}
+.w100p{width:100%;}
 
 
 
